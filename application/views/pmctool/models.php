@@ -43,4 +43,4 @@
 <?php $this->load->view('pmctoolContent/pmctoolModelsContent/pmctoolModelsContent'); ?>
     <?php $this->load->view('menu/pmctoolPreloader'); ?>
 
-<?php $this->load->view('footer/pmctoolFooter'); ?>
+    <?php $this->load->view('footer/pmctoolFooter'); ?>

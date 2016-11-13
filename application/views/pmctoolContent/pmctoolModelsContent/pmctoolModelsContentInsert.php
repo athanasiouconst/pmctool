@@ -80,7 +80,7 @@
 
                         </table>
                         <div class="btn btn-danger">
-                            <?php echo form_submit('submit', 'Submit Project'); ?>
+                            <?php echo form_submit('submit', 'Submit Model'); ?>
                             <?php echo form_close() ?>
                         </div> 
                     </div>

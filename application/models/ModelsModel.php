@@ -174,13 +174,18 @@ Class ModelsModel extends CI_Model {
     }
     
     public function getViewModelsAssignments($mod_id) {
-        $query = $this->db->query("SELECT * FROM model ");
+        $query = $this->db->query("SELECT * FROM model_complex_factor "
+                . " LEFT JOIN model ON model_complex_factor.mod_id=model.mod_id"
+                . " LEFT JOIN complexity_factor ON model_complex_factor.cf_id=complexity_factor.cf_id"
+                . " WHERE model.mod_id='".$mod_id."' ");
         $results = array();
         foreach ($query->result() as $row) {
             array_push($results, array(
-                'mod_id' => $row->mod_id,
+                'model.mod_id' => $row->mod_id,
                 'mod_name' => $row->mod_name,
-                'mod_description' => $row->mod_description
+                'mod_description' => $row->mod_description,
+                'cf_name' => $row->cf_name,
+                'cf_description'=> $row->cf_description
             ));
         }
         return $results;
@@ -189,12 +194,15 @@ Class ModelsModel extends CI_Model {
     function searchViewModelsAssignments($mod_id,$sort_by, $sort_order, $limit, $offset) {
         //results
         $sort_order == ($sort_order == 'desc') ? 'desc' : 'asc';
-        $sort_colums = array('mod_id', 'mod_name','mod_description');
-        $sort_by = (in_array($sort_by, $sort_colums)) ? $sort_by : 'mod_id';
+        $sort_colums = array('model_complex_factor.mod_id', 'mod_name','mod_description');
+        $sort_by = (in_array($sort_by, $sort_colums)) ? $sort_by : 'model_complex_factor.mod_id';
 
         $query = $this->db->select('*')
-                ->from('model')
+                ->from('model_complex_factor')
+                ->join('model', 'model_complex_factor.mod_id=model.mod_id', 'left outer')
+                ->join('complexity_factor', 'model_complex_factor.cf_id=complexity_factor.cf_id', 'left outer')
                 ->limit($limit, $offset)
+                ->where('model.mod_id',$mod_id)
                 ->order_by($sort_by, $sort_order);
 
         $ret['rows'] = $query->get()->result();
@@ -202,11 +210,79 @@ Class ModelsModel extends CI_Model {
 
 
 
-        $query = $this->db->count_all('model');
+        $query = $this->db->count_all('model_complex_factor');
 
         $tmp = $query;
         $ret['num_rows'] = $tmp;
         return $ret;
     }
 
+    
+    
+    public function getViewModelsAssignmentsDetails($model_cf_id) {
+        $query = $this->db->query("SELECT * FROM model_complex_factor "
+                . " LEFT JOIN model ON model_complex_factor.mod_id=model.mod_id"
+                . " LEFT JOIN complexity_factor ON model_complex_factor.cf_id=complexity_factor.cf_id"
+                . " LEFT JOIN metric ON complexity_factor.cf_id=metric.cf_id"
+                . " LEFT JOIN metric_evsc ON metric.metric_id=metric_evsc.metric_id"
+                . " LEFT JOIN evaluation_scale ON metric_evsc.evsc_id=evaluation_scale.evsc_id"
+                . " WHERE model_complex_factor.model_cf_id='".$model_cf_id."' ");
+        $results = array();
+        foreach ($query->result() as $row) {
+            array_push($results, array(
+                'model_cf_id' => $row->model_cf_id,
+                'mod_id' => $row->mod_id,
+                'mod_name' => $row->mod_name,
+                'mod_description' => $row->mod_description,
+                'cf_id' => $row->cf_id,
+                'cf_name' => $row->cf_name,
+                'cf_description' => $row->cf_description,
+                'cf_reference' => $row->cf_reference,
+                'cf_restriction' => $row->cf_restriction,
+                'cf_category' => $row->cf_category,
+                'cf_weight' => $row->cf_weight,
+                'metric_id' => $row->metric_id,
+                'metric_name' => $row->metric_name,
+                'metric_description' => $row->metric_description,
+                'metric_reference' => $row->metric_reference,
+                'metric_restriction' => $row->metric_restriction,
+                'metric_weight' => $row->metric_weight,
+                'cf_id' => $row->cf_id,
+                'cf_name' => $row->cf_name,
+                'evsc_name' => $row->evsc_name,
+                'evsc_description' => $row->evsc_description,
+                'evsc_type' => $row->evsc_type
+            ));
+        }
+        return $results;
+    }
+
+    function searchViewModelsAssignmentsDetails($model_cf_id,$sort_by, $sort_order, $limit, $offset) {
+        //results
+        $sort_order == ($sort_order == 'desc') ? 'desc' : 'asc';
+        $sort_colums = array('model_complex_factor.mod_id', 'mod_name','mod_description');
+        $sort_by = (in_array($sort_by, $sort_colums)) ? $sort_by : 'model_complex_factor.mod_id';
+        
+        $query = $this->db->select('*')
+                ->from('model_complex_factor')
+                ->join('model', 'model_complex_factor.mod_id=model.mod_id', 'left outer')
+                ->join('complexity_factor', 'model_complex_factor.cf_id=complexity_factor.cf_id', 'left outer')
+                ->join('metric', 'complexity_factor.cf_id=metric.cf_id', 'left outer')
+                ->join('metric_evsc', 'metric.metric_id=metric_evsc.metric_id', 'left outer')
+                ->join('evaluation_scale', 'metric_evsc.evsc_id=evaluation_scale.evsc_id', 'left outer')
+                ->limit($limit, $offset)
+                ->where('model_complex_factor.model_cf_id',$model_cf_id)
+                ->order_by($sort_by, $sort_order);
+
+        $ret['rows'] = $query->get()->result();
+        //count query
+
+
+
+        $query = $this->db->count_all('model_complex_factor');
+
+        $tmp = $query;
+        $ret['num_rows'] = $tmp;
+        return $ret;
+    }
 }
