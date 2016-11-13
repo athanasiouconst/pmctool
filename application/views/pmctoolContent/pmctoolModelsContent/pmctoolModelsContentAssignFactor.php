@@ -3,7 +3,7 @@
 <body>
 
     <!-- Heaser Area Start -->
-    <header class="header-area">
+    <header class="header-area" style="position: fixed; width: 100%;">
         <!-- Navigation start -->
         <nav class="navbar navbar-custom tb-nav" role="navigation">
             <div class="container">        
@@ -14,7 +14,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand logo" href="<?php echo base_url(); ?>"><h2>Project Management <br><span>Complexity </span>Tool</h2></a>
+                <a class="navbar-brand logo" href="<?php echo base_url(); ?>"><h2>Project Management <br><span>Complexity </span>Tool</h2></a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="tb-nav-collapse">
@@ -22,9 +22,9 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li ><a class="page-scroll" href="<?php echo base_url('pmctool'); ?>">Home</a></li>
                         <li><a class="page-scroll" href="<?php echo base_url('Projects/ViewProjects'); ?>">Projects</a></li>
-                        <li><a class="page-scroll" href="<?php echo base_url('Models/ViewModels'); ?>">Models</a></li>
+                        <li class="active"><a class="page-scroll" href="<?php echo base_url('Models/ViewModels'); ?>">Models</a></li>
                         <li><a class="page-scroll" href="<?php echo base_url('ComplexityFactors/ViewComplexityFactors'); ?>">Complexity Factors</a></li>
-                        <li class="active"><a class="page-scroll" href="<?php echo base_url('Metrics/ViewMetrics'); ?>">Metrics</a></li>
+                        <li><a class="page-scroll" href="<?php echo base_url('Metrics/ViewMetrics'); ?>">Metrics</a></li>
                         <li><a class="page-scroll" href="<?php echo base_url('EvaluationScale/ViewEvaluationScale'); ?>">Evaluation Scale</a></li>
                     </ul>
                 </div>
@@ -43,7 +43,7 @@
     <section class="metrics-section section-padding" id="metrics">
         <div class="container-fluid">
 
-            <h2 class="section-title text-center">Assign Evaluation Scale to Metrics</h2>
+            <h2 class="section-title text-center">Assign Complexity Factors to Models</h2>
 
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12 text-center ">
@@ -58,25 +58,19 @@
                             </div>                    
                         <?php endif; ?>
 
-                        <?php echo form_open('Metrics/ViewMetricsAssignEvaluationScaleEditSubmitForm') ?>  
+                        <?php echo form_open('Models/CreateModelsAssignFactor') ?>  
                         <table class="table " style="width: 100%; alignment-adjust: auto; text-align:  left; font-size:16px; font-family: sans-serif;">
-                            
-                                <?php if (isset($gMetric)): ?>
-                                    <?php foreach ($genMetric as $genMetrics): ?>
-                                              <p><input type="hidden" size="80" id="metric_evsc_id" name="metric_evsc_id" value="<?php echo $genMetrics->metric_evsc_id; ?>"/>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>   
 
                             <tr>
                                 <td>
-                                    <span title="Metric">
-                                        <label for="Metric"></label>
-                                        <select name='metric_id' id='metric_id' >
-                                            
-                                            <?php if (isset($gMetric)): ?>
-                                                <?php foreach ($genMetric as $genMetric): ?>
-                                                    <option value="<?php echo $genMetric->metric_id; ?>">
-                                                        <?php echo $genMetric->metric_name; ?>
+                                    <span title="Model">
+                                        <label for="Model"></label>
+                                        <select name='mod_id' id='mod_id' >
+                                            <option value="-1">Model</option>
+                                            <?php if (isset($gModel)): ?>
+                                                <?php foreach ($genModel as $genModel): ?>
+                                                    <option value="<?php echo $genModel->mod_id; ?>">
+                                                        <?php echo $genModel->mod_name; ?>
                                                     </option>
                                                 <?php endforeach; ?>
                                             <?php endif; ?>
@@ -86,14 +80,14 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <span title="Evaluation Scale">
-                                        <label for="Evaluation Scale"></label>
-                                        <select name='evsc_id' id='evsc_id' >
-
-                                            <?php if (isset($gEvaluationScale)): ?>
-                                                <?php foreach ($genEvaluationScale as $genEvaluationScale): ?>
-                                            <option value="<?php echo $genEvaluationScale->evsc_id; ?>">
-                                                        <?php echo $genEvaluationScale->evsc_name; ?> - <?php echo $genEvaluationScale->evsc_type; ?> - <?php echo $genEvaluationScale->evsc_description; ?>
+                                    <span title="Complexity Factor">
+                                        <label for="Complexity Factor"></label>
+                                        <select name='cf_id' id='cf_id' >
+                                            <option value="-1">Complexity Factor</option>
+                                            <?php if (isset($gComplexityFactor)): ?>
+                                                <?php foreach ($genComplexityFactor as $genComplexityFactor): ?>
+                                                    <option value="<?php echo $genComplexityFactor->cf_id; ?>">
+                                                        <?php echo $genComplexityFactor->cf_name; ?>
                                                     </option>
                                                 <?php endforeach; ?>
                                             <?php endif; ?>
@@ -113,7 +107,6 @@
     </section>
     <!-- Metrics Section -->
 
-
     <?php $this->load->view('menu/pmctoolPreloader'); ?>
 
-    <?php $this->load->view('footer/pmctoolFooter'); ?>
+<?php $this->load->view('footer/pmctoolFooter'); ?>

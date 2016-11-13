@@ -129,12 +129,12 @@ class Models extends CI_Controller {
         }
     }
 
-    public function ViewModelsDetails($mod_id,$sort_by = 'mod_id', $sort_order = 'desc', $offset = 0) {
+    public function ViewModelsDetails($mod_id, $sort_by = 'mod_id', $sort_order = 'desc', $offset = 0) {
         $this->load->model('ModelsModel');
         //pass messages
         $data['gens'] = $this->ModelsModel->getViewModelsDetails($mod_id);
         $limit = 1;
-        $results = $this->ModelsModel->searchViewModelsDetails($mod_id,$sort_by, $sort_order, $limit, $offset);
+        $results = $this->ModelsModel->searchViewModelsDetails($mod_id, $sort_by, $sort_order, $limit, $offset);
         $data['gen'] = $results['rows'];
         $data['num_result'] = $results['num_rows'];
         //pagination
@@ -160,4 +160,116 @@ class Models extends CI_Controller {
         $this->load->view('pmctoolContent/pmctoolModelsContent/pmctoolModelsContentDetails', $data);
     }
 
+    public function ViewModelsAssignFactorCreationForm() {
+        //pass messages
+        $this->load->model('ModelsModel');
+        $data['gModel'] = $this->ModelsModel->getViewModel();
+        $data['gComplexityFactor'] = $this->ModelsModel->getViewComplexityFactor();
+
+        $resultsModel = $this->ModelsModel->searchViewModel();
+        $resultsComplexityFactor = $this->ModelsModel->searchViewComplexityFactor();
+
+        $data['genModel'] = $resultsModel['rows'];
+        $data['genComplexityFactor'] = $resultsComplexityFactor['rows'];
+
+        $data['num_result'] = $resultsModel['num_rows'];
+        $data['num_result'] = $resultsComplexityFactor['num_rows'];
+
+        $this->load->view('pmctoolContent/pmctoolModelsContent/pmctoolModelsContentAssignFactor', $data);
+    }
+
+    public function CreateModelsAssignFactor() {
+
+        $this->load->model('ModelsModel');
+        $this->load->library('form_validation');
+        $error = '';
+
+        $this->form_validation->set_rules('mod_id', 'Model', 'trim|required|callback_Select_Model|xss_clean');
+        $this->form_validation->set_rules('cf_id', 'Complexity', 'trim|required|callback_Select_Complexity|xss_clean');
+
+        if ($this->form_validation->run() == FALSE) {
+            $data['error'] = $error;
+            $data['gModel'] = $this->ModelsModel->getViewModel();
+            $data['gComplexityFactor'] = $this->ModelsModel->getViewComplexityFactor();
+
+            $resultsModel = $this->ModelsModel->searchViewModel();
+            $resultsComplexityFactor = $this->ModelsModel->searchViewComplexityFactor();
+
+            $data['genModel'] = $resultsModel['rows'];
+            $data['genComplexityFactor'] = $resultsComplexityFactor['rows'];
+
+            $data['num_result'] = $resultsModel['num_rows'];
+            $data['num_result'] = $resultsComplexityFactor['num_rows'];
+            $this->load->view('pmctoolContent/pmctoolModelsContent/pmctoolModelsContentAssignFactor', $data);
+        } else {
+            if ($this->form_validation->run() == TRUE) {
+
+                $mod_id = stripslashes($_POST['mod_id']);
+                $cf_id = stripslashes($_POST['cf_id']);
+                $data = array(
+                    'model_cf_id' => NULL,
+                    'mod_id' => $mod_id, 
+                    'cf_id' => $cf_id
+                );
+                $this->ModelsModel->add_ComplexityToModels($data);
+
+                $this->session->set_flashdata('success_msg', '<div class="alert alert-success" style="font-size:24px; font:bold;">'
+                        . 'Your Complexity has successfully been <strong>Registered</strong> to Model!!'
+                        . '</div>');
+                redirect('Models/ViewModels');
+            }
+        }
+    }
+
+    function Select_Model($mod_id) {
+
+        if ($mod_id == "-1") {
+            $this->form_validation->set_message('Select_Model', 'You have to select a Model');
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function Select_Complexity($cf_id) {
+
+        if ($cf_id == "-1") {
+            $this->form_validation->set_message('Select_Complexity', 'You have to select a Model');
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    
+    public function ViewModelsAssignments($mod_id,$sort_by = 'mod_id', $sort_order = 'desc', $offset = 0) {
+        $this->load->model('ModelsModel');
+        //pass messages
+        $data['gens'] = $this->ModelsModel->getViewModelsAssignments($mod_id);
+        $limit = 10;
+        $results = $this->ModelsModel->searchViewModelsAssignments($mod_id,$sort_by, $sort_order, $limit, $offset);
+        $data['gen'] = $results['rows'];
+        $data['num_result'] = $results['num_rows'];
+        //pagination
+        $this->load->library('pagination');
+        $config = array();
+        $config['base_url'] = site_url("Models/ViewModelsAssignments/$sort_by/$sort_order");
+        $config['total_rows'] = $data['num_result'];
+        $config['per_page'] = $limit;
+        $config['first_link'] = '&laquo; First ';
+        $config['next_link'] = '&gt; Next ';
+        $config['prev_link'] = 'Previous &lt; ';
+        $config['last_link'] = 'Last &raquo;';
+        $config['total_rows'] = $this->db->count_all('model');
+        $config['uri_segment'] = 5;
+        $this->pagination->initialize($config);
+        $data['pagination'] = $this->pagination->create_links();
+        $data['fields'] = array(
+            'mod_name' => 'Title',
+            'mod_description' => 'Description'
+        );
+        $data['sort_by'] = $sort_by;
+        $data['sort_order'] = $sort_order;
+        $this->load->view('pmctool/models', $data);
+    }
 }

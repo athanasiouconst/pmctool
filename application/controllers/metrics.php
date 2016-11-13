@@ -227,18 +227,34 @@ class Metrics extends CI_Controller {
         $error = '';
 
 //pass messages
-        $this->load->model('MetricsModel');
         $data['gEvaluationScale'] = $this->MetricsModel->getViewEvaluationScale();
+        $data['gMetric'] = $this->MetricsModel->getViewMetric();
 
         $resultsEvaluationScale = $this->MetricsModel->searchViewEvaluationScale();
+        $resultsMetric = $this->MetricsModel->searchViewMetric();
+
         $data['genEvaluationScale'] = $resultsEvaluationScale['rows'];
+        $data['genMetric'] = $resultsMetric['rows'];
+
         $data['num_result'] = $resultsEvaluationScale['num_rows'];
+        $data['num_result'] = $resultsMetric['num_rows'];
 
         $this->form_validation->set_rules('metric_id', 'Metric', 'trim|required|callback_Select_Metric|xss_clean');
         $this->form_validation->set_rules('evsc_id', 'Evaluation Scale', 'trim|required|callback_Select_EvaluationScale|xss_clean');
 
         if ($this->form_validation->run() == FALSE) {
             $data['error'] = $error;
+            $data['gEvaluationScale'] = $this->MetricsModel->getViewEvaluationScale();
+            $data['gMetric'] = $this->MetricsModel->getViewMetric();
+
+            $resultsEvaluationScale = $this->MetricsModel->searchViewEvaluationScale();
+            $resultsMetric = $this->MetricsModel->searchViewMetric();
+
+            $data['genEvaluationScale'] = $resultsEvaluationScale['rows'];
+            $data['genMetric'] = $resultsMetric['rows'];
+
+            $data['num_result'] = $resultsEvaluationScale['num_rows'];
+            $data['num_result'] = $resultsMetric['num_rows'];
             $this->load->view('pmctoolContent/pmctoolMetricsContent/pmctoolMetricsContentAssignScale', $data);
         } else {
             if ($this->form_validation->run() == TRUE) {
