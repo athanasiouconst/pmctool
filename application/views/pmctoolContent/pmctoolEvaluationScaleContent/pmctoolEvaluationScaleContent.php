@@ -40,9 +40,13 @@
                                             <?php
                                             $evsc_id = $gen->evsc_id;
                                             $base_url = base_url();
+                                            $pdf = '<img alt=""' . $evsc_id . '"" src="' . $base_url . 'img/messages/pdf.jpg" width="20" height="20">   ';
                                             $view = '<img alt=""' . $evsc_id . '"" src="' . $base_url . 'img/messages/success.jpg" width="20" height="20">   ';
                                             $edit = '<img alt=""' . $evsc_id . '"" src="' . $base_url . 'img/messages/edit.jpg" width="20" height="20">   ';
                                             $delete = '<img alt=""' . $evsc_id . '"" src="' . $base_url . 'img/messages/delete.jpg" width="20" height="20">  ';
+                                            ?>
+                                            <?php
+                                            echo anchor("EvaluationScale/ViewEvaluationScalePDF/$evsc_id", $pdf, array('target' => '_blank','onClick' => "return confirm('Are you sure for viewing this metric ?')"));
                                             ?>
                                             <?php
                                             echo anchor("EvaluationScale/ViewEvaluationScaleDetails/$evsc_id", $view, array('onClick' => "return confirm('Are you sure for viewing this metric ?')"));

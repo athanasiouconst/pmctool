@@ -95,9 +95,9 @@
                                                 echo anchor("Models/ViewModelsAssignmentsDetails/$model_cf_id", $view, array('onClick' => "return confirm('Are you sure for viewing this model ?')"));
                                                 ?>
                                                 <?php
-                                                echo anchor("Models/ViewModelsEditForm/$model_cf_id", $edit, array('onClick' => "return confirm('Are you sure for editing this model ?')"));
+                                                echo anchor("Models/ViewModelsAssignFactorEditForm/$model_cf_id", $edit, array('onClick' => "return confirm('Are you sure for editing this model ?')"));
                                                 ?>
-                                                <?php echo anchor("Models/ViewModelsDelete/$model_cf_id", $delete, array('onClick' => "return confirm('Are you sure for deleting this model?')")); ?>    
+                                                <?php echo anchor("Models/ViewModelsAssignmentsDelete/$model_cf_id", $delete, array('onClick' => "return confirm('Are you sure for deleting this model?')")); ?>    
                                             </td>
                                         <?php endforeach; ?> 
                                     </tr>

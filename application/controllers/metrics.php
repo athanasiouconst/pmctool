@@ -398,7 +398,7 @@ class Metrics extends CI_Controller {
             'metric_reference' => 'Reference',
             'metric_restriction' => 'Restriction',
             'metric_weight' => 'Metric Weight',
-            'cf_name' => 'Complecity Factor',
+            'cf_name' => 'Complexity Factor',
             'evsc_name' => 'Evaluation Scale Name',
             'evsc_description' => 'Evaluation Scale Description',
             'evsc_type' => 'Evaluation Scale Type'
@@ -411,16 +411,21 @@ class Metrics extends CI_Controller {
     public function ViewMetricsAssignmentsEditForm($metric_evsc_id, $sort_by = 'metric_id', $sort_order = 'asc', $offset = 0) {
 
         $this->load->model('MetricsModel');
+        
         $data['gEvaluationScale'] = $this->MetricsModel->getViewEvaluationScaleAssignmentsEdit($metric_evsc_id);
+        $data['gEvaluationScaleAll'] = $this->MetricsModel->getViewEvaluationScale();
         $data['gMetric'] = $this->MetricsModel->getViewMetricAssignmentsEdit($metric_evsc_id);
 
         $resultsEvaluationScale = $this->MetricsModel->searchViewEvaluationScaleAssignmentsEdit($metric_evsc_id);
+        $resultsEvaluationScaleAll = $this->MetricsModel->searchViewEvaluationScale();
         $resultsMetric = $this->MetricsModel->searchViewMetricAssignmentsEdit($metric_evsc_id);
 
         $data['genEvaluationScale'] = $resultsEvaluationScale['rows'];
+        $data['genEvaluationScaleAll'] = $resultsEvaluationScaleAll['rows'];
         $data['genMetric'] = $resultsMetric['rows'];
 
         $data['num_result'] = $resultsEvaluationScale['num_rows'];
+        $data['num_result'] = $resultsEvaluationScaleAll['num_rows'];
         $data['num_result'] = $resultsMetric['num_rows'];
 
         $this->load->view('pmctoolContent/pmctoolMetricsContent/pmctoolMetricsContentAssignScaleEdit', $data);
@@ -433,15 +438,19 @@ class Metrics extends CI_Controller {
         $error = '';
 
         $data['gEvaluationScale'] = $this->MetricsModel->getViewEvaluationScaleAssignmentsEdit($metric_evsc_id);
+        $data['gEvaluationScaleAll'] = $this->MetricsModel->getViewEvaluationScale();
         $data['gMetric'] = $this->MetricsModel->getViewMetricAssignmentsEdit($metric_evsc_id);
 
         $resultsEvaluationScale = $this->MetricsModel->searchViewEvaluationScaleAssignmentsEdit($metric_evsc_id);
+        $resultsEvaluationScaleAll = $this->MetricsModel->searchViewEvaluationScale();
         $resultsMetric = $this->MetricsModel->searchViewMetricAssignmentsEdit($metric_evsc_id);
 
         $data['genEvaluationScale'] = $resultsEvaluationScale['rows'];
+        $data['genEvaluationScaleAll'] = $resultsEvaluationScaleAll['rows'];
         $data['genMetric'] = $resultsMetric['rows'];
 
         $data['num_result'] = $resultsEvaluationScale['num_rows'];
+        $data['num_result'] = $resultsEvaluationScaleAll['num_rows'];
         $data['num_result'] = $resultsMetric['num_rows'];
 
         $this->form_validation->set_rules('metric_id', 'Metric', 'trim|required|callback_Select_MetricEdit|xss_clean');

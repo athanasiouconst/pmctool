@@ -347,9 +347,9 @@ Class MetricsModel extends CI_Model {
     }
 
     public function getViewEvaluationScaleAssignmentsEdit($metric_evsc_id) {
-        $query = $this->db->query("SELECT * FROM evaluation_scale "
-                //. " LEFT JOIN evaluation_scale on metric_evsc.evsc_id=evaluation_scale.evsc_id"
-                //. " WHERE metric_evsc.metric_evsc_id = '" . $metric_evsc_id . "'"
+        $query = $this->db->query("SELECT * FROM metric_evsc "
+                . " LEFT JOIN evaluation_scale on metric_evsc.evsc_id=evaluation_scale.evsc_id"
+                . " WHERE metric_evsc.metric_evsc_id = '" . $metric_evsc_id . "'"
                 . "");
         $results = array();
         foreach ($query->result() as $row) {
@@ -368,13 +368,13 @@ Class MetricsModel extends CI_Model {
         //results
 
         $query = $this->db->select('*')
-                ->from('evaluation_scale')
-                //->join('evaluation_scale', 'metric_evsc.evsc_id=evaluation_scale.evsc_id', 'left outer')
-                //->where('metric_evsc.metric_evsc_id', $metric_evsc_id)
+                ->from('metric_evsc')
+                ->join('evaluation_scale', 'metric_evsc.evsc_id=evaluation_scale.evsc_id', 'left outer')
+                ->where('metric_evsc.metric_evsc_id', $metric_evsc_id)
                 ;
         $ret['rows'] = $query->get()->result();
         //count query
-        $query = $this->db->count_all('evaluation_scale');
+        $query = $this->db->count_all('metric_evsc');
         $tmp = $query;
         $ret['num_rows'] = $tmp;
         return $ret;

@@ -60,10 +60,10 @@
 
                         <?php echo form_open('Metrics/ViewMetricsAssignEvaluationScaleEditSubmitForm') ?>  
                         <table class="table " style="width: 100%; alignment-adjust: auto; text-align:  left; font-size:16px; font-family: sans-serif;">
-                            
-                                <?php if (isset($gMetric)): ?>
-                                    <?php foreach ($genMetric as $genMetrics): ?>
-                                              <p><input type="hidden" size="80" id="metric_evsc_id" name="metric_evsc_id" value="<?php echo $genMetrics->metric_evsc_id; ?>"/>
+
+                            <?php if (isset($gMetric)): ?>
+                                <?php foreach ($genMetric as $genMetrics): ?>
+                                    <p><input type="hidden" size="80" id="metric_evsc_id" name="metric_evsc_id" value="<?php echo $genMetrics->metric_evsc_id; ?>"/>
                                     <?php endforeach; ?>
                                 <?php endif; ?>   
 
@@ -72,7 +72,7 @@
                                     <span title="Metric">
                                         <label for="Metric"></label>
                                         <select name='metric_id' id='metric_id' >
-                                            
+
                                             <?php if (isset($gMetric)): ?>
                                                 <?php foreach ($genMetric as $genMetric): ?>
                                                     <option value="<?php echo $genMetric->metric_id; ?>">
@@ -84,16 +84,34 @@
                                     </span>
                                 </td>
                             </tr>
+                            <tr><td>Selected Evaluation Scale (before update) :</td></tr>
+                            <tr>
+                                <td>
+                                    <span title="Evaluation Scale">
+                                        <label for="Evaluation Scale"></label>
+                                        <select  >
+                                            <?php if (isset($gEvaluationScale)): ?>
+                                                <?php foreach ($genEvaluationScale as $genEvaluationScale): ?>
+                                                    <option value="<?php echo $genEvaluationScale->evsc_id; ?>">
+                                                        <?php echo $genEvaluationScale->evsc_name; ?> - <?php echo $genEvaluationScale->evsc_type; ?> - <?php echo $genEvaluationScale->evsc_description; ?>
+                                                    </option>
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
+                                        </select>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr><td>New Evaluation Scale :</td></tr>
                             <tr>
                                 <td>
                                     <span title="Evaluation Scale">
                                         <label for="Evaluation Scale"></label>
                                         <select name='evsc_id' id='evsc_id' >
 
-                                            <?php if (isset($gEvaluationScale)): ?>
-                                                <?php foreach ($genEvaluationScale as $genEvaluationScale): ?>
-                                            <option value="<?php echo $genEvaluationScale->evsc_id; ?>">
-                                                        <?php echo $genEvaluationScale->evsc_name; ?> - <?php echo $genEvaluationScale->evsc_type; ?> - <?php echo $genEvaluationScale->evsc_description; ?>
+                                            <?php if (isset($gEvaluationScaleAll)): ?>
+                                                <?php foreach ($genEvaluationScaleAll as $genEvaluationScaleAll): ?>
+                                                    <option value="<?php echo $genEvaluationScaleAll->evsc_id; ?>">
+                                                        <?php echo $genEvaluationScaleAll->evsc_name; ?> - <?php echo $genEvaluationScaleAll->evsc_type; ?> - <?php echo $genEvaluationScaleAll->evsc_description; ?>
                                                     </option>
                                                 <?php endforeach; ?>
                                             <?php endif; ?>

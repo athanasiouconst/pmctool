@@ -208,4 +208,39 @@ class EvaluationScale extends CI_Controller {
         $data['sort_order'] = $sort_order;
         $this->load->view('pmctoolContent/pmctoolEvaluationScaleContent/pmctoolEvaluationScaleContentDetails', $data);
     }
+    
+    
+    public function ViewEvaluationScalePDF($evsc_id,$sort_by = 'evsc_id', $sort_order = 'desc', $offset = 0) {
+        $this->load->model('EvaluationScaleModel');
+        //pass messages
+        $data['gens'] = $this->EvaluationScaleModel->getViewEvaluationScaleDetails($evsc_id);
+        $limit = 1;
+        $results = $this->EvaluationScaleModel->searchViewEvaluationScaleDetails($evsc_id,$sort_by, $sort_order, $limit, $offset);
+        $data['gen'] = $results['rows'];
+        $data['num_result'] = $results['num_rows'];
+        //pagination
+        $this->load->library('pagination');
+        $config = array();
+        $config['base_url'] = site_url("EvaluationScale/ViewEvaluationScaleDetails/$sort_by/$sort_order");
+        $config['total_rows'] = $data['num_result'];
+        $config['per_page'] = $limit;
+        $config['first_link'] = '&laquo; First ';
+        $config['next_link'] = '&gt; Next ';
+        $config['prev_link'] = 'Previous &lt; ';
+        $config['last_link'] = 'Last &raquo;';
+        $config['total_rows'] = $this->db->count_all('evaluation_scale');
+        $config['uri_segment'] = 5;
+        $this->pagination->initialize($config);
+        $data['pagination'] = $this->pagination->create_links();
+        $data['fields'] = array(
+            'evsc_name' => 'Title',
+            'evsc_description' => 'Description',
+            'evsc_type' => 'Type',
+            'evsc_number_of_choices' => 'Number of Choices'
+        );
+        $data['sort_by'] = $sort_by;
+        $data['sort_order'] = $sort_order;
+        $this->load->view('examples/example_001', $data);
+    }
+    
 }

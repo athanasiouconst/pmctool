@@ -208,7 +208,7 @@ class Models extends CI_Controller {
                 $cf_id = stripslashes($_POST['cf_id']);
                 $data = array(
                     'model_cf_id' => NULL,
-                    'mod_id' => $mod_id, 
+                    'mod_id' => $mod_id,
                     'cf_id' => $cf_id
                 );
                 $this->ModelsModel->add_ComplexityToModels($data);
@@ -234,20 +234,19 @@ class Models extends CI_Controller {
     function Select_Complexity($cf_id) {
 
         if ($cf_id == "-1") {
-            $this->form_validation->set_message('Select_Complexity', 'You have to select a Model');
+            $this->form_validation->set_message('Select_Complexity', 'You have to select a Complexity Factor');
             return false;
         } else {
             return true;
         }
     }
 
-    
-    public function ViewModelsAssignments($mod_id,$sort_by = 'mod_id', $sort_order = 'desc', $offset = 0) {
+    public function ViewModelsAssignments($mod_id, $sort_by = 'mod_id', $sort_order = 'desc', $offset = 0) {
         $this->load->model('ModelsModel');
         //pass messages
         $data['gens'] = $this->ModelsModel->getViewModelsAssignments($mod_id);
         $limit = 10;
-        $results = $this->ModelsModel->searchViewModelsAssignments($mod_id,$sort_by, $sort_order, $limit, $offset);
+        $results = $this->ModelsModel->searchViewModelsAssignments($mod_id, $sort_by, $sort_order, $limit, $offset);
         $data['gen'] = $results['rows'];
         $data['num_result'] = $results['num_rows'];
         //pagination
@@ -273,13 +272,13 @@ class Models extends CI_Controller {
         $data['sort_order'] = $sort_order;
         $this->load->view('pmctoolContent/pmctoolModelsContent/pmctoolModelsContentAssignmentFactor', $data);
     }
-    
+
     public function ViewModelsAssignmentsDetails($model_cf_id, $sort_by = 'model_cf_id', $sort_order = 'desc', $offset = 0) {
         $this->load->model('ModelsModel');
         //pass messages
         $data['gens'] = $this->ModelsModel->getViewModelsAssignmentsDetails($model_cf_id);
         $limit = 10;
-        $results = $this->ModelsModel->searchViewModelsAssignmentsDetails($model_cf_id,$sort_by, $sort_order, $limit, $offset);
+        $results = $this->ModelsModel->searchViewModelsAssignmentsDetails($model_cf_id, $sort_by, $sort_order, $limit, $offset);
         $data['gen'] = $results['rows'];
         $data['num_result'] = $results['num_rows'];
         //pagination
@@ -309,15 +308,119 @@ class Models extends CI_Controller {
             'metric_description' => 'Metric Description',
             'metric_reference' => 'Metric Reference',
             'metric_restriction' => 'Metric Restriction',
-            'metric_weight' => 'Metric Weight',    
+            'metric_weight' => 'Metric Weight',
             'evsc_name' => 'Evaluation Scale Title',
             'evsc_description' => 'Evaluation Scale Description',
             'evsc_type' => 'Evaluation Scale Type',
-            'evsc_number_of_choices' => 'Evaluation Scale Number of Choices'        
-            
+            'evsc_number_of_choices' => 'Evaluation Scale Number of Choices'
         );
         $data['sort_by'] = $sort_by;
         $data['sort_order'] = $sort_order;
         $this->load->view('pmctoolContent/pmctoolModelsContent/pmctoolModelsContentAssignFactorDetails', $data);
     }
+
+    public function ViewModelsAssignmentsDelete($model_cf_id) {
+
+        $this->load->model('ModelsModel');
+        $this->ModelsModel->ModelsAssignmentsDelete($model_cf_id);
+        $this->session->set_flashdata('delete_msg', '<div class="alert alert-danger" style="font-size:24px; font:bold;">'
+                . 'Your Complexity Factor to Model has successfully been <strong>Deleted</strong>!!'
+                . '</div>');
+
+        redirect('Models/ViewModels');
+    }
+
+    public function ViewModelsAssignFactorEditForm($model_cf_id) {
+        //pass messages
+        $this->load->model('ModelsModel');
+        $data['gModel'] = $this->ModelsModel->getViewModelAssignFactor($model_cf_id);
+        $data['gComplexityFactor'] = $this->ModelsModel->getViewComplexityFactorAssignFactor($model_cf_id);
+        $data['gComplexityFactor1'] = $this->ModelsModel->getViewComplexityFactorAssignFactor1();
+
+        $resultsModel = $this->ModelsModel->searchViewModelAssignFactor($model_cf_id);
+        $resultsComplexityFactor = $this->ModelsModel->searchViewComplexityFactorAssignFactor($model_cf_id);
+        $resultsComplexityFactor1 = $this->ModelsModel->searchViewComplexityFactorAssignFactor1();
+
+        $data['genModel'] = $resultsModel['rows'];
+        $data['genComplexityFactor'] = $resultsComplexityFactor['rows'];
+        $data['genComplexityFactor1'] = $resultsComplexityFactor1['rows'];
+
+        $data['num_result'] = $resultsModel['num_rows'];
+        $data['num_result'] = $resultsComplexityFactor['num_rows'];
+        $data['num_result'] = $resultsComplexityFactor1['num_rows'];
+
+        $this->load->view('pmctoolContent/pmctoolModelsContent/pmctoolModelsContentAssignFactorEditForm', $data);
+    }
+
+    public function ViewModelsAssignFactorEditSubmitForm() {
+
+        $this->load->model('ModelsModel');
+        $this->load->library('form_validation');
+        $error = '';
+        $model_cf_id = stripslashes($_POST['model_cf_id']);
+        $data['gModel'] = $this->ModelsModel->getViewModelAssignFactor($model_cf_id);
+        $data['gComplexityFactor'] = $this->ModelsModel->getViewComplexityFactorAssignFactor($model_cf_id);
+        $data['gComplexityFactor1'] = $this->ModelsModel->getViewComplexityFactorAssignFactor1();
+
+        $resultsModel = $this->ModelsModel->searchViewModelAssignFactor($model_cf_id);
+        $resultsComplexityFactor = $this->ModelsModel->searchViewComplexityFactorAssignFactor($model_cf_id);
+        $resultsComplexityFactor1 = $this->ModelsModel->searchViewComplexityFactorAssignFactor1();
+
+        $data['genModel'] = $resultsModel['rows'];
+        $data['genComplexityFactor'] = $resultsComplexityFactor['rows'];
+        $data['genComplexityFactor1'] = $resultsComplexityFactor1['rows'];
+
+        $data['num_result'] = $resultsModel['num_rows'];
+        $data['num_result'] = $resultsComplexityFactor['num_rows'];
+        $data['num_result'] = $resultsComplexityFactor1['num_rows'];
+        
+        $this->form_validation->set_rules('mod_id', 'Model', 'trim|required|callback_Select_ModelEdit|xss_clean');
+        $this->form_validation->set_rules('cf_id', 'Complexity', 'trim|required|callback_Select_ComplexityEdit|xss_clean');
+
+        if ($this->form_validation->run() == FALSE) {
+            $data['error'] = $error;
+            
+            
+            $this->load->view('pmctoolContent/pmctoolModelsContent/pmctoolModelsContentAssignFactorEditForm', $data);
+        } else {
+            if ($this->form_validation->run() == TRUE) {
+
+                $model_cf_id = stripslashes($_POST['model_cf_id']);
+                $mod_id = stripslashes($_POST['mod_id']);
+                $cf_id = stripslashes($_POST['cf_id']);
+                $data = array(
+                    'model_cf_id' => $model_cf_id,
+                    'mod_id' => $mod_id,
+                    'cf_id' => $cf_id
+                );
+                $this->ModelsModel->edit_ComplexityToModels($model_cf_id,$data);
+
+                $this->session->set_flashdata('success_msg', '<div class="alert alert-success" style="font-size:24px; font:bold;">'
+                        . 'Your Complexity has successfully been <strong>Registered</strong> to Model!!'
+                        . '</div>');
+                redirect('Models/ViewModels');
+            }
+        }
+    }
+
+    function Select_ModelEdit($mod_id) {
+
+        if ($mod_id == "-1") {
+            $this->form_validation->set_message('Select_ModelEdit', 'You have to select a Model');
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function Select_ComplexityEdit($cf_id) {
+
+        if ($cf_id == "-1") {
+            $this->form_validation->set_message('Select_ComplexityEdit', 'You have to select a Complexity Factor');
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 }

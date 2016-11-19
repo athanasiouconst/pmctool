@@ -59,45 +59,52 @@
                                 <?php if (count($gen) > 0) : ?>
 
                                     <?php foreach ($gen as $gen): ?>
-                                        <div style="float: right; padding-left: 50%; margin-left: 50%;">
-                                            <?php
-                                            $model_cf_id = $gen->model_cf_id;
-                                            $base_url = base_url();
-                                            $assign = '<img alt=""' . $model_cf_id . '"" src="' . $base_url . 'img/messages/assignment.jpg" width="20" height="20">   ';
-                                            $view = '<img alt=""' . $model_cf_id . '"" src="' . $base_url . 'img/messages/success.jpg" width="20" height="20">   ';
-                                            $edit = '<img alt=""' . $model_cf_id . '"" src="' . $base_url . 'img/messages/edit.jpg" width="20" height="20">   ';
-                                            $delete = '<img alt=""' . $model_cf_id . '"" src="' . $base_url . 'img/messages/delete.jpg" width="20" height="20">  ';
-                                            ?>
-                                            <?php
-                                            //echo anchor("Models/ViewModelsAssignments/$mod_id", $assign, array('onClick' => "return confirm('Are you sure for viewing the assignments of this metric ?')"));
-                                            ?>
-                                            <?php
-                                            echo anchor("Models/ViewModelsAssignmentsDetails/$model_cf_id", $view, array('onClick' => "return confirm('Are you sure for viewing this model ?')"));
-                                            ?>
-                                            <?php
-                                            echo anchor("Models/ViewModelsEditForm/$model_cf_id", $edit, array('onClick' => "return confirm('Are you sure for editing this model ?')"));
-                                            ?>
-                                            <?php echo anchor("Models/ViewModelsDelete/$model_cf_id", $delete, array('onClick' => "return confirm('Are you sure for deleting this model?')")); ?>    
-                                        </div>
+
                                         <table class="table table-responsive table-active table-condensed" style="font-size:16px; font-family: sans-serif; 
-                                               alignment-adjust: auto; text-align:  left;" >
-                                            <tr><td class="alert-success">Model Title</td><td><?php echo $gen->mod_name; ?></td></tr>
-                                            <tr><td class="alert-success">Model Description</td><td><?php echo $gen->mod_description; ?></td></tr>
-                                            <tr><td class="alert-success">Complexity Factor Title</td><td><?php echo $gen->cf_name; ?></td></tr>
-                                            <tr><td class="alert-success">Complexity Factor Description</td><td><?php echo $gen->cf_description; ?></td></tr>
-                                            <tr><td class="alert-success">Complexity Factor Reference</td><td><?php echo $gen->cf_reference; ?></td></tr>
-                                            <tr><td class="alert-success">Complexity Factor Restriction</td><td><?php echo $gen->cf_restriction; ?></td></tr>
-                                            <tr><td class="alert-success">Complexity Factor Category</td><td><?php echo $gen->cf_category; ?></td></tr>
-                                            <tr><td class="alert-success">Complexity Factor Weight</td><td><?php echo $gen->cf_weight; ?></td></tr>
-                                            <tr><td class="alert-success">Metric Title</td><td><?php echo $gen->metric_name; ?></td></tr>
-                                            <tr><td class="alert-success">Metric Description</td><td><?php echo $gen->metric_description; ?></td></tr>
-                                            <tr><td class="alert-success">Metric Reference</td><td><?php echo $gen->metric_reference; ?></td></tr>
-                                            <tr><td class="alert-success">Metric Restriction</td><td><?php echo $gen->metric_restriction; ?></td></tr>
-                                            <tr><td class="alert-success">Metric Weight</td><td><?php echo $gen->metric_weight; ?></td></tr>
-                                            <tr><td class="alert-success">Evaluation Scale Title</td><td><?php echo $gen->evsc_name; ?></td></tr>
-                                            <tr><td class="alert-success">Evaluation Scale Description</td><td><?php echo $gen->evsc_description; ?></td></tr>
-                                            <tr><td class="alert-success">Evaluation Scale Type</td><td><?php echo $gen->evsc_type; ?></td></tr>
-                                            <tr><td class="alert-success">Evaluation Scale Number of Choices</td><td><?php echo $gen->evsc_number_of_choices; ?></td></tr>
+                                               alignment-adjust: auto; text-align:  left; " >
+                                            <tr class="alert-success" >
+                                                <td ></td>
+                                                <td style="float: right;">
+<!--                                                    <div style="float: right; padding-left: 50%; margin-left: 50%;">-->
+                                                        <?php
+                                                        $model_cf_id = $gen->model_cf_id;
+                                                        $base_url = base_url();
+                                                        $assign = '<img alt=""' . $model_cf_id . '"" src="' . $base_url . 'img/messages/assignment.jpg" width="20" height="20">   ';
+                                                        $view = '<img alt=""' . $model_cf_id . '"" src="' . $base_url . 'img/messages/success.jpg" width="20" height="20">   ';
+                                                        $edit = '<img alt=""' . $model_cf_id . '"" src="' . $base_url . 'img/messages/edit.jpg" width="20" height="20">   ';
+                                                        $delete = '<img alt=""' . $model_cf_id . '"" src="' . $base_url . 'img/messages/delete.jpg" width="20" height="20">  ';
+                                                        ?>
+                                                        <?php
+                                                        //echo anchor("Models/ViewModelsAssignments/$mod_id", $assign, array('onClick' => "return confirm('Are you sure for viewing the assignments of this metric ?')"));
+                                                        ?>
+                                                        <?php
+                                                        echo anchor("Models/ViewModelsAssignmentsDetails/$model_cf_id", $view, array('onClick' => "return confirm('Are you sure for viewing this model ?')"));
+                                                        ?>
+                                                        <?php
+                                                        echo anchor("Models/ViewModelsAssignFactorEditForm/$model_cf_id", $edit, array('onClick' => "return confirm('Are you sure for editing this model ?')"));
+                                                        ?>
+                                                        <?php echo anchor("Models/ViewModelsAssignmentsDelete/$model_cf_id", $delete, array('onClick' => "return confirm('Are you sure for deleting this model?')")); ?>    
+<!--                                                    </div>-->
+                                                </td>
+                                            </tr>
+
+                                            <tr><td class="alert-success" style="width: 20%;">Model Title</td><td><?php echo $gen->mod_name; ?></td></tr>
+                                            <tr><td class="alert-success" style="width: 20%;">Model Description</td><td><?php echo $gen->mod_description; ?></td></tr>
+                                            <tr><td class="alert-success" style="width: 20%;">Complexity Factor Title</td><td><?php echo $gen->cf_name; ?></td></tr>
+                                            <tr><td class="alert-success" style="width: 20%;">Complexity Factor Description</td><td><?php echo $gen->cf_description; ?></td></tr>
+                                            <tr><td class="alert-success" style="width: 20%;">Complexity Factor Reference</td><td><?php echo $gen->cf_reference; ?></td></tr>
+                                            <tr><td class="alert-success" style="width: 20%;">Complexity Factor Restriction</td><td><?php echo $gen->cf_restriction; ?></td></tr>
+                                            <tr><td class="alert-success" style="width: 20%;">Complexity Factor Category</td><td><?php echo $gen->cf_category; ?></td></tr>
+                                            <tr><td class="alert-success" style="width: 20%;">Complexity Factor Weight</td><td><?php echo $gen->cf_weight; ?></td></tr>
+                                            <tr><td class="alert-success" style="width: 20%;">Metric Title</td><td><?php echo $gen->metric_name; ?></td></tr>
+                                            <tr><td class="alert-success" style="width: 20%;">Metric Description</td><td><?php echo $gen->metric_description; ?></td></tr>
+                                            <tr><td class="alert-success" style="width: 20%;">Metric Reference</td><td><?php echo $gen->metric_reference; ?></td></tr>
+                                            <tr><td class="alert-success" style="width: 20%;">Metric Restriction</td><td><?php echo $gen->metric_restriction; ?></td></tr>
+                                            <tr><td class="alert-success" style="width: 20%;">Metric Weight</td><td><?php echo $gen->metric_weight; ?></td></tr>
+                                            <tr><td class="alert-success" style="width: 20%;">Evaluation Scale Title</td><td><?php echo $gen->evsc_name; ?></td></tr>
+                                            <tr><td class="alert-success" style="width: 20%;">Evaluation Scale Description</td><td><?php echo $gen->evsc_description; ?></td></tr>
+                                            <tr><td class="alert-success" style="width: 20%;">Evaluation Scale Type</td><td><?php echo $gen->evsc_type; ?></td></tr>
+                                            <tr><td class="alert-success" style="width: 20%;">Evaluation Scale Number of Choices</td><td><?php echo $gen->evsc_number_of_choices; ?></td></tr>
                                         <?php endforeach; ?> 
                                     <?php else : ?>
                                         <tr>
