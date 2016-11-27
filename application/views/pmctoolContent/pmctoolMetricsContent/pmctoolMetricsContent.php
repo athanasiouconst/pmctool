@@ -44,12 +44,16 @@
                                             $metric_id = $gen->metric_id;
                                             $base_url = base_url();
                                             $assign = '<img alt=""' . $metric_id . '"" src="' . $base_url . 'img/messages/assignment.jpg" width="20" height="20">   ';
+                                            $pdf = '<img alt=""' . $metric_id . '"" src="' . $base_url . 'img/messages/pdf.jpg" width="20" height="20">   ';
                                             $view = '<img alt=""' . $metric_id . '"" src="' . $base_url . 'img/messages/success.jpg" width="20" height="20">   ';
                                             $edit = '<img alt=""' . $metric_id . '"" src="' . $base_url . 'img/messages/edit.jpg" width="20" height="20">   ';
                                             $delete = '<img alt=""' . $metric_id . '"" src="' . $base_url . 'img/messages/delete.jpg" width="20" height="20">  ';
                                             ?>
                                             <?php
                                             echo anchor("Metrics/ViewMetricsAssignments/$metric_id", $assign, array('onClick' => "return confirm('Are you sure for viewing the assignments of this metric ?')"));
+                                            ?>
+                                            <?php
+                                            echo anchor("Metrics/ViewMetricsPDF/$metric_id", $pdf, array('target' => '_blank','onClick' => "return confirm('Are you sure for viewing this  ?')"));
                                             ?>
                                             <?php
                                             echo anchor("Metrics/ViewMetricsDetails/$metric_id", $view, array('onClick' => "return confirm('Are you sure for viewing this metric ?')"));

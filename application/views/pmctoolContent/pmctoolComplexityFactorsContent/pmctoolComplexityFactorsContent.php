@@ -42,9 +42,13 @@
                                             <?php
                                             $cf_id = $gen->cf_id;
                                             $base_url = base_url();
+                                            $pdf = '<img alt=""' . $cf_id . '"" src="' . $base_url . 'img/messages/pdf.jpg" width="20" height="20">   ';
                                             $view = '<img alt=""' . $cf_id . '"" src="' . $base_url . 'img/messages/success.jpg" width="20" height="20">   ';
                                             $edit = '<img alt=""' . $cf_id . '"" src="' . $base_url . 'img/messages/edit.jpg" width="20" height="20">   ';
                                             $delete = '<img alt=""' . $cf_id . '"" src="' . $base_url . 'img/messages/delete.jpg" width="20" height="20">  ';
+                                            ?>
+                                            <?php
+                                            echo anchor("ComplexityFactors/ViewComplexityFactorsPDF/$cf_id", $pdf, array('target' => '_blank','onClick' => "return confirm('Are you sure for viewing this  ?')"));
                                             ?>
                                             <?php
                                             echo anchor("ComplexityFactors/ViewComplexityFactorsDetails/$cf_id", $view, array('onClick' => "return confirm('Are you sure for edit this?')"));

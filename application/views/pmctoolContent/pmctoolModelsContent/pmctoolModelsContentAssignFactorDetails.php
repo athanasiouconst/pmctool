@@ -65,26 +65,26 @@
                                             <tr class="alert-success" >
                                                 <td ></td>
                                                 <td style="float: right;">
-<!--                                                    <div style="float: right; padding-left: 50%; margin-left: 50%;">-->
-                                                        <?php
-                                                        $model_cf_id = $gen->model_cf_id;
-                                                        $base_url = base_url();
-                                                        $assign = '<img alt=""' . $model_cf_id . '"" src="' . $base_url . 'img/messages/assignment.jpg" width="20" height="20">   ';
-                                                        $view = '<img alt=""' . $model_cf_id . '"" src="' . $base_url . 'img/messages/success.jpg" width="20" height="20">   ';
-                                                        $edit = '<img alt=""' . $model_cf_id . '"" src="' . $base_url . 'img/messages/edit.jpg" width="20" height="20">   ';
-                                                        $delete = '<img alt=""' . $model_cf_id . '"" src="' . $base_url . 'img/messages/delete.jpg" width="20" height="20">  ';
-                                                        ?>
-                                                        <?php
-                                                        //echo anchor("Models/ViewModelsAssignments/$mod_id", $assign, array('onClick' => "return confirm('Are you sure for viewing the assignments of this metric ?')"));
-                                                        ?>
-                                                        <?php
-                                                        echo anchor("Models/ViewModelsAssignmentsDetails/$model_cf_id", $view, array('onClick' => "return confirm('Are you sure for viewing this model ?')"));
-                                                        ?>
-                                                        <?php
-                                                        echo anchor("Models/ViewModelsAssignFactorEditForm/$model_cf_id", $edit, array('onClick' => "return confirm('Are you sure for editing this model ?')"));
-                                                        ?>
-                                                        <?php echo anchor("Models/ViewModelsAssignmentsDelete/$model_cf_id", $delete, array('onClick' => "return confirm('Are you sure for deleting this model?')")); ?>    
-<!--                                                    </div>-->
+                                                    <!--                                                    <div style="float: right; padding-left: 50%; margin-left: 50%;">-->
+                                                    <?php
+                                                    $model_cf_id = $gen->model_cf_id;
+                                                    $base_url = base_url();
+                                                    $assign = '<img alt=""' . $model_cf_id . '"" src="' . $base_url . 'img/messages/assignment.jpg" width="20" height="20">   ';
+                                                    $pdf = '<img alt=""' . $model_cf_id . '"" src="' . $base_url . 'img/messages/pdf.jpg" width="20" height="20">   ';
+                                                    $view = '<img alt=""' . $model_cf_id . '"" src="' . $base_url . 'img/messages/success.jpg" width="20" height="20">   ';
+                                                    $edit = '<img alt=""' . $model_cf_id . '"" src="' . $base_url . 'img/messages/edit.jpg" width="20" height="20">   ';
+                                                    $delete = '<img alt=""' . $model_cf_id . '"" src="' . $base_url . 'img/messages/delete.jpg" width="20" height="20">  ';
+                                                    ?>
+                                                    <?php
+                                                    echo anchor("Models/ViewModelsAssignmentsPDF/$model_cf_id", $pdf, array('target' => '_blank', 'onClick' => "return confirm('Are you sure for viewing this  model?')"));
+                                                    ?>
+                                                    <?php
+                                                    echo anchor("Models/ViewModelsAssignmentsDetails/$model_cf_id", $view, array('onClick' => "return confirm('Are you sure for viewing this model ?')"));
+                                                    ?>
+                                                    <?php
+                                                    echo anchor("Models/ViewModelsAssignFactorEditForm/$model_cf_id", $edit, array('onClick' => "return confirm('Are you sure for editing this model ?')"));
+                                                    ?>
+                                                    <?php echo anchor("Models/ViewModelsAssignmentsDelete/$model_cf_id", $delete, array('onClick' => "return confirm('Are you sure for deleting this model?')")); ?>    
                                                 </td>
                                             </tr>
 

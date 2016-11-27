@@ -46,7 +46,7 @@
                                             $delete = '<img alt=""' . $evsc_id . '"" src="' . $base_url . 'img/messages/delete.jpg" width="20" height="20">  ';
                                             ?>
                                             <?php
-                                            echo anchor("EvaluationScale/ViewEvaluationScalePDF/$evsc_id", $pdf, array('target' => '_blank','onClick' => "return confirm('Are you sure for viewing this metric ?')"));
+                                            echo anchor("EvaluationScale/ViewEvaluationScalePDF/$evsc_id", $pdf, array('target' => '_blank','onClick' => "return confirm('Are you sure for viewing this  ?')"));
                                             ?>
                                             <?php
                                             echo anchor("EvaluationScale/ViewEvaluationScaleDetails/$evsc_id", $view, array('onClick' => "return confirm('Are you sure for viewing this metric ?')"));

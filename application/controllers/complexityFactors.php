@@ -196,5 +196,19 @@ class ComplexityFactors extends CI_Controller {
         $data['sort_order'] = $sort_order;
         $this->load->view('pmctoolContent/pmctoolComplexityFactorsContent/pmctoolComplexityFactorsContentDetails', $data);
     }
+    
+    
+    public function ViewComplexityFactorsPDF($cf_id,$sort_by = 'cf_id', $sort_order = 'desc', $offset = 0) {
+        $this->load->model('ComplexityFactorsModel');
+        //pass messages
+        $data['gens'] = $this->ComplexityFactorsModel->getViewComplexityFactorsDetails($cf_id);
+        $limit = 1;
+        $results = $this->ComplexityFactorsModel->searchViewComplexityFactorsDetails($cf_id,$sort_by, $sort_order, $limit, $offset);
+        $data['gen'] = $results['rows'];
+        $data['num_result'] = $results['num_rows'];
+        $now = new DateTime();
+        $data['today'] = $now->format('d-m-Y H:i:s');
+        $this->load->view('pdf/ComplexityFactors', $data);
+    }
 
 }

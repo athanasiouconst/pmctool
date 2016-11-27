@@ -411,7 +411,7 @@ class Metrics extends CI_Controller {
     public function ViewMetricsAssignmentsEditForm($metric_evsc_id, $sort_by = 'metric_id', $sort_order = 'asc', $offset = 0) {
 
         $this->load->model('MetricsModel');
-        
+
         $data['gEvaluationScale'] = $this->MetricsModel->getViewEvaluationScaleAssignmentsEdit($metric_evsc_id);
         $data['gEvaluationScaleAll'] = $this->MetricsModel->getViewEvaluationScale();
         $data['gMetric'] = $this->MetricsModel->getViewMetricAssignmentsEdit($metric_evsc_id);
@@ -513,4 +513,29 @@ class Metrics extends CI_Controller {
         redirect('Metrics/ViewMetrics');
     }
 
+    public function ViewMetricsPDF($metric_id, $sort_by = 'metric_id', $sort_order = 'desc', $offset = 0) {
+        $this->load->model('MetricsModel');
+        //pass messages
+        $data['gens'] = $this->MetricsModel->getViewMetricsDetails($metric_id);
+        $limit = 1;
+        $results = $this->MetricsModel->searchViewMetricsDetails($metric_id, $sort_by, $sort_order, $limit, $offset);
+        $data['gen'] = $results['rows'];
+        $data['num_result'] = $results['num_rows'];
+        $now = new DateTime();
+        $data['today'] = $now->format('d-m-Y H:i:s');
+        $this->load->view('pdf/Metrics', $data);
+    }
+
+    public function ViewMetricsAssignmentsDetailsPDF($metric_evsc_id, $sort_by = 'metric_id', $sort_order = 'desc', $offset = 0) {
+        $this->load->model('MetricsModel');
+        //pass messages
+        $data['gens'] = $this->MetricsModel->getViewMetricsAssignmentsDetails($metric_evsc_id);
+        $limit = 1;
+        $results = $this->MetricsModel->searchViewMetricsAssignmentsDetails($metric_evsc_id, $sort_by, $sort_order, $limit, $offset);
+        $data['gen'] = $results['rows'];
+        $data['num_result'] = $results['num_rows'];
+        $now = new DateTime();
+        $data['today'] = $now->format('d-m-Y H:i:s');        
+        $this->load->view('pdf/MetricsAssignments', $data);
+    }
 }

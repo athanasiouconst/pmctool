@@ -66,23 +66,24 @@
                                             <td ></td>
                                             <td style="float: right;">
                                                 <?php
-                                                $metric_id = $gen->metric_evsc_id;
+                                                $metric_evsc_id = $gen->metric_evsc_id;
                                                 $base_url = base_url();
-                                                $assign = '<img alt=""' . $metric_id . '"" src="' . $base_url . 'img/messages/assignment.jpg" width="20" height="20">   ';
-                                                $view = '<img alt=""' . $metric_id . '"" src="' . $base_url . 'img/messages/success.jpg" width="20" height="20">   ';
-                                                $edit = '<img alt=""' . $metric_id . '"" src="' . $base_url . 'img/messages/edit.jpg" width="20" height="20">   ';
-                                                $delete = '<img alt=""' . $metric_id . '"" src="' . $base_url . 'img/messages/delete.jpg" width="20" height="20">  ';
+                                                $assign = '<img alt=""' . $metric_evsc_id . '"" src="' . $base_url . 'img/messages/assignment.jpg" width="20" height="20">   ';
+                                                $pdf = '<img alt=""' . $metric_evsc_id . '"" src="' . $base_url . 'img/messages/pdf.jpg" width="20" height="20">   ';
+                                                $view = '<img alt=""' . $metric_evsc_id . '"" src="' . $base_url . 'img/messages/success.jpg" width="20" height="20">   ';
+                                                $edit = '<img alt=""' . $metric_evsc_id . '"" src="' . $base_url . 'img/messages/edit.jpg" width="20" height="20">   ';
+                                                $delete = '<img alt=""' . $metric_evsc_id . '"" src="' . $base_url . 'img/messages/delete.jpg" width="20" height="20">  ';
                                                 ?>
                                                 <?php
-                                                //echo anchor("Metrics/ViewMetricsAssignments/$metric_id", $assign, array('onClick' => "return confirm('Are you sure for viewing the assignment of this metric ?')"));
+                                                echo anchor("Metrics/ViewMetricsAssignmentsDetailsPDF/$metric_evsc_id", $pdf, array('target' => '_blank', 'onClick' => "return confirm('Are you sure for viewing this  ?')"));
                                                 ?>
                                                 <?php
-                                                echo anchor("Metrics/ViewMetricsAssignmentsDetails/$metric_id", $view, array('onClick' => "return confirm('Are you sure for viewing this assignment ?')"));
+                                                echo anchor("Metrics/ViewMetricsAssignmentsDetails/$metric_evsc_id", $view, array('onClick' => "return confirm('Are you sure for viewing this assignment ?')"));
                                                 ?>
                                                 <?php
-                                                echo anchor("Metrics/ViewMetricsAssignmentsEditForm/$metric_id", $edit, array('onClick' => "return confirm('Are you sure for editing this assignment ?')"));
+                                                echo anchor("Metrics/ViewMetricsAssignmentsEditForm/$metric_evsc_id", $edit, array('onClick' => "return confirm('Are you sure for editing this assignment ?')"));
                                                 ?>
-                                                <?php echo anchor("Metrics/ViewMetricsAssignmentsDelete/$metric_id", $delete, array('onClick' => "return confirm('Are you sure for deleting this assignment ?')")); ?>    
+                                                <?php echo anchor("Metrics/ViewMetricsAssignmentsDelete/$metric_evsc_id", $delete, array('onClick' => "return confirm('Are you sure for deleting this assignment ?')")); ?>    
                                             </td>
                                         </tr>
                                         <tr><td class="alert-success" style="width: 20%;">Metric Title</td><td><?php echo $gen->metric_name; ?></td></tr>

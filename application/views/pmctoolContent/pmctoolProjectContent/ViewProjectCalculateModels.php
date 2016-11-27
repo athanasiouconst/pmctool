@@ -64,11 +64,11 @@
 
                                             <tr> 
                                                 <td class="alert-success" style="width: 20%;">Metric Title</td>
-                                                <td colspan="13" class="alert-warning" ><?php echo $gen->metric_name; ?></td>
+                                                <td colspan="14" class="alert-warning" ><?php echo $gen->metric_name; ?></td>
                                             </tr>
 
                                             <tr>
-                                                <td class="alert-success" style="width: 20%;">Evaluation Scale</td>
+                                                <td class="alert-success" style="width: 20%;">Evaluation Scale-Type: <?php echo $gen->evsc_type; ?></td>
                                                 <td><?php echo $gen->ep1_descr; ?></td>
                                                 <td><?php echo $gen->ep2_descr; ?></td>
                                                 <td><?php echo $gen->ep3_descr; ?></td>
@@ -80,35 +80,231 @@
                                                 <td><?php echo $gen->ep9_descr; ?></td>
                                                 <td><?php echo $gen->ep10_descr; ?></td>
                                             </tr>
-                                            <tr>
-                                                <td class="alert-success" style="width: 20%;">Type: <?php echo $gen->evsc_type; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="alert-success" style="width: 20%;">Number of Choices: <?php echo $gen->evsc_number_of_choices; ?></td>
-                                            </tr>
+                                                                                       
                                             <tr> 
                                                 <td class="alert-success" style="width: 20%;">Possible Answer :</td>
-                                                <td>
-                                                    
-                                                    <select>
-                                                        <option><?php echo $gen->ep1_descr; ?></option>
-                                                        <option><?php echo $gen->ep2_descr; ?></option>
-                                                        <option><?php echo $gen->ep3_descr; ?></option>
-                                                        <option><?php echo $gen->ep4_descr; ?></option>
-                                                        <option><?php echo $gen->ep5_descr; ?></option>
-                                                        <option><?php echo $gen->ep6_descr; ?></option>
-                                                        <option><?php echo $gen->ep7_descr; ?></option>
-                                                        <option><?php echo $gen->ep8_descr; ?></option>
-                                                        <option><?php echo $gen->ep9_descr; ?></option>
-                                                        <option><?php echo $gen->ep10_descr; ?></option>
-                                                    </select>
+                                                <td colspan="14">
+                                                    <?php
+                                                    $evsc_number_of_choices = $gen->evsc_number_of_choices;
+                                                    $evsc_type = $gen->evsc_type;
+                                                    if ($evsc_type == "Likert Scale") {
+                                                        if ($evsc_number_of_choices == 1) {
+                                                            ?>
+                                                            <select>
+                                                                <option><?php echo $gen->ep1_descr; ?> <?php echo $gen->ep1_value; ?> <?php echo $gen->ep1_weight; ?></option>
+                                                            </select>
+                                                        <?php } else if ($evsc_number_of_choices == 2) {
+                                                            ?>
+                                                            <select>
+                                                                <option><?php echo $gen->ep1_descr; ?> <?php echo $gen->ep1_value; ?> <?php echo $gen->ep1_weight; ?></option>
+                                                                <option><?php echo $gen->ep2_descr; ?> <?php echo $gen->ep2_value; ?> <?php echo $gen->ep2_weight; ?></option>
+                                                            </select>
+                                                        <?php } else if ($evsc_number_of_choices == 3) {
+                                                            ?>
+                                                            <select>
+                                                                <option><?php echo $gen->ep1_descr; ?> <?php echo $gen->ep1_value; ?> <?php echo $gen->ep1_weight; ?></option>
+                                                                <option><?php echo $gen->ep2_descr; ?> <?php echo $gen->ep2_value; ?> <?php echo $gen->ep2_weight; ?></option>
+                                                                <option><?php echo $gen->ep3_descr; ?> <?php echo $gen->ep3_value; ?> <?php echo $gen->ep3_weight; ?></option>
+                                                            </select>
+                                                        <?php } else if ($evsc_number_of_choices == 4) {
+                                                            ?>
+                                                            <select>
+                                                                <option><?php echo $gen->ep1_descr; ?> <?php echo $gen->ep1_value; ?> <?php echo $gen->ep1_weight; ?></option>
+                                                                <option><?php echo $gen->ep2_descr; ?> <?php echo $gen->ep2_value; ?> <?php echo $gen->ep2_weight; ?></option>
+                                                                <option><?php echo $gen->ep3_descr; ?> <?php echo $gen->ep3_value; ?> <?php echo $gen->ep3_weight; ?></option>
+                                                                <option><?php echo $gen->ep4_descr; ?> <?php echo $gen->ep4_value; ?> <?php echo $gen->ep4_weight; ?></option>
+                                                            </select>
+                                                        <?php } else if ($evsc_number_of_choices == 5) {
+                                                            ?>
+
+                                                            <select>
+                                                                <option><?php echo $gen->ep1_descr; ?> <?php echo $gen->ep1_value; ?> <?php echo $gen->ep1_weight; ?></option>
+                                                                <option><?php echo $gen->ep2_descr; ?> <?php echo $gen->ep2_value; ?> <?php echo $gen->ep2_weight; ?></option>
+                                                                <option><?php echo $gen->ep3_descr; ?> <?php echo $gen->ep3_value; ?> <?php echo $gen->ep3_weight; ?></option>
+                                                                <option><?php echo $gen->ep4_descr; ?> <?php echo $gen->ep4_value; ?> <?php echo $gen->ep4_weight; ?></option>
+                                                                <option><?php echo $gen->ep5_descr; ?> <?php echo $gen->ep5_value; ?> <?php echo $gen->ep5_weight; ?></option>
+                                                            </select>
+                                                        <?php } else if ($evsc_number_of_choices == 6) {
+                                                            ?>
+                                                            <select>
+                                                                <option><?php echo $gen->ep1_descr; ?> <?php echo $gen->ep1_value; ?> <?php echo $gen->ep1_weight; ?></option>
+                                                                <option><?php echo $gen->ep2_descr; ?> <?php echo $gen->ep2_value; ?> <?php echo $gen->ep2_weight; ?></option>
+                                                                <option><?php echo $gen->ep3_descr; ?> <?php echo $gen->ep3_value; ?> <?php echo $gen->ep3_weight; ?></option>
+                                                                <option><?php echo $gen->ep4_descr; ?> <?php echo $gen->ep4_value; ?> <?php echo $gen->ep4_weight; ?></option>
+                                                                <option><?php echo $gen->ep5_descr; ?> <?php echo $gen->ep5_value; ?> <?php echo $gen->ep5_weight; ?></option>
+                                                                <option><?php echo $gen->ep6_descr; ?> <?php echo $gen->ep6_value; ?> <?php echo $gen->ep6_weight; ?></option>
+                                                            </select>
+                                                        <?php } else if ($evsc_number_of_choices == 7) {
+                                                            ?>
+                                                            <select>
+                                                                <option><?php echo $gen->ep1_descr; ?> <?php echo $gen->ep1_value; ?> <?php echo $gen->ep1_weight; ?></option>
+                                                                <option><?php echo $gen->ep2_descr; ?> <?php echo $gen->ep2_value; ?> <?php echo $gen->ep2_weight; ?></option>
+                                                                <option><?php echo $gen->ep3_descr; ?> <?php echo $gen->ep3_value; ?> <?php echo $gen->ep3_weight; ?></option>
+                                                                <option><?php echo $gen->ep4_descr; ?> <?php echo $gen->ep4_value; ?> <?php echo $gen->ep4_weight; ?></option>
+                                                                <option><?php echo $gen->ep5_descr; ?> <?php echo $gen->ep5_value; ?> <?php echo $gen->ep5_weight; ?></option>
+                                                                <option><?php echo $gen->ep6_descr; ?> <?php echo $gen->ep6_value; ?> <?php echo $gen->ep6_weight; ?></option>
+                                                                <option><?php echo $gen->ep7_descr; ?> <?php echo $gen->ep7_value; ?> <?php echo $gen->ep7_weight; ?></option>
+                                                            </select>
+                                                        <?php } else if ($evsc_number_of_choices == 8) {
+                                                            ?>
+                                                            <select>
+                                                                <option><?php echo $gen->ep1_descr; ?> <?php echo $gen->ep1_value; ?> <?php echo $gen->ep1_weight; ?></option>
+                                                                <option><?php echo $gen->ep2_descr; ?> <?php echo $gen->ep2_value; ?> <?php echo $gen->ep2_weight; ?></option>
+                                                                <option><?php echo $gen->ep3_descr; ?> <?php echo $gen->ep3_value; ?> <?php echo $gen->ep3_weight; ?></option>
+                                                                <option><?php echo $gen->ep4_descr; ?> <?php echo $gen->ep4_value; ?> <?php echo $gen->ep4_weight; ?></option>
+                                                                <option><?php echo $gen->ep5_descr; ?> <?php echo $gen->ep5_value; ?> <?php echo $gen->ep5_weight; ?></option>
+                                                                <option><?php echo $gen->ep6_descr; ?> <?php echo $gen->ep6_value; ?> <?php echo $gen->ep6_weight; ?></option>
+                                                                <option><?php echo $gen->ep7_descr; ?> <?php echo $gen->ep7_value; ?> <?php echo $gen->ep7_weight; ?></option>
+                                                                <option><?php echo $gen->ep8_descr; ?> <?php echo $gen->ep8_value; ?> <?php echo $gen->ep8_weight; ?></option>
+                                                            </select>
+                                                        <?php } else if ($evsc_number_of_choices == 9) {
+                                                            ?>
+                                                            <select>
+                                                                <option><?php echo $gen->ep1_descr; ?> <?php echo $gen->ep1_value; ?> <?php echo $gen->ep1_weight; ?></option>
+                                                                <option><?php echo $gen->ep2_descr; ?> <?php echo $gen->ep2_value; ?> <?php echo $gen->ep2_weight; ?></option>
+                                                                <option><?php echo $gen->ep3_descr; ?> <?php echo $gen->ep3_value; ?> <?php echo $gen->ep3_weight; ?></option>
+                                                                <option><?php echo $gen->ep4_descr; ?> <?php echo $gen->ep4_value; ?> <?php echo $gen->ep4_weight; ?></option>
+                                                                <option><?php echo $gen->ep5_descr; ?> <?php echo $gen->ep5_value; ?> <?php echo $gen->ep5_weight; ?></option>
+                                                                <option><?php echo $gen->ep6_descr; ?> <?php echo $gen->ep6_value; ?> <?php echo $gen->ep6_weight; ?></option>
+                                                                <option><?php echo $gen->ep7_descr; ?> <?php echo $gen->ep7_value; ?> <?php echo $gen->ep7_weight; ?></option>
+                                                                <option><?php echo $gen->ep8_descr; ?> <?php echo $gen->ep8_value; ?> <?php echo $gen->ep8_weight; ?></option>
+                                                                <option><?php echo $gen->ep9_descr; ?> <?php echo $gen->ep9_value; ?> <?php echo $gen->ep9_weight; ?></option>
+                                                            </select>
+                                                        <?php } else if ($evsc_number_of_choices == 10) {
+                                                            ?>
+                                                            <select> 
+                                                                <option><?php echo $gen->ep1_descr; ?> <?php echo $gen->ep1_value; ?> <?php echo $gen->ep1_weight; ?></option>
+                                                                <option><?php echo $gen->ep2_descr; ?> <?php echo $gen->ep2_value; ?> <?php echo $gen->ep2_weight; ?></option>
+                                                                <option><?php echo $gen->ep3_descr; ?> <?php echo $gen->ep3_value; ?> <?php echo $gen->ep3_weight; ?></option>
+                                                                <option><?php echo $gen->ep4_descr; ?> <?php echo $gen->ep4_value; ?> <?php echo $gen->ep4_weight; ?></option>
+                                                                <option><?php echo $gen->ep5_descr; ?> <?php echo $gen->ep5_value; ?> <?php echo $gen->ep5_weight; ?></option>
+                                                                <option><?php echo $gen->ep6_descr; ?> <?php echo $gen->ep6_value; ?> <?php echo $gen->ep6_weight; ?></option>
+                                                                <option><?php echo $gen->ep7_descr; ?> <?php echo $gen->ep7_value; ?> <?php echo $gen->ep7_weight; ?></option>
+                                                                <option><?php echo $gen->ep8_descr; ?> <?php echo $gen->ep8_value; ?> <?php echo $gen->ep8_weight; ?></option>
+                                                                <option><?php echo $gen->ep9_descr; ?> <?php echo $gen->ep9_value; ?> <?php echo $gen->ep9_weight; ?></option>
+                                                                <option><?php echo $gen->ep10_descr; ?> <?php echo $gen->ep10_value; ?> <?php echo $gen->ep10_weight; ?></option>
+                                                            </select>
+                                                            <?php
+                                                        }
+                                                    } else if ($evsc_type == "Number") {
+                                                        if ($evsc_number_of_choices == 1) {
+                                                            ?>
+                                                            <select>
+                                                                <option><?php echo $gen->ep1_descr; ?> <?php echo $gen->ep1_value; ?> <?php echo $gen->ep1_weight; ?></option>
+                                                            </select>
+                                                        <?php } else if ($evsc_number_of_choices == 2) {
+                                                            ?>
+                                                            <select>
+                                                                <option><?php echo $gen->ep1_descr; ?> <?php echo $gen->ep1_value; ?> <?php echo $gen->ep1_weight; ?></option>
+                                                                <option><?php echo $gen->ep2_descr; ?> <?php echo $gen->ep2_value; ?> <?php echo $gen->ep2_weight; ?></option>
+                                                            </select>
+                                                        <?php } else if ($evsc_number_of_choices == 3) {
+                                                            ?>
+                                                            <select>
+                                                                <option><?php echo $gen->ep1_descr; ?> <?php echo $gen->ep1_value; ?> <?php echo $gen->ep1_weight; ?></option>
+                                                                <option><?php echo $gen->ep2_descr; ?> <?php echo $gen->ep2_value; ?> <?php echo $gen->ep2_weight; ?></option>
+                                                                <option><?php echo $gen->ep3_descr; ?> <?php echo $gen->ep3_value; ?> <?php echo $gen->ep3_weight; ?></option>
+                                                            </select>
+                                                        <?php } else if ($evsc_number_of_choices == 4) {
+                                                            ?>
+                                                            <select>
+                                                                <option><?php echo $gen->ep1_descr; ?> <?php echo $gen->ep1_value; ?> <?php echo $gen->ep1_weight; ?></option>
+                                                                <option><?php echo $gen->ep2_descr; ?> <?php echo $gen->ep2_value; ?> <?php echo $gen->ep2_weight; ?></option>
+                                                                <option><?php echo $gen->ep3_descr; ?> <?php echo $gen->ep3_value; ?> <?php echo $gen->ep3_weight; ?></option>
+                                                                <option><?php echo $gen->ep4_descr; ?> <?php echo $gen->ep4_value; ?> <?php echo $gen->ep4_weight; ?></option>
+                                                            </select>
+                                                        <?php } else if ($evsc_number_of_choices == 5) {
+                                                            ?>
+
+                                                            <select>
+                                                                <option><?php echo $gen->ep1_descr; ?> <?php echo $gen->ep1_value; ?> <?php echo $gen->ep1_weight; ?></option>
+                                                                <option><?php echo $gen->ep2_descr; ?> <?php echo $gen->ep2_value; ?> <?php echo $gen->ep2_weight; ?></option>
+                                                                <option><?php echo $gen->ep3_descr; ?> <?php echo $gen->ep3_value; ?> <?php echo $gen->ep3_weight; ?></option>
+                                                                <option><?php echo $gen->ep4_descr; ?> <?php echo $gen->ep4_value; ?> <?php echo $gen->ep4_weight; ?></option>
+                                                                <option><?php echo $gen->ep5_descr; ?> <?php echo $gen->ep5_value; ?> <?php echo $gen->ep5_weight; ?></option>
+                                                            </select>
+                                                        <?php } else if ($evsc_number_of_choices == 6) {
+                                                            ?>
+                                                            <select>
+                                                                <option><?php echo $gen->ep1_descr; ?> <?php echo $gen->ep1_value; ?> <?php echo $gen->ep1_weight; ?></option>
+                                                                <option><?php echo $gen->ep2_descr; ?> <?php echo $gen->ep2_value; ?> <?php echo $gen->ep2_weight; ?></option>
+                                                                <option><?php echo $gen->ep3_descr; ?> <?php echo $gen->ep3_value; ?> <?php echo $gen->ep3_weight; ?></option>
+                                                                <option><?php echo $gen->ep4_descr; ?> <?php echo $gen->ep4_value; ?> <?php echo $gen->ep4_weight; ?></option>
+                                                                <option><?php echo $gen->ep5_descr; ?> <?php echo $gen->ep5_value; ?> <?php echo $gen->ep5_weight; ?></option>
+                                                                <option><?php echo $gen->ep6_descr; ?> <?php echo $gen->ep6_value; ?> <?php echo $gen->ep6_weight; ?></option>
+                                                            </select>
+                                                        <?php } else if ($evsc_number_of_choices == 7) {
+                                                            ?>
+                                                            <select>
+                                                                <option><?php echo $gen->ep1_descr; ?> <?php echo $gen->ep1_value; ?> <?php echo $gen->ep1_weight; ?></option>
+                                                                <option><?php echo $gen->ep2_descr; ?> <?php echo $gen->ep2_value; ?> <?php echo $gen->ep2_weight; ?></option>
+                                                                <option><?php echo $gen->ep3_descr; ?> <?php echo $gen->ep3_value; ?> <?php echo $gen->ep3_weight; ?></option>
+                                                                <option><?php echo $gen->ep4_descr; ?> <?php echo $gen->ep4_value; ?> <?php echo $gen->ep4_weight; ?></option>
+                                                                <option><?php echo $gen->ep5_descr; ?> <?php echo $gen->ep5_value; ?> <?php echo $gen->ep5_weight; ?></option>
+                                                                <option><?php echo $gen->ep6_descr; ?> <?php echo $gen->ep6_value; ?> <?php echo $gen->ep6_weight; ?></option>
+                                                                <option><?php echo $gen->ep7_descr; ?> <?php echo $gen->ep7_value; ?> <?php echo $gen->ep7_weight; ?></option>
+                                                            </select>
+                                                        <?php } else if ($evsc_number_of_choices == 8) {
+                                                            ?>
+                                                            <select>
+                                                                <option><?php echo $gen->ep1_descr; ?> <?php echo $gen->ep1_value; ?> <?php echo $gen->ep1_weight; ?></option>
+                                                                <option><?php echo $gen->ep2_descr; ?> <?php echo $gen->ep2_value; ?> <?php echo $gen->ep2_weight; ?></option>
+                                                                <option><?php echo $gen->ep3_descr; ?> <?php echo $gen->ep3_value; ?> <?php echo $gen->ep3_weight; ?></option>
+                                                                <option><?php echo $gen->ep4_descr; ?> <?php echo $gen->ep4_value; ?> <?php echo $gen->ep4_weight; ?></option>
+                                                                <option><?php echo $gen->ep5_descr; ?> <?php echo $gen->ep5_value; ?> <?php echo $gen->ep5_weight; ?></option>
+                                                                <option><?php echo $gen->ep6_descr; ?> <?php echo $gen->ep6_value; ?> <?php echo $gen->ep6_weight; ?></option>
+                                                                <option><?php echo $gen->ep7_descr; ?> <?php echo $gen->ep7_value; ?> <?php echo $gen->ep7_weight; ?></option>
+                                                                <option><?php echo $gen->ep8_descr; ?> <?php echo $gen->ep8_value; ?> <?php echo $gen->ep8_weight; ?></option>
+                                                            </select>
+                                                        <?php } else if ($evsc_number_of_choices == 9) {
+                                                            ?>
+                                                            <select>
+                                                                <option><?php echo $gen->ep1_descr; ?> <?php echo $gen->ep1_value; ?> <?php echo $gen->ep1_weight; ?></option>
+                                                                <option><?php echo $gen->ep2_descr; ?> <?php echo $gen->ep2_value; ?> <?php echo $gen->ep2_weight; ?></option>
+                                                                <option><?php echo $gen->ep3_descr; ?> <?php echo $gen->ep3_value; ?> <?php echo $gen->ep3_weight; ?></option>
+                                                                <option><?php echo $gen->ep4_descr; ?> <?php echo $gen->ep4_value; ?> <?php echo $gen->ep4_weight; ?></option>
+                                                                <option><?php echo $gen->ep5_descr; ?> <?php echo $gen->ep5_value; ?> <?php echo $gen->ep5_weight; ?></option>
+                                                                <option><?php echo $gen->ep6_descr; ?> <?php echo $gen->ep6_value; ?> <?php echo $gen->ep6_weight; ?></option>
+                                                                <option><?php echo $gen->ep7_descr; ?> <?php echo $gen->ep7_value; ?> <?php echo $gen->ep7_weight; ?></option>
+                                                                <option><?php echo $gen->ep8_descr; ?> <?php echo $gen->ep8_value; ?> <?php echo $gen->ep8_weight; ?></option>
+                                                                <option><?php echo $gen->ep9_descr; ?> <?php echo $gen->ep9_value; ?> <?php echo $gen->ep9_weight; ?></option>
+                                                            </select>
+                                                        <?php } else if ($evsc_number_of_choices == 10) {
+                                                            ?>
+                                                            <select> 
+                                                                <option><?php echo $gen->ep1_descr; ?> <?php echo $gen->ep1_value; ?> <?php echo $gen->ep1_weight; ?></option>
+                                                                <option><?php echo $gen->ep2_descr; ?> <?php echo $gen->ep2_value; ?> <?php echo $gen->ep2_weight; ?></option>
+                                                                <option><?php echo $gen->ep3_descr; ?> <?php echo $gen->ep3_value; ?> <?php echo $gen->ep3_weight; ?></option>
+                                                                <option><?php echo $gen->ep4_descr; ?> <?php echo $gen->ep4_value; ?> <?php echo $gen->ep4_weight; ?></option>
+                                                                <option><?php echo $gen->ep5_descr; ?> <?php echo $gen->ep5_value; ?> <?php echo $gen->ep5_weight; ?></option>
+                                                                <option><?php echo $gen->ep6_descr; ?> <?php echo $gen->ep6_value; ?> <?php echo $gen->ep6_weight; ?></option>
+                                                                <option><?php echo $gen->ep7_descr; ?> <?php echo $gen->ep7_value; ?> <?php echo $gen->ep7_weight; ?></option>
+                                                                <option><?php echo $gen->ep8_descr; ?> <?php echo $gen->ep8_value; ?> <?php echo $gen->ep8_weight; ?></option>
+                                                                <option><?php echo $gen->ep9_descr; ?> <?php echo $gen->ep9_value; ?> <?php echo $gen->ep9_weight; ?></option>
+                                                                <option><?php echo $gen->ep10_descr; ?> <?php echo $gen->ep10_value; ?> <?php echo $gen->ep10_weight; ?></option>
+                                                            </select>
+                                                            <?php
+                                                        }
+                                                    } else if ($evsc_type == "yes/no") {
+
+                                                        if ($evsc_number_of_choices == 2) {
+                                                            ?>
+                                                            <select>
+                                                                <option><?php echo $gen->ep1_descr; ?> <?php echo $gen->ep1_value; ?> <?php echo $gen->ep1_weight; ?></option>
+                                                                <option><?php echo $gen->ep2_descr; ?> <?php echo $gen->ep2_value; ?> <?php echo $gen->ep2_weight; ?></option>
+                                                            </select>
+                                                            <?php
+                                                        }
+                                                    }
+                                                    ?>
+
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?> 
 
                                     <?php else : ?>
                                         <tr>
-                                            <td>
+                                            <td colspan="14">
                                                 <div style="padding-left: 25px;"><i>There is no Data to Display !!</i></div>
                                             </td>
                                         </tr>

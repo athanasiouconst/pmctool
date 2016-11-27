@@ -423,4 +423,49 @@ class Models extends CI_Controller {
         }
     }
 
+    public function ViewModelsPDF($mod_id, $sort_by = 'mod_id', $sort_order = 'desc', $offset = 0) {
+        $this->load->model('ModelsModel');
+        //pass messages
+        $data['gens'] = $this->ModelsModel->getViewModelsDetails($mod_id);
+        $limit = 1;
+        $results = $this->ModelsModel->searchViewModelsDetails($mod_id, $sort_by, $sort_order, $limit, $offset);
+        $data['gen'] = $results['rows'];
+        $data['num_result'] = $results['num_rows'];
+        $now = new DateTime();
+        $data['today'] = $now->format('d-m-Y H:i:s');
+        $this->load->view('pdf/Model', $data);
+    }
+    
+    public function ViewModelsAssignmentsPDF($model_cf_id, $sort_by = 'model_cf_id', $sort_order = 'desc', $offset = 0) {
+        $this->load->model('ModelsModel');
+        //pass messages
+        $data['gens'] = $this->ModelsModel->getViewModelsAssignmentsDetails($model_cf_id);
+        $limit = 10;
+        $results = $this->ModelsModel->searchViewModelsAssignmentsDetails($model_cf_id, $sort_by, $sort_order, $limit, $offset);
+        $data['gen'] = $results['rows'];
+        $data['num_result'] = $results['num_rows'];
+        
+        $data['fields'] = array(
+            'mod_name' => 'Model Title',
+            'mod_description' => 'Model Description',
+            'cf_name' => 'Complexity Factor Title',
+            'cf_description' => 'Complexity Factor Description',
+            'cf_reference' => 'Complexity Factor Reference',
+            'cf_restriction' => 'Complexity Factor Restriction',
+            'cf_category' => 'Complexity Factor Category',
+            'cf_weight' => 'Complexity Factor Weight',
+            'metric_name' => 'Metric Title',
+            'metric_description' => 'Metric Description',
+            'metric_reference' => 'Metric Reference',
+            'metric_restriction' => 'Metric Restriction',
+            'metric_weight' => 'Metric Weight',
+            'evsc_name' => 'Evaluation Scale Title',
+            'evsc_description' => 'Evaluation Scale Description',
+            'evsc_type' => 'Evaluation Scale Type',
+            'evsc_number_of_choices' => 'Evaluation Scale Number of Choices'
+        );
+        $now = new DateTime();
+        $data['today'] = $now->format('d-m-Y H:i:s');
+        $this->load->view('pdf/ModelsAssignments', $data);
+    }
 }

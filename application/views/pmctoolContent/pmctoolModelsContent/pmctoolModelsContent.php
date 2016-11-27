@@ -45,12 +45,16 @@
                                                 $mod_id = $gen->mod_id;
                                                 $base_url = base_url();
                                                 $assign = '<img alt=""' . $mod_id . '"" src="' . $base_url . 'img/messages/assignment.jpg" width="20" height="20">   ';
+                                                $pdf = '<img alt=""' . $mod_id . '"" src="' . $base_url . 'img/messages/pdf.jpg" width="20" height="20">   ';
                                                 $view = '<img alt=""' . $mod_id . '"" src="' . $base_url . 'img/messages/success.jpg" width="20" height="20">   ';
                                                 $edit = '<img alt=""' . $mod_id . '"" src="' . $base_url . 'img/messages/edit.jpg" width="20" height="20">   ';
                                                 $delete = '<img alt=""' . $mod_id . '"" src="' . $base_url . 'img/messages/delete.jpg" width="20" height="20">  ';
                                                 ?>
                                                 <?php
-                                                echo anchor("Models/ViewModelsAssignments/$mod_id", $assign, array('onClick' => "return confirm('Are you sure for viewing the assignments of this metric ?')"));
+                                                echo anchor("Models/ViewModelsAssignments/$mod_id", $assign, array('onClick' => "return confirm('Are you sure for viewing the assignments of this model ?')"));
+                                                ?>
+                                                <?php
+                                                echo anchor("Models/ViewModelsPDF/$mod_id", $pdf, array('target' => '_blank', 'onClick' => "return confirm('Are you sure for viewing this  model?')"));
                                                 ?>
                                                 <?php
                                                 echo anchor("Models/ViewModelsDetails/$mod_id", $view, array('onClick' => "return confirm('Are you sure for viewing this model ?')"));
