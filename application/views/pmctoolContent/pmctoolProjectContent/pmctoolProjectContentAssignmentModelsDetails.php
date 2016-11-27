@@ -67,6 +67,9 @@
                                                     $mod_proj_id = $gen->mod_proj_id;
                                                     $base_url = base_url();
                                                     $assign = '<img alt=""' . $mod_proj_id . '"" src="' . $base_url . 'img/messages/assignment.jpg" width="20" height="20">   ';
+                                                    $calculate = '<img alt=""' . $mod_proj_id . '"" src="' . $base_url . 'img/messages/calculate.jpg" width="40" height="40">   ';
+                                                    $print = '<img alt=""' . $mod_proj_id . '"" src="' . $base_url . 'img/messages/print.jpg" width="20" height="20">   ';
+                                                    $pdf = '<img alt=""' . $mod_proj_id . '"" src="' . $base_url . 'img/messages/pdf.jpg" width="20" height="20">   ';
                                                     $view = '<img alt=""' . $mod_proj_id . '"" src="' . $base_url . 'img/messages/success.jpg" width="20" height="20">   ';
                                                     $edit = '<img alt=""' . $mod_proj_id . '"" src="' . $base_url . 'img/messages/edit.jpg" width="20" height="20">   ';
                                                     $delete = '<img alt=""' . $mod_proj_id . '"" src="' . $base_url . 'img/messages/delete.jpg" width="20" height="20">  ';
@@ -75,13 +78,21 @@
                                                     //echo anchor("Models/ViewProjectAssignments/$mod_id", $assign, array('onClick' => "return confirm('Are you sure for viewing the assignments of this metric ?')"));
                                                     ?>
                                                     <?php
+                                                    echo anchor("Projects/ViewProjectCalculateModels/$mod_proj_id", $calculate, array('onClick' => "return confirm('Are you sure for Calculating this model ?')"));
+                                                    ?>
+                                                    <?php
+                                                    echo anchor("Projects/ViewProjectAssignmentsPDF/$mod_proj_id", $print, array('target' => '_blank', 'onClick' => "return confirm('Are you sure for viewing this  model?')"));
+                                                    ?>
+                                                    <?php
+                                                    echo anchor("Projects/ViewProjectAssignmentsPDF/$mod_proj_id", $pdf, array('target' => '_blank', 'onClick' => "return confirm('Are you sure for viewing this  model?')"));
+                                                    ?>
+                                                    <?php
                                                     echo anchor("Projects/ViewProjectAssignmentsDetails/$mod_proj_id", $view, array('onClick' => "return confirm('Are you sure for viewing this model ?')"));
                                                     ?>
                                                     <?php
                                                     echo anchor("Projects/ViewModelsAssignFactorEditForm/$mod_proj_id", $edit, array('onClick' => "return confirm('Are you sure for editing this model ?')"));
                                                     ?>
                                                     <?php echo anchor("Projects/ViewProjectAssignmentsDelete/$mod_proj_id", $delete, array('onClick' => "return confirm('Are you sure for deleting this model?')")); ?>    
-
                                                 </td>
                                             </tr>
 

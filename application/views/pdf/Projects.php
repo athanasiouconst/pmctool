@@ -34,9 +34,9 @@ $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8',
 $pdf->SetCreator(PDF_CREATOR);
 
 $pdf->SetAuthor('PMCTool');
-$pdf->SetTitle('Complexity Factor');
-$pdf->SetSubject('Complexity Factor');
-$pdf->SetKeywords('PDF, Complexity Factor');
+$pdf->SetTitle('Projects');
+$pdf->SetSubject('Projects');
+$pdf->SetKeywords('PDF, Projects');
 
 // set default header data
 $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE . ' '.$today.' ', PDF_HEADER_STRING, array(0, 64, 255), array(0, 64, 128));
@@ -86,12 +86,9 @@ $pdf->setTextShadow(array('enabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2,
 if (isset($gens)):
     if (count($gen) > 0) :
         foreach ($gen as $gen):
-            $cf_name = $gen->cf_name;
-            $cf_description = $gen->cf_description;
-            $cf_reference = $gen->cf_reference;
-            $cf_restriction = $gen->cf_restriction;
-            $cf_category = $gen->cf_category;
-            $cf_weight = $gen->cf_weight;
+            $proj_title = $gen->proj_title;
+            $proj_kind = $gen->proj_kind;
+            $proj_description = $gen->proj_description;
             
             // Set some content to print
 $html = '<style type="text/css">
@@ -105,32 +102,22 @@ $html = '<style type="text/css">
 
 <table class="tg">
 <tr>
-    <td colspan="2" class="tg-pnx7" style=" text-align: center;"><h1>Complexity Factor</h1></td>
+    <td colspan="2" class="tg-pnx7" style=" text-align: center;"><h1>Project</h1></td>
 </tr>
 <tr>
     <td class="tg-saqj" ><h3>Title</h3></td>
-    <td class="tg-saqj" >' . $cf_name . '</td>
+    <td class="tg-saqj" >' . $proj_title . '</td>
+  </tr>
+  <tr>
+    <td class="tg-saqj"><h3>Kind</h3></td>
+    <td class="tg-saqj">' . $proj_kind . '</td>
   </tr>
   <tr>
     <td class="tg-saqj"><h3>Description</h3></td>
-    <td class="tg-saqj">' . $cf_description . '</td>
-  </tr>
-  <tr>
-    <td class="tg-saqj"><h3>Reference</h3></td>
-    <td class="tg-saqj">' . $cf_reference . '</td>
-  </tr> 
-  <tr>
-    <td class="tg-saqj"><h3>Restriction</h3></td>
-    <td class="tg-saqj">' . $cf_restriction . '</td>
-  </tr> 
-  <tr>
-    <td class="tg-saqj"><h3>Category</h3></td>
-    <td class="tg-saqj">' . $cf_category . '</td>
-  </tr> 
-  <tr>
-    <td class="tg-saqj"><h3>Weight</h3></td>
-    <td class="tg-saqj">' . $cf_weight . '</td>
-  </tr> 
+    <td class="tg-saqj">' . $proj_description . '</td>
+  </tr>  
+  
+  
 </table>
         ';
 
@@ -145,7 +132,7 @@ $pdf->lastPage();
 // ---------------------------------------------------------
 // Close and output PDF document
 // This method has several options, check the source code documentation for more information.
-$pdf->Output('Complexity Factor_'.$today.'.pdf', 'I');
+$pdf->Output('Projects_'.$today.'.pdf', 'I');
 
 //============================================================+
 // END OF FILE

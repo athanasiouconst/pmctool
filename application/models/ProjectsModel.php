@@ -72,10 +72,9 @@ Class ProjectsModel extends CI_Model {
         $this->db->where('proj_id', $proj_id);
         $this->db->update('project', $data);
     }
-    
-    
+
     public function getViewProjectsDetails($proj_id) {
-        $query = $this->db->query("SELECT * FROM project WHERE proj_id='".$proj_id."' ");
+        $query = $this->db->query("SELECT * FROM project WHERE proj_id='" . $proj_id . "' ");
         $results = array();
         foreach ($query->result() as $row) {
             array_push($results, array(
@@ -88,7 +87,7 @@ Class ProjectsModel extends CI_Model {
         return $results;
     }
 
-    function searchViewProjectsDetails($proj_id,$sort_by, $sort_order, $limit, $offset) {
+    function searchViewProjectsDetails($proj_id, $sort_by, $sort_order, $limit, $offset) {
         //results
         $sort_order == ($sort_order == 'desc') ? 'desc' : 'asc';
         $sort_colums = array('proj_id', 'proj_title', 'proj_kind', 'proj_description');
@@ -97,7 +96,7 @@ Class ProjectsModel extends CI_Model {
         $query = $this->db->select('*')
                 ->from('project')
                 ->limit($limit, $offset)
-                ->where('proj_id',$proj_id)
+                ->where('proj_id', $proj_id)
                 ->order_by($sort_by, $sort_order);
 
         $ret['rows'] = $query->get()->result();
@@ -112,7 +111,7 @@ Class ProjectsModel extends CI_Model {
         return $ret;
     }
 
-     public function getViewProject() {
+    public function getViewProject() {
         $query = $this->db->query("SELECT * FROM project order by proj_id desc");
         $results = array();
         foreach ($query->result() as $row) {
@@ -132,7 +131,7 @@ Class ProjectsModel extends CI_Model {
         $query = $this->db->select('*')
                 ->from('project')
                 ->order_by('proj_id', 'desc')
-               ;
+        ;
         $ret['rows'] = $query->get()->result();
         //count query
         $query = $this->db->count_all('project');
@@ -141,7 +140,7 @@ Class ProjectsModel extends CI_Model {
         return $ret;
     }
 
-     public function getViewModel() {
+    public function getViewModel() {
         $query = $this->db->query("SELECT * FROM model order by mod_id desc");
         $results = array();
         foreach ($query->result() as $row) {
@@ -168,8 +167,7 @@ Class ProjectsModel extends CI_Model {
         $ret['num_rows'] = $tmp;
         return $ret;
     }
-    
-    
+
     //add
     function add_ModelsToproject($data) {
 
@@ -177,7 +175,6 @@ Class ProjectsModel extends CI_Model {
         return;
     }
 
-    
     public function getViewProjectAssignments($proj_id) {
         $query = $this->db->query("SELECT * FROM mod_proj "
                 . " LEFT JOIN model ON mod_proj.mod_id=model.mod_id"
@@ -192,7 +189,6 @@ Class ProjectsModel extends CI_Model {
                 'proj_description' => $row->proj_description,
                 'mod_name' => $row->mod_name,
                 'mod_description' => $row->mod_description
-                
             ));
         }
         return $results;
@@ -220,7 +216,6 @@ Class ProjectsModel extends CI_Model {
         return $ret;
     }
 
-         
     public function getViewProjectAssignmentsDetails($mod_proj_id) {
         $query = $this->db->query("SELECT * FROM mod_proj "
                 . " LEFT JOIN project on mod_proj.proj_id=project.proj_id"
@@ -259,15 +254,44 @@ Class ProjectsModel extends CI_Model {
                 'evsc_name' => $row->evsc_name,
                 'evsc_description' => $row->evsc_description,
                 'evsc_type' => $row->evsc_type,
-                'evsc_number_of_choices' => $row->evsc_number_of_choices
-                
+                'evsc_number_of_choices' => $row->evsc_number_of_choices,
+                'ep1_value' => $row->ep1_value,
+                'ep1_descr' => $row->ep1_descr,
+                'ep1_weight' => $row->ep1_weight,
+                'ep2_value' => $row->ep2_value,
+                'ep2_descr' => $row->ep2_descr,
+                'ep2_weight' => $row->ep2_weight,
+                'ep3_value' => $row->ep3_value,
+                'ep3_descr' => $row->ep3_descr,
+                'ep3_weight' => $row->ep3_weight,
+                'ep4_value' => $row->ep4_value,
+                'ep4_descr' => $row->ep4_descr,
+                'ep4_weight' => $row->ep4_weight,
+                'ep5_value' => $row->ep5_value,
+                'ep5_descr' => $row->ep5_descr,
+                'ep5_weight' => $row->ep5_weight,
+                'ep6_value' => $row->ep6_value,
+                'ep6_descr' => $row->ep6_descr,
+                'ep6_weight' => $row->ep6_weight,
+                'ep7_value' => $row->ep7_value,
+                'ep7_descr' => $row->ep7_descr,
+                'ep7_weight' => $row->ep7_weight,
+                'ep8_value' => $row->ep8_value,
+                'ep8_descr' => $row->ep8_descr,
+                'ep8_weight' => $row->ep8_weight,
+                'ep9_value' => $row->ep9_value,
+                'ep9_descr' => $row->ep9_descr,
+                'ep9_weight' => $row->ep9_weight,
+                'ep10_value' => $row->ep10_value,
+                'ep10_descr' => $row->ep10_descr,
+                'ep10_weight' => $row->ep10_weight
             ));
         }
         return $results;
     }
 
     function searchViewProjectAssignmentsDetails($mod_proj_id) {
-        
+
         $query = $this->db->select('*')
                 ->from('mod_proj')
                 ->join('project', 'mod_proj.proj_id=project.proj_id', 'left outer')
@@ -278,7 +302,7 @@ Class ProjectsModel extends CI_Model {
                 ->join('metric_evsc', 'metric.metric_id=metric_evsc.metric_id', 'left outer')
                 ->join('evaluation_scale', 'metric_evsc.evsc_id=evaluation_scale.evsc_id', 'left outer')
                 ->where('mod_proj.mod_proj_id', $mod_proj_id)
-                ;
+        ;
 
         $ret['rows'] = $query->get()->result();
         //count query
@@ -288,19 +312,17 @@ Class ProjectsModel extends CI_Model {
         return $ret;
     }
 
-    
     //Delete
     function ProjectAssignmentsDelete($mod_proj_id) {
         $this->db->where('mod_proj_id', $mod_proj_id);
         $this->db->delete('mod_proj');
     }
 
-    
     public function getViewProjectAssignEdit($mod_proj_id) {
         $query = $this->db->query("SELECT * FROM mod_proj "
                 . " LEFT JOIN project ON mod_proj.proj_id=project.proj_id"
                 . " WHERE mod_proj.mod_proj_id='" . $mod_proj_id . "' "
-                );
+        );
         $results = array();
         foreach ($query->result() as $row) {
             array_push($results, array(
@@ -321,7 +343,7 @@ Class ProjectsModel extends CI_Model {
                 ->from('mod_proj')
                 ->join('project', 'mod_proj.proj_id=project.proj_id', 'left outer')
                 ->where('mod_proj.mod_proj_id', $mod_proj_id)
-               ;
+        ;
         $ret['rows'] = $query->get()->result();
         //count query
         $query = $this->db->count_all('mod_proj');
@@ -330,12 +352,12 @@ Class ProjectsModel extends CI_Model {
         return $ret;
     }
 
-     public function getViewModelAssignEdit($mod_proj_id) {
+    public function getViewModelAssignEdit($mod_proj_id) {
         $query = $this->db->query("SELECT * FROM mod_proj "
                 . " LEFT JOIN project ON mod_proj.proj_id=project.proj_id"
                 . " LEFT JOIN model ON mod_proj.mod_id=model.mod_id"
                 . " WHERE mod_proj.mod_proj_id='" . $mod_proj_id . "' "
-                );
+        );
         $results = array();
         foreach ($query->result() as $row) {
             array_push($results, array(
@@ -362,12 +384,13 @@ Class ProjectsModel extends CI_Model {
         $ret['num_rows'] = $tmp;
         return $ret;
     }
+
     public function getViewModelAssignEdit1() {
         $query = $this->db->query("SELECT * FROM model "
                 //. " LEFT JOIN project ON mod_proj.proj_id=project.proj_id"
                 //. " LEFT JOIN model ON mod_proj.mod_id=model.mod_id"
                 //. " WHERE mod_proj.mod_proj_id='" . $mod_proj_id . "' "
-                );
+        );
         $results = array();
         foreach ($query->result() as $row) {
             array_push($results, array(
@@ -384,8 +407,8 @@ Class ProjectsModel extends CI_Model {
 
         $query = $this->db->select('*')
                 ->from('model')
-                //->join('model', 'mod_proj.mod_id=model.mod_id', 'left outer')
-                //->where('mod_proj.mod_proj_id', $mod_proj_id)
+        //->join('model', 'mod_proj.mod_id=model.mod_id', 'left outer')
+        //->where('mod_proj.mod_proj_id', $mod_proj_id)
         ;
         $ret['rows'] = $query->get()->result();
         //count query
@@ -394,12 +417,12 @@ Class ProjectsModel extends CI_Model {
         $ret['num_rows'] = $tmp;
         return $ret;
     }
-    
+
     //Update 
     public function EditModeltoProjects($mod_proj_id, $data) {
 
         $this->db->where('mod_proj_id', $mod_proj_id);
         $this->db->update('mod_proj', $data);
     }
-    
+
 }

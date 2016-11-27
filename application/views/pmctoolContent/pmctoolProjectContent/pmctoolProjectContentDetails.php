@@ -84,6 +84,7 @@
                                             $proj_id = $gen->proj_id;
                                             $base_url = base_url();
                                             $assign = '<img alt=""' . $proj_id . '"" src="' . $base_url . 'img/messages/assignment.jpg" width="20" height="20">   ';
+                                            $pdf = '<img alt=""' . $proj_id . '"" src="' . $base_url . 'img/messages/pdf.jpg" width="20" height="20">   ';
                                             $view = '<img alt=""' . $proj_id . '"" src="' . $base_url . 'img/messages/success.jpg" width="20" height="20">   ';
                                             $edit = '<img alt=""' . $proj_id . '"" src="' . $base_url . 'img/messages/edit.jpg" width="20" height="20">   ';
                                             $delete = '<img alt=""' . $proj_id . '"" src="' . $base_url . 'img/messages/delete.jpg" width="20" height="20">  ';
@@ -91,6 +92,9 @@
                                             <?php
                                             echo anchor("Projects/ViewProjectAssignments/$proj_id", $assign, array('onClick' => "return confirm('Are you sure for viewing the assignments of this metric ?')"));
                                             ?>
+                                            <?php
+                                            echo anchor("Projects/ViewProjectsPDF/$proj_id", $pdf, array('target' => '_blank', 'onClick' => "return confirm('Are you sure for viewing this  model?')"));
+                                            ?>                                            
                                             <?php
                                             echo anchor("Projects/ViewProjectsDetails/$proj_id", $view, array('onClick' => "return confirm('Are you sure for viewing this project ?')"));
                                             ?>

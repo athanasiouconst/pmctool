@@ -89,11 +89,7 @@ if (isset($gens)):
             $mod_name = $gen->mod_name;
             $mod_description = $gen->mod_description;
                       
-        endforeach;
-    endif;
-endif;
-
-// Set some content to print
+            // Set some content to print
 $html = '<style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;border-color:#999;}
 .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#999;color:#444;background-color:#F7FDFA;border-top-width:1px;border-bottom-width:1px;}
@@ -121,6 +117,11 @@ $html = '<style type="text/css">
 
 // Print text using writeHTMLCell()
 $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
+        endforeach;
+    endif;
+endif;
+
+
 $pdf->lastPage();
 // ---------------------------------------------------------
 // Close and output PDF document
