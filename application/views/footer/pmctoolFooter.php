@@ -23,14 +23,13 @@
         <!-- End Of Footer Section -->
 
 
-
         <!-- JS Files -->
         <!-- Bootstrap JS -->
         <script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
         <!-- jQuery Easing -->
         <script src="<?php echo base_url(); ?>js/jquery.easing.min.js"></script>
         <!-- PreLoader -->
-        
+        <script src="<?php echo base_url(); ?>js/queryloader2.min.js"></script>
         <!-- WOW JS Animation -->
         <script src="<?php echo base_url(); ?>js/wow.min.js"></script>
         <!-- Simple Lightbox -->

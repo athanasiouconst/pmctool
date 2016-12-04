@@ -79,7 +79,7 @@
                     <div class="media-body">
                         <!-- Single service title -->
                         <h3 class="media-heading">Conferences</h3>
-                        <p><a href="http://pmc.teilar.gr/index.php/research-activities/congress-main-page">Damasiotis V. Fitsilis P. O’Kane J.</a> 
+                        <p>Lorem ipsum dolor sit amet, tetur adipisicing elit. Ut enim ad minim tae vitae dicta sunt explicabo.</p>
                     </div>
                 </div>
             </div>
@@ -92,7 +92,7 @@
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading">Journals</h3>
-                        <p><a href="http://pmc.teilar.gr/index.php/research-activities/magazine-main-page">Damasiotis V. Fitsilis P. O’Kane J.</a> 
+                        <p>Lorem ipsum dolor sit amet, tetur adipisicing elit. Ut enim ad minim tae vitae dicta sunt explicabo.</p>
                     </div>
                 </div>
             </div>
@@ -105,7 +105,7 @@
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading">Books</h3>
-                        <p><a href="http://pmc.teilar.gr/index.php/research-activities/books-2">Damasiotis V. Fitsilis P. O’Kane J.</a> 
+                        <p>Lorem ipsum dolor sit amet, tetur adipisicing elit. Ut enim ad minim tae vitae dicta sunt explicabo.</p>
                     </div>
                 </div>
             </div>
@@ -118,7 +118,7 @@
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading">Projects</h3>
-                        <p><a href="http://pmc.teilar.gr/pmctool/">Complexity of Software Project Management</a> 
+                        <p>Lorem ipsum dolor sit amet, tetur adipisicing elit. Ut enim ad minim tae vitae dicta sunt explicabo.</p>
                     </div>
                 </div>
             </div>

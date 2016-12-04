@@ -4,7 +4,7 @@
     <div class="container">
         <!-- Contact Us Section Title -->
         <h2 class="section-title contact-title text-center">Contact Us</h2>
-<!--        <p class="sub-title contact-subtitle text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, magna aliqua.Ut enim <br> consectetur adipisicing  ad minim veniam</p>-->
+        <p class="sub-title contact-subtitle text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, magna aliqua.Ut enim <br> consectetur adipisicing  ad minim veniam</p>
 
         <div class="row">
             <div class="col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">

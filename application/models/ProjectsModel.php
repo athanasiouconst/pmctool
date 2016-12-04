@@ -229,7 +229,6 @@ Class ProjectsModel extends CI_Model {
         $results = array();
         foreach ($query->result() as $row) {
             array_push($results, array(
-                '$mod_proj_id' => $row->mod_proj_id,
                 'proj_id' => $row->proj_id,
                 'proj_title' => $row->proj_title,
                 'proj_kind' => $row->proj_kind,

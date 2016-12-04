@@ -12,7 +12,8 @@
         <meta name="description" content="Project Management Complexity Tool.">
         <meta name="keywords" content="pm project management tool software ">
         <meta name="author" content="csiouath@gmail.com bdama@teilar.gr">
-        <link rel="icon" href="<?php echo base_url(); ?>img/icon.jpg">
+
+
         <!-- Essential CSS Files -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>css/normalize.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>css/font-awesome.min.css">
