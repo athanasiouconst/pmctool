@@ -1,31 +1,19 @@
 <footer class="footer-section">
             <div class="container">
                 <div class="row mt-30 mb-30">
-                    <div class="col-md-6 text-center">
+                    
+                    <div class="col-md-12 text-center">
                         <!-- Footer Copy Right Text -->
                         <div class="copyright-info">
-                            <a href="http://themebite.com"><span><i class="fa fa-code"></i></span> The Theme has been Developed  <span><i class="fa fa-heart"></i></span> <br>By <span>ThemeBite</span></a>
-                        </div>
-                        <!-- Footer Social Icons -->
-                        <div class="social-icons mt-30">
-                            <a href="https://www.facebook.com/themebite/"><i class="fa fa-facebook"></i></a>
-                            <a href="https://twitter.com/themebite/"><i class="fa fa-twitter"></i></a>
-                            <a href="https://plus.google.com/themebite/"><i class="fa fa-google-plus"></i></a>
-                            <a href="https://github.com/themebite/"><i class="fa fa-github"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-md-6 text-center">
-                        <!-- Footer Copy Right Text -->
-                        <div class="copyright-info">
-                            <a href="http://themebite.com"><span><i class="fa fa-code"></i></span> The PMCTool has been Developed  <span><i class="fa fa-heart"></i></span> <br>By <span>Constantinos Athanasiou</span></a>
+                            <a href="https://www.linkedin.com/in/constantinosathanasiou" target="_blank"><span><i class="fa fa-code"></i></span>The PMCTool has been Developed  <span><i class="fa fa-code"></i></span><br> By <span>Constantinos Athanasiou</span></a>
                         </div>
 
                         <!-- Footer Social Icons -->
                         <div class="social-icons mt-30">
-                            <a href="https://www.facebook.com/themebite/"><i class="fa fa-facebook"></i></a>
-                            <a href="https://twitter.com/themebite/"><i class="fa fa-twitter"></i></a>
-                            <a href="https://plus.google.com/themebite/"><i class="fa fa-google-plus"></i></a>
-                            <a href="https://github.com/themebite/"><i class="fa fa-github"></i></a>
+                            <a href="https://www.facebook.com/costas.siou/" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a href="https://twitter.com/csiouath/" target="_blank"><i class="fa fa-twitter"></i></a>
+                            <a href="https://plus.google.com/u/0/110129558289042781457/" target="_blank"><i class="fa fa-google-plus"></i></a>
+                            <a href="https://github.com/athanasiouconst/" target="_blank"><i class="fa fa-github"></i></a>
                         </div>
                     </div>
                 </div>
@@ -35,13 +23,14 @@
         <!-- End Of Footer Section -->
 
 
+
         <!-- JS Files -->
         <!-- Bootstrap JS -->
         <script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
         <!-- jQuery Easing -->
         <script src="<?php echo base_url(); ?>js/jquery.easing.min.js"></script>
-        <!-- PreLoader 
-        <script src="<?php echo base_url(); ?>js/queryloader2.min.js"></script>-->
+        <!-- PreLoader -->
+        
         <!-- WOW JS Animation -->
         <script src="<?php echo base_url(); ?>js/wow.min.js"></script>
         <!-- Simple Lightbox -->
