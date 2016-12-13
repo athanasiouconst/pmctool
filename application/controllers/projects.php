@@ -415,6 +415,7 @@ class Projects extends CI_Controller {
         
         $this->load->view('pmctoolContent/pmctoolProjectContent/pmctoolProjectContentAssignmentModelsDetails', $data);
     }
+    
     public function ViewProjectCalculateModels($mod_proj_id) {
         $this->load->model('ProjectsModel');
         //pass messages
@@ -425,5 +426,82 @@ class Projects extends CI_Controller {
         $data['num_result'] = $results['num_rows'];
                 
         $this->load->view('pmctoolContent/pmctoolProjectContent/ViewProjectCalculateModels', $data);
+    }
+    
+    public function ViewProjectsPDF($proj_id, $sort_by = 'proj_id', $sort_order = 'desc', $offset = 0) {
+        $this->load->model('ProjectsModel');
+        //pass messages
+        $data['gens'] = $this->ProjectsModel->getViewProjectsDetails($proj_id);
+        $limit = 1;
+        $results = $this->ProjectsModel->searchViewProjectsDetails($proj_id, $sort_by, $sort_order, $limit, $offset);
+        $data['gen'] = $results['rows'];
+        $data['num_result'] = $results['num_rows'];
+        $now = new DateTime();
+        $data['today'] = $now->format('d-m-Y H:i:s');
+        $this->load->view('pdf/Projects', $data);
+    }
+    
+    public function ViewProjectAssignmentsPDF($mod_proj_id) {
+        $this->load->model('ProjectsModel');
+        //pass messages
+        $data['gens'] = $this->ProjectsModel->getViewProjectAssignmentsDetails($mod_proj_id);
+        $results = $this->ProjectsModel->searchViewProjectAssignmentsDetails($mod_proj_id);
+        $data['gen'] = $results['rows'];
+        $data['num_result'] = $results['num_rows'];
+        
+        
+        $data['gens_1'] = $this->ProjectsModel->getViewProjectAssignmentsDetails($mod_proj_id);
+        $results = $this->ProjectsModel->searchViewProjectAssignmentsDetails($mod_proj_id);
+        $data['gen_1'] = $results['rows'];
+        $data['num_result_1'] = $results['num_rows'];
+        
+        $now = new DateTime();
+        $data['today'] = $now->format('d-m-Y H:i:s');
+        
+        $this->load->view('pdf/ProjectAssignments', $data);
+    }
+    
+    public function ViewProjectCalculatePDF($mod_proj_id) {
+        $this->load->model('ProjectsModel');
+        //pass messages
+        $data['gens'] = $this->ProjectsModel->getViewProjectAssignmentsDetails($mod_proj_id);
+        $results = $this->ProjectsModel->searchViewProjectAssignmentsDetails($mod_proj_id);
+        $data['gen'] = $results['rows'];
+        $data['num_result'] = $results['num_rows'];
+        
+        
+        $data['gens_1'] = $this->ProjectsModel->getViewProjectAssignmentsDetails($mod_proj_id);
+        $results = $this->ProjectsModel->searchViewProjectAssignmentsDetails($mod_proj_id);
+        $data['gen_1'] = $results['rows'];
+        $data['num_result_1'] = $results['num_rows'];
+        
+        $now = new DateTime();
+        $data['today'] = $now->format('d-m-Y H:i:s');
+        
+        $this->load->view('pdf/ProjectCalculateModels', $data);
+    }
+    
+    public function CalculateModel() {
+        $this->load->model('ProjectsModel');
+        //pass messages
+        $mod_proj_id = stripslashes($_POST['mod_proj_id']);
+        $proj_title  = stripslashes($_POST['proj_title']);
+        $data['mod_proj_id'] =$mod_proj_id; 
+        $data['proj_title'] =$proj_title; 
+        $data['gens'] = $this->ProjectsModel->getViewProjectAssignmentsDetails($mod_proj_id);
+        $results = $this->ProjectsModel->searchViewProjectAssignmentsDetails($mod_proj_id);
+        $data['gen'] = $results['rows'];
+        $data['num_result'] = $results['num_rows'];
+        
+        
+        $data['gens_1'] = $this->ProjectsModel->getViewProjectAssignmentsDetails($mod_proj_id);
+        $results = $this->ProjectsModel->searchViewProjectAssignmentsDetails($mod_proj_id);
+        $data['gen_1'] = $results['rows'];
+        $data['num_result_1'] = $results['num_rows'];
+        
+        $now = new DateTime();
+        $data['today'] = $now->format('d-m-Y H:i:s');
+        
+        $this->load->view('pmctoolContent/pmctoolProjectContent/CalculateModels', $data);
     }
 }
