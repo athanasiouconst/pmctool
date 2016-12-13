@@ -100,20 +100,20 @@
                                                             <select id="ep[]" name="ep[]">
                                                                 <option value="<?php echo $gen->ep1_value * $gen->ep1_weight; ?>"> <?php echo $gen->ep1_descr; ?> </option>
                                                             </select>
-                                                        <?php }  if ($evsc_number_of_choices == 2) {
+                                                        <?php } else if ($evsc_number_of_choices == 2) {
                                                             ?>
                                                             <select id="ep[]" name="ep[]">
                                                                 <option value="<?php echo $gen->ep1_value * $gen->ep1_weight; ?>"><?php echo $gen->ep1_descr; ?></option>
                                                                 <option value="<?php echo $gen->ep2_value * $gen->ep2_weight; ?>"><?php echo $gen->ep2_descr; ?></option>
                                                             </select>
-                                                        <?php }  if ($evsc_number_of_choices == 3) {
+                                                        <?php } else if ($evsc_number_of_choices == 3) {
                                                             ?>
                                                             <select id="ep[]" name="ep[]">
                                                                 <option value="<?php echo $gen->ep1_value * $gen->ep1_weight; ?>"><?php echo $gen->ep1_descr; ?></option>
                                                                 <option value="<?php echo $gen->ep2_value * $gen->ep2_weight; ?>"><?php echo $gen->ep2_descr; ?></option>
                                                                 <option value="<?php echo $gen->ep3_value * $gen->ep3_weight; ?>"><?php echo $gen->ep3_descr; ?></option>
                                                             </select>
-                                                        <?php }  if ($evsc_number_of_choices == 4) {
+                                                        <?php } else if ($evsc_number_of_choices == 4) {
                                                             ?>
                                                             <select id="ep[]" name="ep[]">
                                                                 <option value="<?php echo $gen->ep1_value * $gen->ep1_weight; ?>"><?php echo $gen->ep1_descr; ?></option>
@@ -121,7 +121,7 @@
                                                                 <option value="<?php echo $gen->ep3_value * $gen->ep3_weight; ?>"><?php echo $gen->ep3_descr; ?></option>
                                                                 <option value="<?php echo $gen->ep4_value * $gen->ep4_weight; ?>"><?php echo $gen->ep4_descr; ?></option>
                                                             </select>
-                                                        <?php }  if ($evsc_number_of_choices == 5) {
+                                                        <?php }else  if ($evsc_number_of_choices == 5) {
                                                             ?>
 
                                                             <select id="ep[]" name="ep[]">
@@ -131,7 +131,7 @@
                                                                 <option value="<?php echo $gen->ep4_value * $gen->ep4_weight; ?>"><?php echo $gen->ep4_descr; ?></option>
                                                                 <option value="<?php echo $gen->ep5_value * $gen->ep5_weight; ?>"><?php echo $gen->ep5_descr; ?></option>
                                                             </select>
-                                                        <?php }  if ($evsc_number_of_choices == 6) {
+                                                        <?php } else if ($evsc_number_of_choices == 6) {
                                                             ?>
                                                             <select id="ep[]" name="ep[]">
                                                                 <option value="<?php echo $gen->ep1_value * $gen->ep1_weight; ?>"><?php echo $gen->ep1_descr; ?></option>
@@ -141,7 +141,7 @@
                                                                 <option value="<?php echo $gen->ep5_value * $gen->ep5_weight; ?>"><?php echo $gen->ep5_descr; ?></option>
                                                                 <option value="<?php echo $gen->ep6_value * $gen->ep6_weight; ?>"><?php echo $gen->ep6_descr; ?></option>
                                                             </select>
-                                                        <?php }  if ($evsc_number_of_choices == 7) {
+                                                        <?php } else if ($evsc_number_of_choices == 7) {
                                                             ?>
                                                             <select id="ep[]" name="ep[]">
                                                                 <option value="<?php echo $gen->ep1_value * $gen->ep1_weight; ?>"><?php echo $gen->ep1_descr; ?></option>
@@ -152,7 +152,7 @@
                                                                 <option value="<?php echo $gen->ep6_value * $gen->ep6_weight; ?>"><?php echo $gen->ep6_descr; ?></option>
                                                                 <option value="<?php echo $gen->ep7_value * $gen->ep7_weight; ?>"><?php echo $gen->ep7_descr; ?></option>
                                                             </select>
-                                                        <?php }  if ($evsc_number_of_choices == 8) {
+                                                        <?php }else  if ($evsc_number_of_choices == 8) {
                                                             ?>
                                                             <select id="ep[]" name="ep[]">
                                                                 <option value="<?php echo $gen->ep1_value * $gen->ep1_weight; ?>"><?php echo $gen->ep1_descr; ?></option>
@@ -164,7 +164,7 @@
                                                                 <option value="<?php echo $gen->ep7_value * $gen->ep7_weight; ?>"><?php echo $gen->ep7_descr; ?></option>
                                                                 <option value="<?php echo $gen->ep8_value * $gen->ep8_weight; ?>"><?php echo $gen->ep8_descr; ?></option>
                                                             </select>
-                                                        <?php }  if ($evsc_number_of_choices == 9) {
+                                                        <?php } else if ($evsc_number_of_choices == 9) {
                                                             ?>
                                                             <select id="ep[]" name="ep[]">
                                                                 <option value="<?php echo $gen->ep1_value * $gen->ep1_weight; ?>"><?php echo $gen->ep1_descr; ?></option>
@@ -176,7 +176,7 @@
                                                                 <option value="<?php echo $gen->ep7_value * $gen->ep7_weight; ?>"><?php echo $gen->ep7_descr; ?></option>
                                                                 <option value="<?php echo $gen->ep8_value * $gen->ep8_weight; ?>"><?php echo $gen->ep8_descr; ?></option>
                                                                 <option value="<?php echo $gen->ep9_value * $gen->ep9_weight; ?>"><?php echo $gen->ep9_descr; ?></option>                                                            </select>
-                                                        <?php }  if ($evsc_number_of_choices == 10) {
+                                                        <?php }else  if ($evsc_number_of_choices == 10) {
                                                             ?>
                                                             <select id="ep[]" name="ep[]"> 
                                                                 <option value="<?php echo $gen->ep1_value * $gen->ep1_weight; ?>"><?php echo $gen->ep1_descr; ?></option>
@@ -192,7 +192,7 @@
                                                             </select>
                                                             <?php
                                                         }
-                                                    }   if ($evsc_type == "yes/no") {
+                                                    }  else if ($evsc_type == "yes/no") {
 
                                                         if ($evsc_number_of_choices == 2) {
                                                             ?>
