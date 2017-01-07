@@ -25,6 +25,13 @@
                         <li><a class="page-scroll" href="<?php echo base_url('ComplexityFactors/ViewComplexityFactors'); ?>">Complexity Factors</a></li>
                         <li><a class="page-scroll" href="<?php echo base_url('Metrics/ViewMetrics'); ?>">Metrics</a></li>
                         <li><a class="page-scroll" href="<?php echo base_url('EvaluationScale/ViewEvaluationScale'); ?>">Evaluation Scale</a></li>
+                        <li>
+                            <?php if ($this->session->userdata('userIsLoggedIn')) { ?>
+                                <a href="<?php echo base_url('User/Logout'); ?>" >Logout </a>
+                            <?php } else { ?>
+                                <a class="page-scroll" href="<?php echo base_url('User'); ?>">Login</a>
+                            <?php } ?>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -48,12 +55,21 @@
                         <?php echo $this->session->flashdata('edit_msg'); ?>
 
                         <div class="align-left">
-                            <div  style="float: right;">
-                                <a href="<?php echo base_url('Projects/ViewProjectsCreationForm'); ?>" class="btn btn-danger">Add Project</a>
-                                <a href="<?php echo base_url('Projects/ViewProjectsAssignModelsCreationForm'); ?>" class="btn btn-danger">Assigning Models to Projects</a>
-
-                                <br><br>
-                            </div>
+                            <?php if ($is_authenticated): ?>
+                                <?php $role; ?>
+                                <?php if ($role == 1 || $role == 2 || $role == 4) { ?>
+                                    <div  style="float: right;">
+                                        <a href="<?php echo base_url('Projects/ViewProjectsCreationForm'); ?>" class="btn btn-danger">Add Project</a>
+                                        <br><br>
+                                    </div>
+                                <?php } ?>
+                                <?php if ($role == 1 || $role == 2 || $role == 4 || $role == 3) { ?>
+                                    <div  style="float: right;">
+                                        <a href="<?php echo base_url('Projects/ViewProjectsAssignModelsCreationForm'); ?>" class="btn btn-danger">Assigning Models to Projects</a>
+                                        <br><br>
+                                    </div>
+                                <?php } ?>
+                            <?php endif; ?>
                             <?php if (isset($gens)): ?>
                                 <?php if (count($gen) > 0) : ?>
 

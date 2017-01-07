@@ -25,6 +25,13 @@
                         <li><a class="page-scroll" href="<?php echo base_url('ComplexityFactors/ViewComplexityFactors'); ?>">Complexity Factors</a></li>
                         <li><a class="page-scroll" href="<?php echo base_url('Metrics/ViewMetrics'); ?>">Metrics</a></li>
                         <li><a class="page-scroll" href="<?php echo base_url('EvaluationScale/ViewEvaluationScale'); ?>">Evaluation Scale</a></li>
+                        <li>
+                            <?php if ($this->session->userdata('userIsLoggedIn')) { ?>
+                                <a href="<?php echo base_url('User/Logout'); ?>" >Logout </a>
+                            <?php } else { ?>
+                                <a class="page-scroll" href="<?php echo base_url('User'); ?>">Login</a>
+                            <?php } ?>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -48,12 +55,21 @@
                         <?php echo $this->session->flashdata('edit_msg'); ?>
 
                         <div class="align-left">
-                            <div  style="float: right;">
-                                <a href="<?php echo base_url('Projects/ViewProjectsCreationForm'); ?>" class="btn btn-danger">Add Project</a>
-                                <a href="<?php echo base_url('Projects/ViewProjectsAssignModelsCreationForm'); ?>" class="btn btn-danger">Assigning Models to Projects</a>
-
-                                <br><br>
-                            </div>
+                            <?php if ($is_authenticated): ?>
+                                <?php $role; ?>
+                                <?php if ($role == 1 || $role == 2 || $role == 4) { ?>
+                                    <div  style="float: right;">
+                                        <a href="<?php echo base_url('Projects/ViewProjectsCreationForm'); ?>" class="btn btn-danger">Add Project</a>
+                                        <br><br>
+                                    </div>
+                                <?php } ?>
+                                <?php if ($role == 1 || $role == 2 || $role == 4 || $role == 3) { ?>
+                                    <div  style="float: right;">
+                                        <a href="<?php echo base_url('Projects/ViewProjectsAssignModelsCreationForm'); ?>" class="btn btn-danger">Assigning Models to Projects</a>
+                                        <br><br>
+                                    </div>
+                                <?php } ?>
+                            <?php endif; ?> 
                             <?php if (isset($gens)): ?>
                                 <?php if (count($gen) > 0) : ?>
                                     <table class="table table-responsive table-active table-condensed" style="font-size:16px; font-family: sans-serif; 
@@ -95,20 +111,23 @@
                                                     ?>
                                                     <?php
                                                     echo anchor("Projects/ViewProjectCalculateModels/$mod_proj_id", $calculate, array('onClick' => "return confirm('Are you sure for Calculating this model ?')"));
-                                                    ?>
-                                                    <?php
+
                                                     echo anchor("Projects/ViewProjectCalculatePDF/$mod_proj_id", $print, array('target' => '_blank', 'onClick' => "return confirm('Are you sure for viewing this  model?')"));
-                                                    ?>
-                                                    <?php
+
                                                     echo anchor("Projects/ViewProjectAssignmentsPDF/$mod_proj_id", $pdf, array('target' => '_blank', 'onClick' => "return confirm('Are you sure for viewing this  model?')"));
-                                                    ?>
-                                                    <?php
+
                                                     echo anchor("Projects/ViewProjectAssignmentsDetails/$mod_proj_id", $view, array('onClick' => "return confirm('Are you sure for viewing this model ?')"));
-                                                    ?>
-                                                    <?php
-                                                    echo anchor("Projects/ViewModelsAssignFactorEditForm/$mod_proj_id", $edit, array('onClick' => "return confirm('Are you sure for editing this model ?')"));
-                                                    ?>
-                                                    <?php echo anchor("Projects/ViewProjectAssignmentsDelete/$mod_proj_id", $delete, array('onClick' => "return confirm('Are you sure for deleting this model?')")); ?>    
+                                                    ?>    
+                                                    <?php if ($is_authenticated): ?>
+                                                        <?php $role; ?>
+                                                        <?php
+                                                        if ($role == 1 || $role == 2 || $role == 3 || $role == 4) {
+                                                            echo anchor("Projects/ViewModelsAssignFactorEditForm/$mod_proj_id", $edit, array('onClick' => "return confirm('Are you sure for editing this model ?')"));
+
+                                                            echo anchor("Projects/ViewProjectAssignmentsDelete/$mod_proj_id", $delete, array('onClick' => "return confirm('Are you sure for deleting this model?')"));
+                                                        }
+                                                        ?> 
+                                                    <?php endif; ?>
                                                 </td>
                                             <?php endforeach; ?> 
                                         </tr>

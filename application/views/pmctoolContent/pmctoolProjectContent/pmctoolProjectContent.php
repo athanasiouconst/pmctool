@@ -13,11 +13,22 @@
                 <?php echo $this->session->flashdata('edit_msg'); ?>
 
                 <div class="align-left">
-                    <div  style="float: right;">
-                        <a href="<?php echo base_url('Projects/ViewProjectsCreationForm'); ?>" class="btn btn-danger">Add Project</a>
-                        <a href="<?php echo base_url('Projects/ViewProjectsAssignModelsCreationForm'); ?>" class="btn btn-danger">Assigning Models to Projects</a>
-                        <br><br>
-                    </div>
+                    <?php if ($is_authenticated): ?>
+                        <?php $role; ?>
+                        <?php if ($role == 1 || $role == 2 || $role == 4) { ?>
+                            <div  style="float: right;">
+                                <a href="<?php echo base_url('Projects/ViewProjectsCreationForm'); ?>" class="btn btn-danger">Add Project</a>
+                                <br><br>
+                            </div>
+                        <?php } ?>
+                    <?php if ($role == 1 || $role == 2 || $role == 4 || $role == 3) { ?>
+                            <div  style="float: right;">
+                                <a href="<?php echo base_url('Projects/ViewProjectsAssignModelsCreationForm'); ?>" class="btn btn-danger">Assigning Models to Projects</a>
+                                <br><br>
+                            </div>
+                        <?php } ?>
+                    <?php endif; ?>                                
+
                     <?php if (isset($gens)): ?>
                         <?php if (count($gen) > 0) : ?>
                             <table class="table table-responsive table-active table-condensed" style="alignment-adjust: auto; text-align:  left; font-size:16px; font-family: sans-serif;">
@@ -52,18 +63,19 @@
                                             $delete = '<img alt=""' . $proj_id . '"" src="' . $base_url . 'img/messages/delete.jpg" width="20" height="20">  ';
                                             ?>
                                             <?php
-                                            echo anchor("Projects/ViewProjectAssignments/$proj_id", $assign, array('onClick' => "return confirm('Are you sure for viewing the assignments of this project ?')"));
-                                            ?>
-                                            <?php
-                                            echo anchor("Projects/ViewProjectsPDF/$proj_id", $pdf, array('target' => '_blank', 'onClick' => "return confirm('Are you sure for viewing this  project?')"));
-                                            ?>                                            
-                                            <?php
-                                            echo anchor("Projects/ViewProjectsDetails/$proj_id", $view, array('onClick' => "return confirm('Are you sure for viewing this project ?')"));
-                                            ?>
-                                            <?php
-                                            echo anchor("Projects/ViewProjectsEditForm/$proj_id", $edit, array('onClick' => "return confirm('Are you sure for editing this project?')"));
-                                            ?>
-                                            <?php echo anchor("Projects/ViewProjectsDelete/$proj_id", $delete, array('onClick' => "return confirm('Are you sure for deleting this project?')")); ?>    
+                                                    echo anchor("Projects/ViewProjectAssignments/$proj_id", $assign, array('onClick' => "return confirm('Are you sure for viewing the assignments of this project ?')"));
+                                                    echo anchor("Projects/ViewProjectsPDF/$proj_id", $pdf, array('target' => '_blank', 'onClick' => "return confirm('Are you sure for viewing this  project?')"));
+                                                    echo anchor("Projects/ViewProjectsDetails/$proj_id", $view, array('onClick' => "return confirm('Are you sure for viewing this project ?')"));
+                                                    ?>
+                                            <?php if ($is_authenticated): ?>
+                                                <?php $role; ?>
+                                                <?php if ($role == 1 || $role == 2 || $role == 4) { ?>
+                                                    <?php
+                                                    echo anchor("Projects/ViewProjectsEditForm/$proj_id", $edit, array('onClick' => "return confirm('Are you sure for editing this project?')"));
+                                                    echo anchor("Projects/ViewProjectsDelete/$proj_id", $delete, array('onClick' => "return confirm('Are you sure for deleting this project?')"));
+                                                    ?>    
+                                                <?php } ?> 
+                                            <?php endif; ?>
                                         </td>
                                     <?php endforeach; ?> 
                                 </tr>

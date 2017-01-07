@@ -110,7 +110,7 @@ endif;
 
 <table class="tg">
 <tr>
-    <td colspan="2" class="tg-pnx7" style=" text-align: center;"><h1>Model of Project: ' . $proj_title . ' '.count($gen).'</h1></td>
+    <td colspan="2" class="tg-pnx7" style=" text-align: center;"><h1>Model of Project: ' . $proj_title . ' </h1></td>
 </tr>
 <tr>
     <td class="tg-saqj"><h3>Project Kind</h3></td>

@@ -46,11 +46,18 @@
                         <?php echo $this->session->flashdata('edit_msg'); ?>
 
                         <div class="align-left">
-                            <div  style="float: right;">
-                                <a href="<?php echo base_url('Models/ViewModelsCreationForm'); ?>" class="btn btn-danger">Add Model</a>
-                                <a href="<?php echo base_url('Models/ViewModelsAssignFactorCreationForm'); ?>" class="btn btn-danger">Assigning Complexity Factors to Models</a>
-                                <br><br>
-                            </div>
+                            <?php if ($is_authenticated): ?>
+                                <?php $role; ?>
+
+                                <?php if ($role == 1 || $role == 2 || $role == 3 || $role == 4) { ?>
+                                    <div  style="float: right;">
+                                        <a href="<?php echo base_url('Models/ViewModelsCreationForm'); ?>" class="btn btn-danger">Add Model</a>
+                                        <a href="<?php echo base_url('Models/ViewModelsAssignFactorCreationForm'); ?>" class="btn btn-danger">Assigning Complexity Factors to Models</a>
+
+                                        <br><br>
+                                    </div>
+                                <?php } ?>
+                            <?php endif; ?>
                             <?php if (isset($gens)): ?>
                                 <?php if (count($gen) > 0) : ?>
                                     <table class="table table-responsive table-active table-condensed" style="font-size:16px; font-family: sans-serif; 
@@ -87,17 +94,21 @@
                                                     ?>
                                                     <?php
                                                     echo anchor("Models/ViewModelsAssignments/$mod_id", $assign, array('onClick' => "return confirm('Are you sure for viewing the assignments of this model ?')"));
-                                                    ?>
-                                                    <?php
+
                                                     echo anchor("Models/ViewModelsPDF/$mod_id", $pdf, array('target' => '_blank', 'onClick' => "return confirm('Are you sure for viewing this  model?')"));
-                                                    ?>
-                                                    <?php
+
                                                     echo anchor("Models/ViewModelsDetails/$mod_id", $view, array('onClick' => "return confirm('Are you sure for viewing this model ?')"));
                                                     ?>
-                                                    <?php
-                                                    echo anchor("Models/ViewModelsEditForm/$mod_id", $edit, array('onClick' => "return confirm('Are you sure for editing this model ?')"));
-                                                    ?>
-                                                    <?php echo anchor("Models/ViewModelsDelete/$mod_id", $delete, array('onClick' => "return confirm('Are you sure for deleting this model?')")); ?>    
+                                                    <?php if ($is_authenticated): ?>
+                                                        <?php $role; ?>
+                                                        <?php if ($role == 1 || $role == 2 || $role == 3 || $role == 4) { ?>
+                                                            <?php
+                                                            echo anchor("Models/ViewModelsEditForm/$mod_id", $edit, array('onClick' => "return confirm('Are you sure for editing this model ?')"));
+
+                                                            echo anchor("Models/ViewModelsDelete/$mod_id", $delete, array('onClick' => "return confirm('Are you sure for deleting this model?')"));
+                                                            ?>    
+                                                        <?php } ?> 
+                                                    <?php endif; ?>
                                                 </td>
                                             <?php endforeach; ?> 
                                         </tr>

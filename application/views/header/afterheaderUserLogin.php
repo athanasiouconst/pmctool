@@ -25,6 +25,13 @@
                                 .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;color:#333;background-color:#f0f0f0;border-top-width:1px;border-bottom-width:1px;}
                                 .tg .tg-qgsu{font-size:15px;vertical-align:top}
                             </style>
+                            <?php if (isset($error)) : ?>
+                                <div class="alert alert-danger" style="width: 100%; font-size: 18px; padding-left: 20%;  ">
+                                    <strong><?= $error ?></strong>
+                                    <strong><?php echo validation_errors(); ?></strong>
+                                </div>                    
+                            <?php endif; ?>
+
                             <?php echo form_open('User/Verify'); ?>
                             <table class="tg" style="width: 100%;">
                                 <tr>
@@ -36,7 +43,7 @@
                                 <tr>
                                     <td class="tg-qgsu" style="width: 100%;" >
                                         <label for="password">Password <span class="text-danger">*</span></label>
-                                        <input style="width: 100%;"type="text" name="password"  placeholder="Password . . . ">
+                                        <input style="width: 100%;"type="password" name="password"  placeholder="Password . . . ">
                                     </td>
                                 </tr>
                                 <tr>
