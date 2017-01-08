@@ -55,12 +55,18 @@
                     <?php echo $this->session->flashdata('edit_msg'); ?>
 
                     <div class="align-left">
-                        <div  style="float: right;">
-                            <a href="<?php echo base_url('Metrics/ViewMetricsCreationForm'); ?>" class="btn btn-danger">Add Metrics</a>
-                            <a href="<?php echo base_url('Metrics/ViewMetricsAssignScaleCreationForm'); ?>" class="btn btn-danger">Assigning Scale at Metrics</a>
+                        <?php if ($is_authenticated): ?>
+                            <?php $role; ?>
+                            <?php if ($role == 1 || $role == 2 || $role == 3) { ?>
+                                <div  style="float: right;">
+                                    <a href="<?php echo base_url('Metrics/ViewMetricsCreationForm'); ?>" class="btn btn-danger">Add Metrics</a>
+                                    <a href="<?php echo base_url('Metrics/ViewMetricsAssignScaleCreationForm'); ?>" class="btn btn-danger">Assigning Scale to Metrics</a>
 
-                            <br><br>
-                        </div>
+                                    <br><br>
+                                </div>
+                            <?php } ?>
+
+                        <?php endif; ?>
                         <?php if (isset($gens)): ?>
                             <?php if (count($gen) > 0) : ?>
                                 <table class="table table-responsive table-active table-condensed" style="font-size:16px; font-family: sans-serif; 
@@ -86,10 +92,16 @@
                                                 <?php
                                                 echo anchor("Metrics/ViewMetricsAssignmentsDetails/$metric_evsc_id", $view, array('onClick' => "return confirm('Are you sure for viewing this assignment ?')"));
                                                 ?>
-                                                <?php
-                                                echo anchor("Metrics/ViewMetricsAssignmentsEditForm/$metric_evsc_id", $edit, array('onClick' => "return confirm('Are you sure for editing this assignment ?')"));
-                                                ?>
-                                                <?php echo anchor("Metrics/ViewMetricsAssignmentsDelete/$metric_evsc_id", $delete, array('onClick' => "return confirm('Are you sure for deleting this assignment ?')")); ?>    
+                                                <?php if ($is_authenticated): ?>
+                                                    <?php $role; ?>
+                                                    <?php if ($role == 1 || $role == 2 || $role == 3) { ?>
+                                                        <?php
+                                                        echo anchor("Metrics/ViewMetricsAssignmentsEditForm/$metric_evsc_id", $edit, array('onClick' => "return confirm('Are you sure for editing this assignment ?')"));
+                                                        ?>
+                                                        <?php echo anchor("Metrics/ViewMetricsAssignmentsDelete/$metric_evsc_id", $delete, array('onClick' => "return confirm('Are you sure for deleting this assignment ?')")); ?>    
+
+                                                    <?php } ?> 
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
                                         <tr><td class="alert-success" style="width: 20%;">Metric Title</td><td><?php echo $gen->metric_name; ?></td></tr>

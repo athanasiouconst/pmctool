@@ -11,8 +11,17 @@
                 <?php echo $this->session->flashdata('edit_msg'); ?>
 
                 <div class="align-left">
+                    <?php if ($is_authenticated): ?>
+                        <?php $role; ?>
+                        <?php if ($role == 1 || $role == 2) { ?>
+                            <div  style="float: right;">
+                                <a href="<?php echo base_url('ComplexityFactors/ViewComplexityFactorsCreationForm'); ?>" class="btn btn-danger">Add Complexity Factors</a>
+                                <br><br>
+                            </div>
+                        <?php } ?>
+
+                    <?php endif; ?> 
                     <div  style="float: right;">
-                        <a href="<?php echo base_url('ComplexityFactors/ViewComplexityFactorsCreationForm'); ?>" class="btn btn-danger">Add Complexity Factors</a>
                         <br><br>
                     </div>
                     <?php if (isset($gens)): ?>
@@ -48,15 +57,21 @@
                                             $delete = '<img alt=""' . $cf_id . '"" src="' . $base_url . 'img/messages/delete.jpg" width="20" height="20">  ';
                                             ?>
                                             <?php
-                                            echo anchor("ComplexityFactors/ViewComplexityFactorsPDF/$cf_id", $pdf, array('target' => '_blank','onClick' => "return confirm('Are you sure for viewing this  ?')"));
+                                            echo anchor("ComplexityFactors/ViewComplexityFactorsPDF/$cf_id", $pdf, array('target' => '_blank', 'onClick' => "return confirm('Are you sure for viewing this  ?')"));
                                             ?>
                                             <?php
                                             echo anchor("ComplexityFactors/ViewComplexityFactorsDetails/$cf_id", $view, array('onClick' => "return confirm('Are you sure for edit this?')"));
                                             ?>
-                                            <?php
-                                            echo anchor("ComplexityFactors/ViewComplexityFactorsEditForm/$cf_id", $edit, array('onClick' => "return confirm('Are you sure for edit this?')"));
-                                            ?>
-                                            <?php echo anchor("ComplexityFactors/ViewComplexityFactorsDelete/$cf_id", $delete, array('onClick' => "return confirm('Are you sure for delete this?')")); ?>    
+                                            <?php if ($is_authenticated): ?>
+                                                <?php $role; ?>
+                                                <?php if ($role == 1 || $role == 2 || $role == 4) { ?>
+                                                    <?php
+                                                    echo anchor("ComplexityFactors/ViewComplexityFactorsEditForm/$cf_id", $edit, array('onClick' => "return confirm('Are you sure for edit this?')"));
+                                                    ?>
+                                                    <?php echo anchor("ComplexityFactors/ViewComplexityFactorsDelete/$cf_id", $delete, array('onClick' => "return confirm('Are you sure for delete this?')")); ?>    
+
+                                                <?php } ?> 
+                                            <?php endif; ?>
                                         </td>
                                     <?php endforeach; ?> 
                                 </tr>

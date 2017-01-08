@@ -27,6 +27,16 @@
                         <!--                    <li><a class="page-scroll" href="#pricing">Pricing</a></li>-->
                         <!--                    <li><a class="page-scroll" href="#blog">Blog</a></li>-->
                         <li><a class="page-scroll" href="#contact">Contact Us</a></li>
+                        
+                        <li>
+                            <?php if ($is_authenticated): ?>
+                                <?php $role; ?>
+                                <?php if ($role == 1) { ?>
+                                    <a href="<?php echo base_url('User/ViewUsers'); ?>" >Admin </a>
+                                <?php } ?>
+                            <?php endif; ?> 
+                        </li>
+                        
                         <li>
                             <?php if ($this->session->userdata('userIsLoggedIn')) { ?>
                                 <a href="<?php echo base_url('User/Logout'); ?>" >Logout </a>

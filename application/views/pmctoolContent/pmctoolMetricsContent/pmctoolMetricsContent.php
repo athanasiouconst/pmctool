@@ -10,16 +10,22 @@
                 <?php echo $this->session->flashdata('edit_msg'); ?>
 
                 <div class="align-left">
-                    <div  style="float: right;">
-                        <a href="<?php echo base_url('Metrics/ViewMetricsCreationForm'); ?>" class="btn btn-danger">Add Metrics</a>
-                        <a href="<?php echo base_url('Metrics/ViewMetricsAssignScaleCreationForm'); ?>" class="btn btn-danger">Assigning Scale to Metrics</a>
-                        
-                        <br><br>
-                    </div>
+                    <?php if ($is_authenticated): ?>
+                        <?php $role; ?>
+                        <?php if ($role == 1 || $role == 2 || $role == 3) { ?>
+                            <div  style="float: right;">
+                                <a href="<?php echo base_url('Metrics/ViewMetricsCreationForm'); ?>" class="btn btn-danger">Add Metrics</a>
+                                <a href="<?php echo base_url('Metrics/ViewMetricsAssignScaleCreationForm'); ?>" class="btn btn-danger">Assigning Scale to Metrics</a>
+
+                                <br><br>
+                            </div>
+                        <?php } ?>
+
+                    <?php endif; ?>
                     <?php if (isset($gens)): ?>
                         <?php if (count($gen) > 0) : ?>
                             <table class="table table-responsive table-active table-condensed" style="font-size:16px; font-family: sans-serif; 
-                                    alignment-adjust: auto; text-align:  left;" >
+                                   alignment-adjust: auto; text-align:  left;" >
                                 <tr>
                                     <?php foreach ($fields as $field_name => $field_display): ?>
                                         <td <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order\"" ?>>
@@ -53,15 +59,21 @@
                                             echo anchor("Metrics/ViewMetricsAssignments/$metric_id", $assign, array('onClick' => "return confirm('Are you sure for viewing the assignments of this metric ?')"));
                                             ?>
                                             <?php
-                                            echo anchor("Metrics/ViewMetricsPDF/$metric_id", $pdf, array('target' => '_blank','onClick' => "return confirm('Are you sure for viewing this  ?')"));
+                                            echo anchor("Metrics/ViewMetricsPDF/$metric_id", $pdf, array('target' => '_blank', 'onClick' => "return confirm('Are you sure for viewing this  ?')"));
                                             ?>
                                             <?php
                                             echo anchor("Metrics/ViewMetricsDetails/$metric_id", $view, array('onClick' => "return confirm('Are you sure for viewing this metric ?')"));
                                             ?>
-                                            <?php
-                                            echo anchor("Metrics/ViewMetricsEditForm/$metric_id", $edit, array('onClick' => "return confirm('Are you sure for editing this metric ?')"));
-                                            ?>
-                                            <?php echo anchor("Metrics/ViewMetricsDelete/$metric_id", $delete, array('onClick' => "return confirm('Are you sure for deleting this metric ?')")); ?>    
+                                            <?php if ($is_authenticated): ?>
+                                                <?php $role; ?>
+                                                <?php if ($role == 1 || $role == 2 || $role == 3) { ?>
+                                                    <?php
+                                                    echo anchor("Metrics/ViewMetricsEditForm/$metric_id", $edit, array('onClick' => "return confirm('Are you sure for editing this metric ?')"));
+                                                    ?>
+                                                    <?php echo anchor("Metrics/ViewMetricsDelete/$metric_id", $delete, array('onClick' => "return confirm('Are you sure for deleting this metric ?')")); ?>    
+
+                                                <?php } ?> 
+                                            <?php endif; ?>
                                         </td>
                                     <?php endforeach; ?> 
                                 </tr>

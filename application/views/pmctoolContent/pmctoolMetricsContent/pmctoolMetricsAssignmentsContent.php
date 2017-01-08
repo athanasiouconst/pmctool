@@ -10,16 +10,22 @@
                 <?php echo $this->session->flashdata('edit_msg'); ?>
 
                 <div class="align-left">
-                    <div  style="float: right;">
-                        <a href="<?php echo base_url('Metrics/ViewMetricsCreationForm'); ?>" class="btn btn-danger">Add Metrics</a>
-                        <a href="<?php echo base_url('Metrics/ViewMetricsAssignScaleCreationForm'); ?>" class="btn btn-danger">Assigning Scale at Metrics</a>
-                        
-                        <br><br>
-                    </div>
+                    <?php if ($is_authenticated): ?>
+                        <?php $role; ?>
+                        <?php if ($role == 1 || $role == 2 || $role == 3) { ?>
+                            <div  style="float: right;">
+                                <a href="<?php echo base_url('Metrics/ViewMetricsCreationForm'); ?>" class="btn btn-danger">Add Metrics</a>
+                                <a href="<?php echo base_url('Metrics/ViewMetricsAssignScaleCreationForm'); ?>" class="btn btn-danger">Assigning Scale to Metrics</a>
+
+                                <br><br>
+                            </div>
+                        <?php } ?>
+
+                    <?php endif; ?>
                     <?php if (isset($gens)): ?>
                         <?php if (count($gen) > 0) : ?>
                             <table class="table table-responsive table-active table-condensed" style="font-size:16px; font-family: sans-serif; 
-                                    alignment-adjust: auto; text-align:  left;" >
+                                   alignment-adjust: auto; text-align:  left;" >
                                 <tr class="alert-success">
                                     <?php foreach ($fields as $field_name => $field_display): ?>
                                         <td <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order\"" ?>>
@@ -51,16 +57,21 @@
                                             $delete = '<img alt=""' . $metric_evsc_id . '"" src="' . $base_url . 'img/messages/delete.jpg" width="20" height="20">  ';
                                             ?>
                                             <?php
-                                            echo anchor("Metrics/ViewMetricsAssignmentsDetailsPDF/$metric_evsc_id", $pdf, array('target' => '_blank','onClick' => "return confirm('Are you sure for viewing this  ?')"));
+                                            echo anchor("Metrics/ViewMetricsAssignmentsDetailsPDF/$metric_evsc_id", $pdf, array('target' => '_blank', 'onClick' => "return confirm('Are you sure for viewing this  ?')"));
                                             ?>
                                             <?php
                                             echo anchor("Metrics/ViewMetricsAssignmentsDetails/$metric_evsc_id", $view, array('onClick' => "return confirm('Are you sure for viewing this assignment ?')"));
                                             ?>
-                                            <?php
-                                            echo anchor("Metrics/ViewMetricsAssignmentsEditForm/$metric_evsc_id", $edit, array('onClick' => "return confirm('Are you sure for editing this assignment ?')"));
-                                            ?>
-                                            <?php echo anchor("Metrics/ViewMetricsAssignmentsDelete/$metric_evsc_id", $delete, array('onClick' => "return confirm('Are you sure for deleting this assignment ?')")); ?>    
-                                        </td>
+                                            <?php if ($is_authenticated): ?>
+                                                <?php $role; ?>
+                                                <?php if ($role == 1 || $role == 2 || $role == 3) { ?>
+                                                    <?php
+                                                    echo anchor("Metrics/ViewMetricsAssignmentsEditForm/$metric_evsc_id", $edit, array('onClick' => "return confirm('Are you sure for editing this assignment ?')"));
+                                                    ?>
+                                                    <?php echo anchor("Metrics/ViewMetricsAssignmentsDelete/$metric_evsc_id", $delete, array('onClick' => "return confirm('Are you sure for deleting this assignment ?')")); ?>    
+
+                                                <?php } ?> 
+                                            <?php endif; ?></td>
                                     <?php endforeach; ?> 
                                 </tr>
 
@@ -73,10 +84,10 @@
                             <?php endif ?>
 
                         </table>
-                        
-                <?php endif; ?>
+
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
-    </div>
 </section>
 <!-- Metrics Section -->

@@ -9,14 +9,21 @@
                 <?php echo $this->session->flashdata('delete_msg'); ?>
                 <?php echo $this->session->flashdata('edit_msg'); ?>
                 <div class="align-left">
-                    <div  style="float: right;">
-                        <a href="<?php echo base_url('EvaluationScale/ViewEvaluationScaleCreationForm'); ?>" class="btn btn-danger">Add Evaluation Scale</a>
-                        <br><br>
-                    </div>
+                    <?php if ($is_authenticated): ?>
+                        <?php $role; ?>
+                        <?php if ($role == 1 || $role == 2) { ?>
+                            <div  style="float: right;">
+                                <a href="<?php echo base_url('EvaluationScale/ViewEvaluationScaleCreationForm'); ?>" class="btn btn-danger">Add Evaluation Scale</a>
+                                <br><br>
+                            </div>
+                        <?php } ?>
+
+                    <?php endif; ?>
+                    
                     <?php if (isset($gens)): ?>
                         <?php if (count($gen) > 0) : ?>
                             <table class="table table-responsive table-active table-condensed" style="font-size:16px; font-family: sans-serif; 
-                                    alignment-adjust: auto; text-align:  left;" >
+                                   alignment-adjust: auto; text-align:  left;" >
                                 <tr>
                                     <?php foreach ($fields as $field_name => $field_display): ?>
                                         <td <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order\"" ?>>
@@ -46,12 +53,17 @@
                                             $delete = '<img alt=""' . $evsc_id . '"" src="' . $base_url . 'img/messages/delete.jpg" width="20" height="20">  ';
                                             ?>
                                             <?php
-                                            echo anchor("EvaluationScale/ViewEvaluationScalePDF/$evsc_id", $pdf, array('target' => '_blank','onClick' => "return confirm('Are you sure for viewing this  ?')"));
+                                            echo anchor("EvaluationScale/ViewEvaluationScalePDF/$evsc_id", $pdf, array('target' => '_blank', 'onClick' => "return confirm('Are you sure for viewing this  ?')"));
                                             ?>
                                             <?php
                                             echo anchor("EvaluationScale/ViewEvaluationScaleDetails/$evsc_id", $view, array('onClick' => "return confirm('Are you sure for viewing this metric ?')"));
                                             ?>
-                                            <?php echo anchor("EvaluationScale/ViewEvaluationScaleDelete/$evsc_id", $delete, array('onClick' => "return confirm('Are you sure for deleting this evaluation scale?')")); ?>    
+                                            <?php if ($is_authenticated): ?>
+                                                <?php $role; ?>
+                                                <?php if ($role == 1 || $role == 2 || $role == 4) { ?>
+                                                    <?php echo anchor("EvaluationScale/ViewEvaluationScaleDelete/$evsc_id", $delete, array('onClick' => "return confirm('Are you sure for deleting this evaluation scale?')")); ?>    
+                                                <?php } ?> 
+                                            <?php endif; ?>
                                         </td>
                                     <?php endforeach; ?> 
                                 </tr>
