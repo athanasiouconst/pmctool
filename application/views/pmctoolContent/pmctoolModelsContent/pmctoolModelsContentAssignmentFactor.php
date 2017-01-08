@@ -26,6 +26,13 @@
                         <li><a class="page-scroll" href="<?php echo base_url('ComplexityFactors/ViewComplexityFactors'); ?>">Complexity Factors</a></li>
                         <li><a class="page-scroll" href="<?php echo base_url('Metrics/ViewMetrics'); ?>">Metrics</a></li>
                         <li><a class="page-scroll" href="<?php echo base_url('EvaluationScale/ViewEvaluationScale'); ?>">Evaluation Scale</a></li>
+                        <li>
+                            <?php if ($this->session->userdata('userIsLoggedIn')) { ?>
+                                <a href="<?php echo base_url('User/Logout'); ?>" >Logout </a>
+                            <?php } else { ?>
+                                <a class="page-scroll" href="<?php echo base_url('User'); ?>">Login</a>
+                            <?php } ?>
+                        </li>
                     </ul>
                 </div>
             </div>
