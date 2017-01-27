@@ -126,7 +126,7 @@ class User extends CI_Controller {
 
             $data['is_authenticated'] = $this->session->userdata('userIsLoggedIn');
 
-            $this->load->view('Home', $data);
+            $this->load->view('home', $data);
         } else {
             $data['is_authenticated'] = FALSE;
             $this->load->view('User/login/home', $data);
