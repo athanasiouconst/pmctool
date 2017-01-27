@@ -919,6 +919,10 @@ class Projects extends CI_Controller {
             $data['gen_1'] = $results['rows'];
             $data['num_result_1'] = $results['num_rows'];
 
+            $data['metric_name'] = $_POST['metric_name'];
+            $data['evsc_type'] = $_POST['evsc_type'];
+            $data['ep'] = $_POST['ep'];
+            
             $now = new DateTime();
             $data['today'] = $now->format('d-m-Y H:i:s');
 
@@ -943,6 +947,10 @@ class Projects extends CI_Controller {
             $data['gen_1'] = $results['rows'];
             $data['num_result_1'] = $results['num_rows'];
 
+            $data['metric_name'] = $_POST['metric_name'];
+            $data['evsc_type'] = $_POST['evsc_type'];
+            $data['ep'] = $_POST['ep'];
+            
             $now = new DateTime();
             $data['today'] = $now->format('d-m-Y H:i:s');
 

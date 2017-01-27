@@ -41,20 +41,23 @@
 
     <!-- Projects Section-->
 
-    <section class="models-section section-padding" id="models">
+<section class="models-section section-padding" id="models">
         <div class="container-fluid">
             <h2 class="section-title text-center">Calculated Models at Project :<br><i style="color:red;"><?php echo $proj_title; ?></i></h2>
             <h2 class="section-title text-center">
                 <i style="color: #398439;">
+                    <?php echo $today ; ?>
+                    <br>
                     <?php
                     $counter = 0;
                     foreach ($ep as $key => $n) {
                         $counter = $n + $counter;
                     }
                     ?>
-                    <?php echo round($counter / count($ep), 3); ?>
+                    
                 </i>
             </h2>
+            <h2 class="section-title text-center"> <?php echo round($counter / count($ep), 3); ?></h2>
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12 text-center ">
                     <div class="align-left">
@@ -66,32 +69,24 @@
                             <div class="row alert-success">
 
                                 <div class="col-md-12 text-center active logo">
-                                    <table class="text-left" style="margin-left: 125px; font-size: 18px;">
-                                        <tr>
-                                            <th class="text-center">  
-                                        <h4>Metric</h4>
-                                        </th>
-                                        <th class="text-center" style="padding-left: 25px;">  
-                                        <h4>Evaluation Scale</h4>
-                                        </th>
-                                        <th class="text-center" style="padding-left: 25px;">  
-                                        <h4>The Value of your Answer</h4>
-                                        </th>
-                                        </tr>
-                                        <tr>
-                                            <td>  
-                                                <?php foreach ($metric_name as $key => $n) { ?>
-                                                    <?php echo $n; ?>
+                                    <table class="text-center ">
+                                        <th class="text-center glyphicon-subtitles" style="padding-left: 50px;"></th>
+                                        <th class="text-center glyphicon-bookmark" style="padding-left: 50px;"></th>
+                                        <th class="text-center glyphicon-certificate" style="padding-left: 50px;"></th>
+                                        <tr >
+                                            <td class="text-left" style="padding-left: 200px;"> 
+                                                <?php foreach ($metric_name as $key => $metric_name) { ?>
+                                                    <?php echo $metric_name; ?>
                                                     <?php echo "<br>"; ?>
                                                 <?php } ?>
                                             </td>
-                                            <td class="text-center" style="padding-left: 25px;">  
-                                                <?php foreach ($evsc_type as $key => $n) { ?>
-                                                    <?php echo $n; ?>
+                                            <td class="text-center" style="padding-left: 50px;">
+                                                <?php foreach ($evsc_type as $key => $evsc_type) { ?>
+                                                    <?php echo $evsc_type; ?>
                                                     <?php echo "<br>"; ?>
                                                 <?php } ?>
                                             </td>
-                                            <td class="text-left" style="padding-left: 45px;">  
+                                            <td class="text-center" style="padding-left: 50px;">
                                                 <?php foreach ($ep as $key => $n) { ?>
                                                     <?php echo $n; ?>
                                                     <?php echo "<br>"; ?>
@@ -106,6 +101,8 @@
                 </div>
             </div>
     </section>
+
+
     <!-- Projects Section -->
     <?php $this->load->view('menu/pmctoolPreloader'); ?>
 
