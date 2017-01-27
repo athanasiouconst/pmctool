@@ -22,9 +22,9 @@
                         <li ><a class="page-scroll" href="<?php echo base_url('pmctool'); ?>">Home</a></li>
                         <li class="active"><a class="page-scroll" href="<?php echo base_url('Projects/ViewProjects'); ?>">Projects</a></li>
                         <li><a class="page-scroll" href="<?php echo base_url('Models/ViewModels'); ?>">Models</a></li>
-                        <li><a class="page-scroll" href="<?php echo base_url('ComplexityFactors/ViewComplexityFactors'); ?>">Complexity Factors</a></li>
+                        <li><a class="page-scroll" href="<?php echo base_url('ComplexityFactors/ViewComplexityFactors'); ?>">Complexity<br>Factors</a></li>
                         <li><a class="page-scroll" href="<?php echo base_url('Metrics/ViewMetrics'); ?>">Metrics</a></li>
-                        <li><a class="page-scroll" href="<?php echo base_url('EvaluationScale/ViewEvaluationScale'); ?>">Evaluation Scale</a></li>
+                        <li><a class="page-scroll" href="<?php echo base_url('EvaluationScale/ViewEvaluationScale'); ?>">Evaluation<br>Scale</a></li>
                         <li>
                             <?php if ($this->session->userdata('userIsLoggedIn')) { ?>
                                 <a href="<?php echo base_url('User/Logout'); ?>" >Logout </a>
@@ -110,7 +110,7 @@
                                                     <?php
                                                     $evsc_number_of_choices = $gen->evsc_number_of_choices;
                                                     $evsc_type = $gen->evsc_type;
-                                                    if ($evsc_type == "Likert Scale" || $evsc_type == "Number") {
+                                                    if ($evsc_type == "Likert Scale" || $evsc_type == "Number" ) {
                                                         if ($evsc_number_of_choices == 1) {
                                                             ?>
                                                             <select id="ep[]" name="ep[]">
@@ -246,4 +246,6 @@
                 <!-- Projects Section -->
                 <?php $this->load->view('menu/pmctoolPreloader'); ?>
 
-                <?php $this->load->view('footer/pmctoolFooter'); ?>
+    <?php $this->load->view('content/content'); ?>
+    <?php $this->load->view('prefooter/prefooter'); ?>
+    <?php $this->load->view('footer/pmctoolFooter'); ?>

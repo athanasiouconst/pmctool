@@ -153,4 +153,6 @@
 
     <?php $this->load->view('menu/pmctoolPreloader'); ?>
 
-    <?php $this->load->view('footer/pmctoolFooter'); ?>
+<?php $this->load->view('content/content'); ?>
+<?php $this->load->view('prefooter/prefooter'); ?>
+<?php $this->load->view('footer/pmctoolFooter'); ?>

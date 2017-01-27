@@ -2,7 +2,10 @@
 <?php $this->load->view('menu/menu'); ?>
 
 <!-- Users Section-->
-
+<!-- hero-section -->
+<section id="top">
+   
+</section>
 <section class="users-section section-padding" id="users">
     <div class="container-fluid">
 
@@ -101,8 +104,8 @@
 
 
 
+<?php $this->load->view('content/content'); ?>
+<?php $this->load->view('prefooter/prefooter'); ?>
+<?php $this->load->view('footer/footer'); ?>
 
 
-    <?php $this->load->view('menu/pmctoolPreloader'); ?>
-
-    <?php $this->load->view('footer/pmctoolFooter'); ?>

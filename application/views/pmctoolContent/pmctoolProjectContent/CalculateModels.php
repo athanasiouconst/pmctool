@@ -22,9 +22,9 @@
                         <li ><a class="page-scroll" href="<?php echo base_url('pmctool'); ?>">Home</a></li>
                         <li class="active"><a class="page-scroll" href="<?php echo base_url('Projects/ViewProjects'); ?>">Projects</a></li>
                         <li><a class="page-scroll" href="<?php echo base_url('Models/ViewModels'); ?>">Models</a></li>
-                        <li><a class="page-scroll" href="<?php echo base_url('ComplexityFactors/ViewComplexityFactors'); ?>">Complexity Factors</a></li>
+                        <li><a class="page-scroll" href="<?php echo base_url('ComplexityFactors/ViewComplexityFactors'); ?>">Complexity<br>Factors</a></li>
                         <li><a class="page-scroll" href="<?php echo base_url('Metrics/ViewMetrics'); ?>">Metrics</a></li>
-                        <li><a class="page-scroll" href="<?php echo base_url('EvaluationScale/ViewEvaluationScale'); ?>">Evaluation Scale</a></li>
+                        <li><a class="page-scroll" href="<?php echo base_url('EvaluationScale/ViewEvaluationScale'); ?>">Evaluation<br>Scale</a></li>
                         <li>
                             <?php if ($this->session->userdata('userIsLoggedIn')) { ?>
                                 <a href="<?php echo base_url('User/Logout'); ?>" >Logout </a>
@@ -70,9 +70,9 @@
 
                                 <div class="col-md-12 text-center active logo">
                                     <table class="text-center ">
-                                        <th class="text-center glyphicon-subtitles" style="padding-left: 50px;"></th>
-                                        <th class="text-center glyphicon-bookmark" style="padding-left: 50px;"></th>
-                                        <th class="text-center glyphicon-certificate" style="padding-left: 50px;"></th>
+                                        <th class="text-center glyphicon-subtitles" style="padding-left: 50px;">    Metric</th>
+                                        <th class="text-center glyphicon-bookmark" style="padding-left: 50px;">    Evaluation Scale</th>
+                                        <th class="text-center glyphicon-certificate" style="padding-left: 50px;">    Answer's Weight</th>
                                         <tr >
                                             <td class="text-left" style="padding-left: 200px;"> 
                                                 <?php foreach ($metric_name as $key => $metric_name) { ?>
@@ -106,4 +106,6 @@
     <!-- Projects Section -->
     <?php $this->load->view('menu/pmctoolPreloader'); ?>
 
+    <?php $this->load->view('content/content'); ?>
+    <?php $this->load->view('prefooter/prefooter'); ?>
     <?php $this->load->view('footer/pmctoolFooter'); ?>
