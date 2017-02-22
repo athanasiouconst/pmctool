@@ -126,11 +126,7 @@ $html = '<style type="text/css">
     <td class="tg-saqj">' . $username . '</td>
   </tr>
   <tr>
-    <td class="tg-saqj"><h3>Username</h3></td>
-    <td class="tg-saqj">' . $password . '</td>
-  </tr>
-  <tr>
-    <td class="tg-saqj"><h3>Username</h3></td>
+    <td class="tg-saqj"><h3>Email</h3></td>
     <td class="tg-saqj">' . $email . '</td>
   </tr>
   <tr>

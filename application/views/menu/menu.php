@@ -31,7 +31,7 @@
 
 
                         <li>
-<?php if ($is_authenticated): ?>
+                            <?php if ($is_authenticated): ?>
                                 <?php $role; ?>
                                 <?php if ($role == 1) { ?>
                                     <a href="<?php echo base_url('User/ViewUsers'); ?>" >Admin </a>
@@ -43,7 +43,7 @@
                             <?php } else { ?>
                                 <a class="page-scroll" href="<?php echo base_url('User'); ?>">Login</a>
                             <?php } ?>
-                            
+
                         </li>
 
                     </ul>
