@@ -65,7 +65,7 @@
                     
                 </i>
             </h2>
-            <h2 class="section-title text-center"> <?php echo round($counter / count($ep), 3); ?></h2>
+            <h2 class="section-title text-center"> Total Complexity: <?php echo round($counter / count($ep), 3); ?></h2>
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12 text-center ">
                     <div class="align-left">
@@ -80,9 +80,9 @@
                                     <table class="text-center ">
                                         <th class="text-center glyphicon-subtitles" style="padding-left: 50px;">    Metric</th>
                                         <th class="text-center glyphicon-bookmark" style="padding-left: 50px;">    Evaluation Scale</th>
-                                        <th class="text-center glyphicon-certificate" style="padding-left: 50px;">    Answer's Weight</th>
+                                        <th class="text-center glyphicon-certificate" style="padding-left: 50px;">    Your Answer's Value * Weight</th>
                                         <tr >
-                                            <td class="text-left" style="padding-left: 200px;"> 
+                                            <td class="text-left" style="padding-left: 100px;"> 
                                                 <?php foreach ($metric_name as $key => $metric_name) { ?>
                                                     <?php echo $metric_name; ?>
                                                     <?php echo "<br>"; ?>
@@ -100,6 +100,7 @@
                                                     <?php echo "<br>"; ?>
                                                 <?php } ?>
                                             </td>
+                                            
                                         </tr>
                                     </table>
                                 </div> 

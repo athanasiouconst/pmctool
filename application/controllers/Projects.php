@@ -865,13 +865,7 @@ class Projects extends CI_Controller {
             $data['role'] = $this->Usermodel->getRole($username);
 
             //view the home page
-            $this->load->view('User/login/success', $data);
-        } else {
-            //if not authentication the go to Login Page
-            $data['is_authenticated'] = FALSE;
-            $this->load->view('User/login/home', $data);
-        }
-        $this->load->model('ProjectsModel');
+            $this->load->model('ProjectsModel');
         //pass messages
         $data['gens'] = $this->ProjectsModel->getViewProjectAssignmentsDetails($mod_proj_id);
         $results = $this->ProjectsModel->searchViewProjectAssignmentsDetails($mod_proj_id);
@@ -888,6 +882,12 @@ class Projects extends CI_Controller {
         $data['today'] = $now->format('d-m-Y H:i:s');
 
         $this->load->view('pdf/ProjectCalculateModels', $data);
+        } else {
+            //if not authentication the go to Login Page
+            $data['is_authenticated'] = FALSE;
+            $this->load->view('User/login/home', $data);
+        }
+        
     }
 
     public function CalculateModel() {
