@@ -866,28 +866,45 @@ class Projects extends CI_Controller {
 
             //view the home page
             $this->load->model('ProjectsModel');
-        //pass messages
-        $data['gens'] = $this->ProjectsModel->getViewProjectAssignmentsDetails($mod_proj_id);
-        $results = $this->ProjectsModel->searchViewProjectAssignmentsDetails($mod_proj_id);
-        $data['gen'] = $results['rows'];
-        $data['num_result'] = $results['num_rows'];
+            //pass messages
+            $data['gens'] = $this->ProjectsModel->getViewProjectAssignmentsDetails($mod_proj_id);
+            $results = $this->ProjectsModel->searchViewProjectAssignmentsDetails($mod_proj_id);
+            $data['gen'] = $results['rows'];
+            $data['num_result'] = $results['num_rows'];
 
 
-        $data['gens_1'] = $this->ProjectsModel->getViewProjectAssignmentsDetails($mod_proj_id);
-        $results = $this->ProjectsModel->searchViewProjectAssignmentsDetails($mod_proj_id);
-        $data['gen_1'] = $results['rows'];
-        $data['num_result_1'] = $results['num_rows'];
+            $data['gens_1'] = $this->ProjectsModel->getViewProjectAssignmentsDetails($mod_proj_id);
+            $results = $this->ProjectsModel->searchViewProjectAssignmentsDetails($mod_proj_id);
+            $data['gen_1'] = $results['rows'];
+            $data['num_result_1'] = $results['num_rows'];
 
-        $now = new DateTime();
-        $data['today'] = $now->format('d-m-Y H:i:s');
+            $now = new DateTime();
+            $data['today'] = $now->format('d-m-Y H:i:s');
 
-        $this->load->view('pdf/ProjectCalculateModels', $data);
+            $this->load->view('pdf/ProjectCalculateModels', $data);
         } else {
             //if not authentication the go to Login Page
             $data['is_authenticated'] = FALSE;
-            $this->load->view('User/login/home', $data);
+            $this->load->model('Usermodel');
+            //view the home page
+            $this->load->model('ProjectsModel');
+            //pass messages
+            $data['gens'] = $this->ProjectsModel->getViewProjectAssignmentsDetails($mod_proj_id);
+            $results = $this->ProjectsModel->searchViewProjectAssignmentsDetails($mod_proj_id);
+            $data['gen'] = $results['rows'];
+            $data['num_result'] = $results['num_rows'];
+
+
+            $data['gens_1'] = $this->ProjectsModel->getViewProjectAssignmentsDetails($mod_proj_id);
+            $results = $this->ProjectsModel->searchViewProjectAssignmentsDetails($mod_proj_id);
+            $data['gen_1'] = $results['rows'];
+            $data['num_result_1'] = $results['num_rows'];
+
+            $now = new DateTime();
+            $data['today'] = $now->format('d-m-Y H:i:s');
+
+            $this->load->view('pdf/ProjectCalculateModels', $data);
         }
-        
     }
 
     public function CalculateModel() {
@@ -922,7 +939,7 @@ class Projects extends CI_Controller {
             $data['metric_name'] = $_POST['metric_name'];
             $data['evsc_type'] = $_POST['evsc_type'];
             $data['ep'] = $_POST['ep'];
-            
+
             $now = new DateTime();
             $data['today'] = $now->format('d-m-Y H:i:s');
 
@@ -950,7 +967,7 @@ class Projects extends CI_Controller {
             $data['metric_name'] = $_POST['metric_name'];
             $data['evsc_type'] = $_POST['evsc_type'];
             $data['ep'] = $_POST['ep'];
-            
+
             $now = new DateTime();
             $data['today'] = $now->format('d-m-Y H:i:s');
 
