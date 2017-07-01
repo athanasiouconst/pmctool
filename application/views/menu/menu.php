@@ -20,12 +20,9 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li class="active"><a class="page-scroll" href="#top">Home</a></li>
-                        <li><a class="page-scroll" href="<?php echo base_url('pmctool'); ?>">Project Management Tool</a></li>
+                        <li><a class="page-scroll" href="<?php echo base_url('pmctool'); ?>" target="_blank">Project Management Tool</a></li>
                         <li><a class="page-scroll" href="#about">About</a></li>
                         <li><a class="page-scroll" href="#testimonial">Members</a></li>
-                        <!--                    <li><a class="page-scroll" href="#portfolio">Portfolio</a></li>-->
-                        <!--                    <li><a class="page-scroll" href="#pricing">Pricing</a></li>-->
-                        <!--                    <li><a class="page-scroll" href="#blog">Blog</a></li>-->
                         <li><a class="page-scroll" href="#contact">Contact Us</a></li>
 
 
@@ -41,7 +38,7 @@
                             <?php if ($this->session->userdata('userIsLoggedIn')) { ?>
                                 <a href="<?php echo base_url('User/Logout'); ?>" >Logout </a>
                             <?php } else { ?>
-                                <a class="page-scroll" href="<?php echo base_url('User'); ?>">Login</a>
+                                <a class="page-scroll" href="<?php echo base_url('User'); ?>"  target="_blank">Login</a>
                             <?php } ?>
 
                         </li>
