@@ -10,10 +10,10 @@
 
                         <!-- Footer Social Icons -->
                         <div class="social-icons mt-30">
-                            <a href="https://www.facebook.com/costas.siou/" target="_blank"><i class="fa fa-facebook"></i></a>
-                            <a href="https://twitter.com/csiouath/" target="_blank"><i class="fa fa-twitter"></i></a>
+                            <a href="https://www.linkedin.com/in/constantinosathanasiou" target="_blank"><i class="fa fa-linkedin"></i></a>
                             <a href="https://plus.google.com/u/0/110129558289042781457/" target="_blank"><i class="fa fa-google-plus"></i></a>
                             <a href="https://github.com/athanasiouconst/" target="_blank"><i class="fa fa-github"></i></a>
+                            <a href="https://www.facebook.com/costas.siou/" target="_blank"><i class="fa fa-facebook"></i></a>
                         </div>
                     </div>
                 </div>
