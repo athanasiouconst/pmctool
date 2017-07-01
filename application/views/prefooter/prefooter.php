@@ -17,7 +17,7 @@
                             <h4 style="color:#fff;">Greece</h4>
                         </div>
                         <div class="col-sm-4 col-md-4" >
-                            <h4 style="color:#fff;"><a href="http://pmc.teilar.gr/">Project Management Complexity Research Group</a></h4>
+                            <h4 style="color:#fff;"><a href="http://pmc.teilar.gr/"  target="_blank">Project Management Complexity Research Group</a></h4>
                         </div>
                         <div class="col-sm-4 col-md-4" >
                             <h4 style="color:#fff;">bdama@teilar.gr</h4>

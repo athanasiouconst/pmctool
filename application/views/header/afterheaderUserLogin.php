@@ -9,7 +9,7 @@
                         <h2 class="section-title-left text-info">Information<br></h2>
                         <p>In order of full functionilty users must to Login.
                         <p>More Details in the following :
-                        <p><a href="http://pmc.teilar.gr/">Project Management Complexity Research Group <br>Technological Educational Institute of Thessaly (TEI Thessaly)</a>
+                        <p><a href="http://pmc.teilar.gr/"  target="_blank">Project Management Complexity Research Group <br>Technological Educational Institute of Thessaly (TEI Thessaly)</a>
                     </div>
                 </div>
                 <div class="col-sm-6 col-xs-12 no-padding">
