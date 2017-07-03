@@ -70,6 +70,7 @@
                                 <tr><td class="alert-success" style="width: 20%;">User Activation</td><td><?php echo $gen->activation; ?></td></tr>
                                 <tr><td class="alert-success" style="width: 20%;">Last PasswordReset Time</td><td><?php echo $gen->lastResetTime; ?></td></tr>
                                 <tr><td class="alert-success" style="width: 20%;">Reset Counter</td><td><?php echo $gen->resetCount; ?></td></tr>
+                                <tr><td class="alert-success" style="width: 20%;">Recover Password Phrase</td><td><?php echo $gen->choosenWord; ?></td></tr>
                             <?php endforeach; ?> 
                         <?php else : ?>
                             <tr>

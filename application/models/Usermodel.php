@@ -14,13 +14,14 @@ Class Usermodel extends CI_Model {
     }
 
     public function getRole($username) {
-        $query = $this->db->query("SELECT user_group_id  FROM `users` WHERE username='" . $username . "'");
+        $query = $this->db->query("SELECT user_group_id  FROM users WHERE username='" . $username . "' ");
         return $query->row()->user_group_id;
     }
 
     public function getViewUsers() {
         $query = $this->db->query("SELECT * FROM users "
-                . " LEFT JOIN user_groups ON users.user_group_id=user_groups.user_group_id" . "");
+                . " LEFT JOIN user_groups ON users.user_group_id=user_groups.user_group_id "
+                );
         $results = array();
         foreach ($query->result() as $row) {
             array_push($results, array(
@@ -30,7 +31,8 @@ Class Usermodel extends CI_Model {
                 'username' => $row->username,
                 'email' => $row->email,
                 'user_group_id' => $row->user_group_id,
-                'user_group_name'=>$row->user_group_name
+                'user_group_name'=>$row->user_group_name,
+                'choosenWord'=>$row->choosenWord
             ));
         }
         return $results;
@@ -39,7 +41,7 @@ Class Usermodel extends CI_Model {
     function searchViewUsers($sort_by, $sort_order, $limit, $offset) {
         //results
         $sort_order == ($sort_order == 'desc') ? 'desc' : 'asc';
-        $sort_colums = array('users_id', 'first_name', 'last_name', 'username', 'email', 'user_group_name');
+        $sort_colums = array('users_id', 'first_name', 'last_name', 'username', 'email', 'user_group_name','choosenWord');
         $sort_by = (in_array($sort_by, $sort_colums)) ? $sort_by : 'users_id';
 
         $query = $this->db->select('*')
@@ -125,7 +127,9 @@ Class Usermodel extends CI_Model {
                 'lastResetTime' => $row->lastResetTime,
                 'resetCount' => $row->resetCount,
                 'user_group_id' => $row->user_group_id,
-                'user_group_name'=>$row->user_group_name
+                'user_group_name'=>$row->user_group_name,
+                'choosenWord'=>$row->choosenWord
+                
             ));
         }
         return $results;
@@ -134,7 +138,7 @@ Class Usermodel extends CI_Model {
     function searchViewUsersDetails($users_id,$sort_by, $sort_order, $limit, $offset) {
         //results
         $sort_order == ($sort_order == 'desc') ? 'desc' : 'asc';
-        $sort_colums = array('users_id', 'first_name', 'last_name', 'username', 'email','user_group_id', 'user_group_name');
+        $sort_colums = array('users_id', 'first_name', 'last_name', 'username', 'email','user_group_id', 'user_group_name','choosenWord');
         $sort_by = (in_array($sort_by, $sort_colums)) ? $sort_by : 'users_id';
 
         $query = $this->db->select('*')
@@ -176,9 +180,18 @@ Class Usermodel extends CI_Model {
                 'lastResetTime' => $row->lastResetTime,
                 'resetCount' => $row->resetCount,
                 'user_group_id' => $row->user_group_id,
-                'user_group_name'=>$row->user_group_name
+                'user_group_name'=>$row->user_group_name,
+                'choosenWord'=>$row->choosenWord
+
+                    
             ));
         }
         return $results;
+    }
+    //Update 
+    public function EditUsers($users_id, $data) {
+
+        $this->db->where('users_id', $users_id);
+        $this->db->update('users', $data);
     }
 }

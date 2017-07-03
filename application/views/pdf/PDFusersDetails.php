@@ -98,6 +98,7 @@ if (isset($gens)):
             $activation = $gen->activation;
             $lastResetTime = $gen->lastResetTime;
             $resetCount = $gen->resetCount;
+            $choosenWord = $gen->choosenWord;
             
             // Set some content to print
 $html = '<style type="text/css">
@@ -156,6 +157,10 @@ $html = '<style type="text/css">
   <tr>
     <td class="tg-saqj"><h3>Reset Counter</h3></td>
     <td class="tg-saqj">' . $resetCount . '</td>
+  </tr>
+  <tr>
+    <td class="tg-saqj"><h3>Recover Password Phrase</h3></td>
+    <td class="tg-saqj">' . $choosenWord . '</td>
   </tr>
   
   

@@ -32,6 +32,7 @@
                         <?php if (count($edit) > 0) : ?>
                             <?php foreach ($edit as $edit): ?>
                         <table class="table " style="width: 100%; alignment-adjust: auto; text-align:  left; font-size:16px; font-family: sans-serif;">
+                                <p><input type="hidden" size="80" id="users_id" name="users_id" value="<?= $edit['users_id'] ?>"/>    
 
                             <?php if (isset($gens)): ?>
                                 <?php foreach ($gen as $gen): ?>
@@ -75,6 +76,13 @@
                             </tr>
                             <tr>
                                 <td>
+                                    <span title="Recover Password Phrase">
+                                        <input class="table table-responsive" style="color:#000; border: 0px;" type="text" name="choosenWord" id="choosenWord" placeholder="Recover Password Phrase" value="<?= $edit['choosenWord'] ?>"  />
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
                                     <span title="User's Group">
                                         <label for="User's Group"></label>
                                         <select name='user_group_id' id='user_group_id' >
@@ -93,11 +101,11 @@
                             <?php endforeach; ?>
                         </table>
                         <div class="btn btn-danger">
-                            <?php echo form_submit('submit', 'Submit User'); ?>
+                            <?php echo form_submit('submit', 'Edit User'); ?>
                             <?php echo form_close() ?>
                         </div> 
                         <?php else: ?>
-                            <a href="javascript:history.go(-1)" class="btn btn-danger">go to the Project's Form</a>
+                            <a href="javascript:history.go(-1)" class="btn btn-danger">go to the User's Form</a>
                         <?php endif; ?>
                     </div>
                 </div>

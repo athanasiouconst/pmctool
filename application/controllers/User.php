@@ -237,6 +237,7 @@ class User extends CI_Controller {
             $this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[users.email]|xss_clean');
             $this->form_validation->set_rules('username', 'Username', 'trim|required|is_unique[users.username]|xss_clean');
             $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('choosenWord', 'Recover Password Phrase', 'trim|required|xss_clean');
             $this->form_validation->set_rules('user_group_id', 'Group', 'trim|required|callback_Select_Group|xss_clean');
 
 
@@ -258,6 +259,7 @@ class User extends CI_Controller {
                     $username = stripslashes($_POST['username']);
                     $password = stripslashes($_POST['password']);
                     $user_group_id = stripslashes($_POST['user_group_id']);
+                    $choosenWord = stripslashes($_POST['choosenWord']);
                     $data = array(
                         'users_id' => NULL,
                         'first_name' => $first_name,
@@ -265,8 +267,8 @@ class User extends CI_Controller {
                         'email' => $email,
                         'username' => $username,
                         'password' => $password,
-                        'user_group_id' => $user_group_id
-                        
+                        'user_group_id' => $user_group_id,
+                        'choosenWord' => $choosenWord
                     );
                     $this->Usermodel->add_User($data);
 
@@ -317,8 +319,8 @@ class User extends CI_Controller {
             $this->load->view('User/login/home', $data);
         }
     }
-    
-    public function ViewUsersDetails($users_id,$sort_by = 'users_id', $sort_order = 'desc', $offset = 0) {
+
+    public function ViewUsersDetails($users_id, $sort_by = 'users_id', $sort_order = 'desc', $offset = 0) {
 
         if ($this->session->userdata('userIsLoggedIn')) {
             $this->load->model('Usermodel');
@@ -333,7 +335,7 @@ class User extends CI_Controller {
             //pass messages
             $data['gens'] = $this->Usermodel->getViewUsersDetails($users_id);
             $limit = 10;
-            $results = $this->Usermodel->searchViewUsersDetails($users_id,$sort_by, $sort_order, $limit, $offset);
+            $results = $this->Usermodel->searchViewUsersDetails($users_id, $sort_by, $sort_order, $limit, $offset);
             $data['gen'] = $results['rows'];
             $data['num_result'] = $results['num_rows'];
             //pagination
@@ -362,7 +364,8 @@ class User extends CI_Controller {
                 'lastvisitDate' => 'Last Visit',
                 'activation' => 'User Activation',
                 'lastResetTime' => 'Last PasswordReset Time',
-                'resetCount' => 'Reset Counter'
+                'resetCount' => 'Reset Counter',
+                'choosenWord' => 'Recover Password Phrase'
             );
             $data['sort_by'] = $sort_by;
             $data['sort_order'] = $sort_order;
@@ -373,9 +376,8 @@ class User extends CI_Controller {
             $this->load->view('User/login/home', $data);
         }
     }
-    
-    
-    public function ViewUsersPDF($users_id,$sort_by = 'users_id', $sort_order = 'desc', $offset = 0) {
+
+    public function ViewUsersPDF($users_id, $sort_by = 'users_id', $sort_order = 'desc', $offset = 0) {
 
         if ($this->session->userdata('userIsLoggedIn')) {
             $this->load->model('Usermodel');
@@ -390,7 +392,7 @@ class User extends CI_Controller {
             //pass messages
             $data['gens'] = $this->Usermodel->getViewUsersDetails($users_id);
             $limit = 10;
-            $results = $this->Usermodel->searchViewUsersDetails($users_id,$sort_by, $sort_order, $limit, $offset);
+            $results = $this->Usermodel->searchViewUsersDetails($users_id, $sort_by, $sort_order, $limit, $offset);
             $data['gen'] = $results['rows'];
             $data['num_result'] = $results['num_rows'];
             //pagination
@@ -432,8 +434,42 @@ class User extends CI_Controller {
             $this->load->view('User/login/home', $data);
         }
     }
-    
+
     public function ViewUsersEditForm($users_id, $sort_by = 'users_id', $sort_order = 'asc', $offset = 0) {
+
+        if ($this->session->userdata('userIsLoggedIn')) {
+            $this->load->model('Usermodel');
+
+            //authentication of user
+            $data['is_authenticated'] = $this->session->userdata('userIsLoggedIn');
+            //user information
+            $username = $this->session->userdata('username');
+            $data['username'] = $this->session->userdata('username');
+            $resultsRole = $this->Usermodel->getRole($username);
+            $data['role'] = $resultsRole;
+            //view the home page
+            $limit = 1;
+            $data['gens'] = $this->Usermodel->getViewUsersDetails($users_id);
+            $results = $this->Usermodel->searchViewUsersDetails($users_id, $sort_by, $sort_order, $limit, $offset);
+            $data['gen'] = $results['rows'];
+            $data['num_result'] = $results['num_rows'];
+
+            $data['gensGroup'] = $this->Usermodel->getViewUsersDetails($users_id);
+            $results = $this->Usermodel->searchViewUsersDetails($users_id, $sort_by, $sort_order, $limit, $offset);
+            $data['genGroup'] = $results['rows'];
+            $data['num_result'] = $results['num_rows'];
+
+            $data['edit'] = $this->Usermodel->getEditUsers($users_id);
+
+            $this->load->view('User/Admin/UsersEdit', $data);
+        } else {
+            //if not authentication the go to Login Page
+            $data['is_authenticated'] = FALSE;
+            $this->load->view('User/login/home', $data);
+        }
+    }
+
+    public function EditUser() {
 
         if ($this->session->userdata('userIsLoggedIn')) {
             $this->load->model('Usermodel');
@@ -445,21 +481,66 @@ class User extends CI_Controller {
             $data['username'] = $this->session->userdata('username');
             $data['role'] = $this->Usermodel->getRole($username);
 
-            //view the home page
-            $limit=1;
-            $data['gens'] = $this->Usermodel->getViewUsersDetails($users_id);
-            $results = $this->Usermodel->searchViewUsersDetails($users_id,$sort_by, $sort_order, $limit, $offset);
-            $data['gen'] = $results['rows'];
-            $data['num_result'] = $results['num_rows'];
+            $this->load->library('form_validation');
+            $error = '';
+
+
+            $this->form_validation->set_rules('first_name', 'User Name', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('last_name', 'User LastName', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[users.email]|xss_clean');
+            $this->form_validation->set_rules('username', 'Username', 'trim|required|is_unique[users.username]|xss_clean');
+            $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('choosenWord', 'Recover Password Phrase', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('user_group_id', 'Group', 'trim|required|callback_Select_GroupEdit|xss_clean');
+
+
+            $error = '';
             
-            $data['gensGroup'] = $this->Usermodel->getViewUsersDetails($users_id);
-            $results = $this->Usermodel->searchViewUsersDetails($users_id,$sort_by, $sort_order, $limit, $offset);
-            $data['genGroup'] = $results['rows'];
-            $data['num_result'] = $results['num_rows'];
-            
-            $data['edit'] = $this->Usermodel->getEditUsers($users_id);
-            
-            $this->load->view('User/Admin/UsersEdit', $data);
+            $users_id = stripslashes($_POST['users_id']);
+            $first_name = stripslashes($_POST['first_name']);
+            $last_name = stripslashes($_POST['last_name']);
+            $email = stripslashes($_POST['email']);
+            $username = stripslashes($_POST['username']);
+            $password = stripslashes($_POST['password']);
+            $user_group_id = stripslashes($_POST['user_group_id']);
+            $choosenWord = stripslashes($_POST['choosenWord']);
+
+            if ($this->form_validation->run() == FALSE) {
+                $data['error'] = $error;
+                $this->session->set_flashdata('delete_msg', '<div class="alert alert-danger" style="font-size:24px; font:bold;">'
+                        . 'The User has not been successfully <strong>Edited</strong>!!'
+                        . '</div>');
+                $data['edit'] = null;
+                $this->load->view('User/Admin/UsersEdit', $data);
+            } else {
+
+                $users_id = stripslashes($_POST['users_id']);
+            $first_name = stripslashes($_POST['first_name']);
+            $last_name = stripslashes($_POST['last_name']);
+            $email = stripslashes($_POST['email']);
+            $username = stripslashes($_POST['username']);
+            $password = stripslashes($_POST['password']);
+            $user_group_id = stripslashes($_POST['user_group_id']);
+            $choosenWord = stripslashes($_POST['choosenWord']);
+
+                $data = array(
+                    'users_id' => $users_id,
+                    'first_name' => $first_name,
+                    'last_name' => $last_name,
+                    'email' => $email,
+                    'username' => $username,
+                    'password' => $password,
+                    'user_group_id' => $user_group_id,
+                    'choosenWord' => $choosenWord
+                    
+                );
+                $this->Usermodel->EditUsers($users_id, $data);
+                $this->session->set_flashdata('edit_msg', '<div class="alert alert-success" style="font-size:24px; font:bold;">'
+                        . 'The User has been successfully <strong>Edited</strong>!!'
+                        . '</div>');
+
+                redirect('User/ViewUsers');
+            }
         } else {
             //if not authentication the go to Login Page
             $data['is_authenticated'] = FALSE;
@@ -467,4 +548,14 @@ class User extends CI_Controller {
         }
     }
 
+    
+    function Select_GroupEdit($user_group_id) {
+
+        if ($user_group_id == "-1") {
+            $this->form_validation->set_message('Select_GroupEdit', 'You have to select a Group');
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

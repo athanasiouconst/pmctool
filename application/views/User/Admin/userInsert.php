@@ -62,6 +62,13 @@
                             </tr>
                             <tr>
                                 <td>
+                                    <span title="Recover Password Phrase">
+                                        <input class="table table-responsive" style="color:#000; border: 0px;" type="text" name="choosenWord" id="choosenWord" placeholder="Recover Password Phrase" value="<?php echo set_value('choosenWord'); ?>"  />
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
                                     <span title="User's Group">
                                         <label for="User's Group"></label>
                                         <select name='user_group_id' id='user_group_id' >
