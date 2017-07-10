@@ -16,12 +16,9 @@
                     <!-- About Us Left -->
                     <div class="about-us-left">
                         <!-- About Us Info -->
-                        <h2 class="section-title-left">Login with your Account</h2>
+                        <h2 class="section-title-left">Reset your Account</h2>
 
                         <div class="panel">
-                            <?php echo $this->session->flashdata('success_msg'); ?>
-                            <?php echo $this->session->flashdata('delete_msg'); ?>
-                            <?php echo $this->session->flashdata('edit_msg'); ?>
                             <style type="text/css">
                                 .tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;margin:0px auto;}
                                 .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;color:#333;background-color:#fff;border-top-width:1px;border-bottom-width:1px;}
@@ -33,36 +30,28 @@
                                     <strong><?= $error ?></strong>
                                     <strong><?php echo validation_errors(); ?></strong>
                                 </div>                    
-                            <?php endif; ?>
+                            <?php endif; ?>   
 
-                            <?php echo form_open('User/Verify'); ?>
+                            <?php echo form_open('User/RecoverySubmitPassword'); ?>
                             <table class="tg" style="width: 100%;">
                                 <tr>
                                     <td class="tg-qgsu" style="width: 100%;" >
-                                        <label for="username">Username <span class="text-danger">*</span></label>
-                                        <input style="width: 100%;"type="text" name="username"  placeholder="Username . . . ">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="tg-qgsu" style="width: 100%;" >
-                                        <label for="password">Password <span class="text-danger">*</span></label>
-                                        <input style="width: 100%;"type="password" name="password"  placeholder="Password . . . ">
+                                        <p><input type="hidden" size="80" id="username" name="username" value="<?php echo $username; ?>"/> 
+                                        <p><input type="hidden" size="80" id="email" name="email" value="<?php echo $email; ?>"/> 
+                                        <p><input type="hidden" size="80" id="choosenWord" name="choosenWord" value="<?php echo $choosenWord; ?>"/> 
+
+                                            <label for="new_password">Password <span class="text-danger">*</span></label>
+                                            <input style="width: 100%;"type="text" name="new_password"  placeholder="Password . . . " value="<?php echo $new_password; ?>">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input class="btn-success" type="submit" value="Login!" />
-                                        <input class="btn-danger" type="reset" value="Clear Form" />
+                                        <input class="btn-success" type="submit" value="Reset My Account!" />
                                     </td>
                                 </tr>
 
                                 <?php echo form_close(); ?>
-                                <tr>
-                                    <td>
-                                        <a href="<?php echo base_url('User/recovery'); ?>" class="btn-lg btn-warning">Recover your Password !!!</a>
 
-                                    </td>
-                                </tr>
                             </table>
                         </div>
                     </div>

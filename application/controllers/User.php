@@ -578,6 +578,7 @@ class User extends CI_Controller {
     }
 
     public function RecoveryPassword() {
+        $this->load->model('Usermodel');
         $this->load->library('form_validation');
         $error = '';
 
@@ -595,7 +596,7 @@ class User extends CI_Controller {
             $data['is_authenticated'] = FALSE;
             $data['error'] = $error;
             $data['error'] = '<h2>Your Credentials are false! <br>Please try again! </h2>';
-            $this->session->set_flashdata('success_msg', '<div class="alert alert-danger" style="font-size:24px; font:bold;">'
+            $this->session->set_flashdata('delete_msg', '<div class="alert alert-danger" style="font-size:24px; font:bold;">'
                     . 'You cannot <strong>Reset</strong> your Account. The credentials are wrong!!'
                     . '</div>');
             $data['edit'] = null;
@@ -604,10 +605,64 @@ class User extends CI_Controller {
             $data['is_authenticated'] = FALSE;
 
             $new_password = $this->input->post('new_password');
-            $email = stripslashes($_POST['email']);
             $username = stripslashes($_POST['username']);
+            $email = stripslashes($_POST['email']);
             $choosenWord = stripslashes($_POST['choosenWord']);
+
+            $result = $this->Usermodel->searchPersonal($username, $email, $choosenWord);
+
+            if ($result == TRUE) {
+                               
+                $data['new_password'] = $new_password;
+                $data['username'] = $username;
+                $data['email'] = $email;
+                $data['choosenWord'] = $choosenWord;
+                $this->load->view('User/login/recovered', $data);
+            } else {
+                $data['error'] = $error;
+                $data['error'] = '<h2>Your Credentials are false! <br>Please try again! </h2>';
+                $this->session->set_flashdata('delete_msg', '<div class="alert alert-danger" style="font-size:24px; font:bold;">'
+                        . 'You cannot <strong>Reset</strong> your Account. The credentials are wrong!!'
+                        . '</div>');
+                $this->load->view('User/login/recovery', $data);
+            }
         }
+    }
+
+    
+    public function RecoverySubmitPassword() {
+        $this->load->model('Usermodel');
+        $this->load->library('form_validation');
+        $error = '';
+            $data['is_authenticated'] = FALSE;
+
+            $new_password = $this->input->post('new_password');
+            $username = $this->input->post('username');
+            $email = $this->input->post('email');
+            $choosenWord = $this->input->post('choosenWord');
+
+            $result = $this->Usermodel->searchPersonal($username, $email, $choosenWord);
+
+            if ($result == TRUE) {
+                $this->Usermodel->recovering($username, $email, $choosenWord,$new_password);
+                $this->session->set_flashdata('success_msg', '<div class="alert alert-success" style="font-size:24px; font:bold;">'
+                        . 'Your account has successfully been <strong>Recovered</strong>!!'
+                        . '</div>');
+
+                $data['new_password'] = $new_password;
+                $data['username'] = $username;
+                $data['email'] = $email;
+                $data['choosenWord'] = $choosenWord;
+                $this->load->view('User/login/home', $data);
+            } else {
+                $data['error'] = $error;
+                $data['error'] = '<h2>Your Credentials are false! <br>Please try again! </h2>';
+                $this->session->set_flashdata('delete_msg', '<div class="alert alert-danger" style="font-size:24px; font:bold;">'
+                        . 'You cannot <strong>Reset</strong> your Account. The credentials are wrong!!'
+                        . '</div>');
+                $this->load->view('User/login/recovery', $data);
+            }
+        
     }
 
 }

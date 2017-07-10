@@ -72,7 +72,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input class="btn-success" type="submit" value="Login!" />
+                                        <input class="btn-success" type="submit" value="Recovery!" />
                                         <input class="btn-danger" type="reset" value="Clear Form" />
                                     </td>
                                 </tr>

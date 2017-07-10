@@ -194,4 +194,14 @@ Class Usermodel extends CI_Model {
         $this->db->where('users_id', $users_id);
         $this->db->update('users', $data);
     }
+    
+    public function searchPersonal($username, $email, $choosenWord) {
+        $result = $this->db->query("SELECT * FROM users WHERE username='" . $username . "' AND email='" . $email . "'  AND choosenWord='" . $choosenWord . "'");
+        return $result->num_rows() == 1;
+    }
+    
+    public function recovering($username, $email,$choosenWord,$new_password) {
+        $this->db->query("UPDATE users SET password='" . $new_password . "' WHERE username='" . $username . "' AND email='" . $email . "' AND choosenWord='" . $choosenWord . "'");
+        return $new_password;
+    }
 }
