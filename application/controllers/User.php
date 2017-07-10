@@ -495,7 +495,7 @@ class User extends CI_Controller {
 
 
             $error = '';
-            
+
             $users_id = stripslashes($_POST['users_id']);
             $first_name = stripslashes($_POST['first_name']);
             $last_name = stripslashes($_POST['last_name']);
@@ -515,13 +515,13 @@ class User extends CI_Controller {
             } else {
 
                 $users_id = stripslashes($_POST['users_id']);
-            $first_name = stripslashes($_POST['first_name']);
-            $last_name = stripslashes($_POST['last_name']);
-            $email = stripslashes($_POST['email']);
-            $username = stripslashes($_POST['username']);
-            $password = stripslashes($_POST['password']);
-            $user_group_id = stripslashes($_POST['user_group_id']);
-            $choosenWord = stripslashes($_POST['choosenWord']);
+                $first_name = stripslashes($_POST['first_name']);
+                $last_name = stripslashes($_POST['last_name']);
+                $email = stripslashes($_POST['email']);
+                $username = stripslashes($_POST['username']);
+                $password = stripslashes($_POST['password']);
+                $user_group_id = stripslashes($_POST['user_group_id']);
+                $choosenWord = stripslashes($_POST['choosenWord']);
 
                 $data = array(
                     'users_id' => $users_id,
@@ -532,7 +532,6 @@ class User extends CI_Controller {
                     'password' => $password,
                     'user_group_id' => $user_group_id,
                     'choosenWord' => $choosenWord
-                    
                 );
                 $this->Usermodel->EditUsers($users_id, $data);
                 $this->session->set_flashdata('edit_msg', '<div class="alert alert-success" style="font-size:24px; font:bold;">'
@@ -548,7 +547,6 @@ class User extends CI_Controller {
         }
     }
 
-    
     function Select_GroupEdit($user_group_id) {
 
         if ($user_group_id == "-1") {
@@ -558,4 +556,58 @@ class User extends CI_Controller {
             return true;
         }
     }
+
+    public function recovery() {
+        if ($this->session->userdata('userIsLoggedIn')) {
+            $this->load->model('Usermodel');
+
+            //authentication of user
+            $data['is_authenticated'] = $this->session->userdata('userIsLoggedIn');
+            //user information
+            $username = $this->session->userdata('username');
+            $data['username'] = $this->session->userdata('username');
+            $data['role'] = $this->Usermodel->getRole($username);
+
+            //view the home page
+            $this->load->view('User/login/success', $data);
+        } else {
+            //if not authentication the go to Login Page
+            $data['is_authenticated'] = FALSE;
+            $this->load->view('User/login/recovery', $data);
+        }
+    }
+
+    public function RecoveryPassword() {
+        $this->load->library('form_validation');
+        $error = '';
+
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('choosenWord', 'Recover Password Phrase', 'trim|required|xss_clean');
+
+        $error = '';
+
+        $email = stripslashes($_POST['email']);
+        $username = stripslashes($_POST['username']);
+        $choosenWord = stripslashes($_POST['choosenWord']);
+
+        if ($this->form_validation->run() == FALSE) {
+            $data['is_authenticated'] = FALSE;
+            $data['error'] = $error;
+            $data['error'] = '<h2>Your Credentials are false! <br>Please try again! </h2>';
+            $this->session->set_flashdata('success_msg', '<div class="alert alert-danger" style="font-size:24px; font:bold;">'
+                    . 'You cannot <strong>Reset</strong> your Account. The credentials are wrong!!'
+                    . '</div>');
+            $data['edit'] = null;
+            $this->load->view('User/login/recovery', $data);
+        } else {
+            $data['is_authenticated'] = FALSE;
+
+            $new_password = $this->input->post('new_password');
+            $email = stripslashes($_POST['email']);
+            $username = stripslashes($_POST['username']);
+            $choosenWord = stripslashes($_POST['choosenWord']);
+        }
+    }
+
 }

@@ -16,7 +16,7 @@
                     <!-- About Us Left -->
                     <div class="about-us-left">
                         <!-- About Us Info -->
-                        <h2 class="section-title-left">Login with your Account</h2>
+                        <h2 class="section-title-left">Reset your Account</h2>
 
                         <div class="panel">
                             <style type="text/css">
@@ -32,8 +32,26 @@
                                 </div>                    
                             <?php endif; ?>
 
-                            <?php echo form_open('User/Verify'); ?>
+                            <?php
+
+//create passwords for users
+                            function randomPassword() {
+                                $alphabet = "abcdefghijklmnopqrstuwxyz0123456789!@#$%";
+                                $pass = array(); //remember to declare $pass as an array
+                                $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+                                for ($i = 0; $i < 8; $i++) {
+                                    $n = rand(0, $alphaLength);
+                                    $pass[] = $alphabet[$n];
+                                }
+                                return implode($pass); //turn the array into a string
+                            }
+
+//echo randomPassword();
+                            ?>
+                            <?php echo form_open('User/RecoveryPassword'); ?>
                             <table class="tg" style="width: 100%;">
+                                <p><input type="hidden" size="80" id="new_password" name="new_password" value="<?php echo randomPassword() ?>"/> 
+
                                 <tr>
                                     <td class="tg-qgsu" style="width: 100%;" >
                                         <label for="username">Username <span class="text-danger">*</span></label>
@@ -42,8 +60,14 @@
                                 </tr>
                                 <tr>
                                     <td class="tg-qgsu" style="width: 100%;" >
-                                        <label for="password">Password <span class="text-danger">*</span></label>
-                                        <input style="width: 100%;"type="password" name="password"  placeholder="Password . . . ">
+                                        <label for="email">Email <span class="text-danger">*</span></label>
+                                        <input style="width: 100%;"type="text" name="email"  placeholder="Email . . . ">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-qgsu" style="width: 100%;" >
+                                        <label for="choosenWord">Security Phrase <span class="text-danger">*</span></label>
+                                        <input style="width: 100%;"type="text" name="choosenWord"  placeholder="Security Phrase . . . ">
                                     </td>
                                 </tr>
                                 <tr>
@@ -54,12 +78,7 @@
                                 </tr>
 
                                 <?php echo form_close(); ?>
-                                <tr>
-                                    <td>
-                                        <a href="<?php echo base_url('User/recovery'); ?>" class="btn-lg btn-warning">Recover your Password !!!</a>
 
-                                    </td>
-                                </tr>
                             </table>
                         </div>
                     </div>
