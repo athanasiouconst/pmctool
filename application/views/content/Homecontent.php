@@ -130,3 +130,94 @@
 <!-- End Of Our Services -->
 
 
+<!-- Testimonial Section -->
+
+<section class="testimonial-section section-padding" id="testimonial">
+    <div class="container">
+        <div class="row">
+            <!-- Owl-Testimonial Carousel Starts Here -->
+            <div id="testimonial-carousel" class="owl-carousel owl-theme">
+                <!-- Carousl Item -->
+                <div class="item">
+                    <!-- Testimonial Body -->
+                    <div class="col-md-5 col-md-offset-1 col-lg-5 col-lg-offset-1 col-sm-6 col-xs-12">
+                        <h2 class="section-title-left testimoinal-title">Members <br> of the research group</h2>
+                        <div class="testimonial-body">
+                            <p>Pantelis Ipsilantis</p>
+                            <p>Professor of the department of Project Management of TEI Larissa</p>
+                            <div class="client-name">
+                                <a href="#"><b>Pantelis Ipsilantis</b></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial Client Images -->
+                    <div class="col-md-4 col-md-offset-1 col-lg-4 col-lg-offset-1 col-sm-6 col-xs-12 testimonial-image">
+                        <figure>
+                            <img class="img-responsive center-block" src="img/clients/client-feedback.jpg" alt="">
+                        </figure>
+                    </div>
+                </div>
+<!-- Carousl Item -->
+                <div class="item">
+                    <!-- Testimonial Body -->
+                    <div class="col-md-5 col-md-offset-1 col-lg-5 col-lg-offset-1 col-sm-6 col-xs-12">
+                        <h2 class="section-title-left testimoinal-title">Members <br> of the research group</h2>
+                        <div class="testimonial-body">
+                            <p>Panos Fitsilis</p>
+                            <p>Professor in the department of Project Management of TEI Larissa</p>
+                            <div class="client-name">
+                                <a href="#"><b>Panos Fitsilis</b></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial Client Images -->
+                    <div class="col-md-4 col-md-offset-1 col-lg-4 col-lg-offset-1 col-sm-6 col-xs-12 testimonial-image">
+                        <figure>
+                            <img class="img-responsive center-block" src="img/clients/client-feedback.jpg" alt="">
+                        </figure>
+                    </div>
+                </div>
+<!-- Carousl Item -->
+                <div class="item">
+                    <!-- Testimonial Body -->
+                    <div class="col-md-5 col-md-offset-1 col-lg-5 col-lg-offset-1 col-sm-6 col-xs-12">
+                        <h2 class="section-title-left testimoinal-title">Members <br> of the research group</h2>
+                        <div class="testimonial-body">
+                            <p>James F. O’Kane</p>
+                            <p>Professor of the Business faculty of Staffordshire University</p>
+                            <div class="client-name">
+                                <a href="#"><b>James F. O’Kane</b></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial Client Images -->
+                    <div class="col-md-4 col-md-offset-1 col-lg-4 col-lg-offset-1 col-sm-6 col-xs-12 testimonial-image">
+                        <figure>
+                            <img class="img-responsive center-block" src="img/clients/client-feedback.jpg" alt="">
+                        </figure>
+                    </div>
+                </div>
+<!-- Carousl Item -->
+                <div class="item">
+                    <!-- Testimonial Body -->
+                    <div class="col-md-5 col-md-offset-1 col-lg-5 col-lg-offset-1 col-sm-6 col-xs-12">
+                        <h2 class="section-title-left testimoinal-title">Members <br> of the research group</h2>
+                        <div class="testimonial-body">
+                            <p>Vyron Damasiotis</p>
+                            <p>Lecturer in the department of Accounting of TEI Larissa</p>
+                            <div class="client-name">
+                                <a href="#"><b>Vyron Damasiotis</b></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial Client Images -->
+                    <div class="col-md-4 col-md-offset-1 col-lg-4 col-lg-offset-1 col-sm-6 col-xs-12 testimonial-image">
+                        <figure>
+                            <img class="img-responsive center-block" src="img/clients/client-feedback.jpg" alt="">
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
